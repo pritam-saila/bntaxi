@@ -1,0 +1,869 @@
+<style>
+/* =========================================================
+   BN TAXI - PREMIUM USER MENU
+   Completely New Class Names
+========================================================= */
+
+.bntx-user-nav {
+    position: relative;
+    width: 100%;
+    padding: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #061b31 0%,
+            #0a3158 52%,
+            #07518a 100%
+        );
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 20px 45px rgba(3, 30, 58, 0.25);
+
+    overflow: hidden;
+}
+
+
+/* Decorative glow */
+
+.bntx-user-nav::before {
+    content: "";
+    position: absolute;
+
+    width: 190px;
+    height: 190px;
+
+    top: -110px;
+    right: -90px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(39, 146, 255, .35),
+            rgba(39, 146, 255, 0)
+        );
+
+    pointer-events: none;
+}
+
+
+.bntx-user-nav::after {
+    content: "";
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    left: -100px;
+    bottom: -100px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 218, 255, .16),
+            rgba(0, 218, 255, 0)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   NAV LIST
+========================================================= */
+
+.bntx-user-list {
+    position: relative;
+
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+
+/* =========================================================
+   NAV ITEM
+========================================================= */
+
+.bntx-user-item {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0;
+}
+
+
+/* =========================================================
+   NAV LINK
+========================================================= */
+
+.bntx-user-link {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-height: 68px;
+
+    padding: 5px 5px;
+
+    color: #e9f4ff !important;
+
+    text-decoration: none !important;
+
+    border-radius: 16px;
+
+    border: 1px solid rgba(255,255,255,.13);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.095),
+            rgba(255,255,255,.035)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.05);
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   ICON CONTAINER
+========================================================= */
+
+.bntx-user-icon {
+    flex: 0 0 45px;
+
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 12px;
+
+    border-radius: 13px;
+
+    color: #62b5ff;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(40,143,255,.20),
+            rgba(255,255,255,.06)
+        );
+
+    border: 1px solid rgba(110,190,255,.18);
+
+    box-shadow:
+        0 5px 14px rgba(0,0,0,.10);
+
+    transition:
+        .3s ease;
+}
+
+
+/* SVG */
+
+.bntx-user-icon svg {
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.bntx-user-label {
+    flex: 1;
+
+    color: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: .2px;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   RIGHT ARROW
+========================================================= */
+
+.bntx-user-arrow {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: rgba(255,255,255,.35);
+
+    border-radius: 50%;
+
+    transition: .3s ease;
+}
+
+
+.bntx-user-arrow svg {
+    width: 16px;
+    height: 16px;
+
+    fill: none;
+
+    stroke: currentColor;
+
+    stroke-width: 2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.bntx-user-link:hover {
+
+    color: #fff !important;
+
+    transform: translateX(5px);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(26,136,255,.40),
+            rgba(0,91,180,.25)
+        );
+
+    border-color:
+        rgba(85,177,255,.45);
+
+    box-shadow:
+        0 12px 26px rgba(0,76,155,.22);
+}
+
+
+.bntx-user-link:hover .bntx-user-icon {
+
+    color: #fff;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1688ff,
+            #0068d9
+        );
+
+    border-color:
+        rgba(255,255,255,.25);
+
+    transform: scale(1.06);
+}
+
+
+.bntx-user-link:hover .bntx-user-arrow {
+
+    color: #fff;
+
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   ACTIVE
+========================================================= */
+
+.bntx-user-link.is-active {
+
+    color: #fff !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1788ff 0%,
+            #0064d5 100%
+        ) !important;
+
+    border-color: transparent !important;
+
+    box-shadow:
+        0 12px 28px rgba(0,105,225,.35);
+}
+
+
+/* Active icon */
+
+.bntx-user-link.is-active .bntx-user-icon {
+
+    color: #fff;
+
+    background:
+        rgba(255,255,255,.20);
+
+    border-color:
+        rgba(255,255,255,.22);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+
+/* Active arrow */
+
+.bntx-user-link.is-active .bntx-user-arrow {
+    color: #fff;
+}
+
+
+/* Active indicator */
+
+.bntx-user-link.is-active::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    width: 4px;
+    height: 34px;
+
+    transform: translateY(-50%);
+
+    background: #fff;
+
+    border-radius:
+        0 8px 8px 0;
+}
+
+
+/* =========================================================
+   LOGOUT SEPARATOR
+========================================================= */
+
+.bntx-user-logout {
+    margin-top: 8px !important;
+
+    padding-top: 13px;
+
+    border-top:
+        1px solid rgba(255,255,255,.13);
+}
+
+
+/* =========================================================
+   LOGOUT STYLE
+========================================================= */
+
+.bntx-user-link.logout-style {
+
+    color: #ff9a9a !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,66,66,.08),
+            rgba(255,66,66,.025)
+        );
+
+    border-color:
+        rgba(255,90,90,.18);
+}
+
+
+.bntx-user-link.logout-style .bntx-user-icon {
+
+    color: #ff7777;
+
+    background:
+        rgba(255,70,70,.10);
+
+    border-color:
+        rgba(255,100,100,.18);
+}
+
+
+.bntx-user-link.logout-style:hover {
+
+    color: #fff !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f04452,
+            #c82035
+        );
+
+    border-color: transparent;
+
+    box-shadow:
+        0 12px 28px rgba(210,35,50,.30);
+}
+
+
+.bntx-user-link.logout-style:hover .bntx-user-icon {
+
+    color: #fff;
+
+    background:
+        rgba(255,255,255,.16);
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 992px) {
+
+    .bntx-user-nav {
+        padding: 17px;
+    }
+
+    .bntx-user-link {
+        min-height: 68px;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+
+    .bntx-user-nav {
+        border-radius: 19px;
+        padding: 16px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+
+    .bntx-user-nav {
+
+        width: 100%;
+
+        padding: 12px;
+
+        margin-bottom: 18px;
+
+        border-radius: 18px;
+    }
+
+
+    .bntx-user-list {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 9px;
+    }
+
+
+    .bntx-user-link {
+
+        min-height: 60px;
+
+        padding: 8px 9px;
+
+        border-radius: 14px;
+    }
+
+
+    .bntx-user-icon {
+
+        flex: 0 0 37px;
+
+        width: 37px;
+        height: 37px;
+
+        margin-right: 8px;
+
+        border-radius: 10px;
+    }
+
+
+    .bntx-user-icon svg {
+
+        width: 18px;
+        height: 18px;
+    }
+
+
+    .bntx-user-label {
+
+        font-size: 12px;
+    }
+
+
+    .bntx-user-arrow {
+
+        display: none;
+    }
+
+
+    /* Logout full width */
+
+    .bntx-user-logout {
+
+        grid-column: 1 / -1;
+
+        margin-top: 1px !important;
+
+        padding-top: 9px;
+    }
+
+
+    .bntx-user-logout .bntx-user-link {
+
+        justify-content: center;
+
+        min-height: 53px;
+    }
+
+
+    .bntx-user-link:hover {
+
+        transform: none;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .bntx-user-nav {
+        padding: 10px;
+    }
+
+
+    .bntx-user-list {
+        gap: 8px;
+    }
+
+
+    .bntx-user-link {
+
+        min-height: 56px;
+
+        padding: 7px;
+
+        border-radius: 12px;
+    }
+
+
+    .bntx-user-icon {
+
+        flex: 0 0 34px;
+
+        width: 34px;
+        height: 34px;
+
+        margin-right: 7px;
+    }
+
+
+    .bntx-user-label {
+        font-size: 11px;
+    }
+
+}
+
+</style>
+
+
+<div class="bntx-user-nav">
+
+    <ul class="bntx-user-list">
+
+
+        <!-- DASHBOARD -->
+
+        <li class="bntx-user-item">
+
+            <a
+                class="bntx-user-link {{ Request::is('user-account') ? 'is-active' : '' }}"
+                href="{{ url('user-account') }}"
+            >
+
+                <span class="bntx-user-icon">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="M3 10.5L12 3l9 7.5"></path>
+
+                        <path d="M5 9.5V21h14V9.5"></path>
+
+                        <path d="M9 21v-7h6v7"></path>
+
+                    </svg>
+
+                </span>
+
+
+                <span class="bntx-user-label">
+                    Dashboard
+                </span>
+
+
+                <span class="bntx-user-arrow">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="M9 18l6-6-6-6"></path>
+
+                    </svg>
+
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <!-- BOOKINGS -->
+
+        <li class="bntx-user-item">
+
+            <a
+                class="bntx-user-link {{ Request::is('my-booking') ? 'is-active' : '' }}"
+                href="{{ url('my-booking') }}"
+            >
+
+                <span class="bntx-user-icon">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="M5 17h14"></path>
+
+                        <path d="M6 17l1-6h10l1 6"></path>
+
+                        <path d="M8 11l1.2-3h5.6l1.2 3"></path>
+
+                        <circle cx="8" cy="17.5" r="1.5"></circle>
+
+                        <circle cx="16" cy="17.5" r="1.5"></circle>
+
+                    </svg>
+
+                </span>
+
+
+                <span class="bntx-user-label">
+                    Bookings
+                </span>
+
+
+                <span class="bntx-user-arrow">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="M9 18l6-6-6-6"></path>
+
+                    </svg>
+
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <!-- PROFILE -->
+
+        <li class="bntx-user-item">
+
+            <a
+                class="bntx-user-link {{ Request::is('my-profile') ? 'is-active' : '' }}"
+                href="{{ url('my-profile') }}"
+            >
+
+                <span class="bntx-user-icon">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <circle cx="12" cy="8" r="3.5"></circle>
+
+                        <path d="M5 21c.7-4 3-6 7-6s6.3 2 7 6"></path>
+
+                    </svg>
+
+                </span>
+
+
+                <span class="bntx-user-label">
+                    Profile
+                </span>
+
+
+                <span class="bntx-user-arrow">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="M9 18l6-6-6-6"></path>
+
+                    </svg>
+
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <!-- CHANGE PASSWORD -->
+
+        <li class="bntx-user-item">
+
+            <a
+                class="bntx-user-link {{ Request::is('user-change-password') ? 'is-active' : '' }}"
+                href="{{ url('user-change-password') }}"
+            >
+
+                <span class="bntx-user-icon">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+
+                    </svg>
+
+                </span>
+
+
+                <span class="bntx-user-label">
+                    Change Password
+                </span>
+
+
+                <span class="bntx-user-arrow">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="M9 18l6-6-6-6"></path>
+
+                    </svg>
+
+                </span>
+
+            </a>
+
+        </li>
+
+
+        <!-- LOGOUT -->
+
+        <li class="bntx-user-item bntx-user-logout">
+
+            <a
+                class="bntx-user-link logout-style"
+                href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+            >
+
+                <span class="bntx-user-icon">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="M10 4H5v16h5"></path>
+
+                        <path d="M14 8l4 4-4 4"></path>
+
+                        <path d="M18 12H9"></path>
+
+                    </svg>
+
+                </span>
+
+
+                <span class="bntx-user-label">
+                    Logout
+                </span>
+
+
+                <span class="bntx-user-arrow">
+
+                    <svg viewBox="0 0 24 24">
+
+                        <path d="M9 18l6-6-6-6"></path>
+
+                    </svg>
+
+                </span>
+
+            </a>
+
+
+            <form
+                id="logout-form"
+                action="{{ route('logout') }}"
+                method="POST"
+                class="d-none"
+            >
+
+                @csrf
+
+            </form>
+
+        </li>
+
+
+    </ul>
+
+</div>

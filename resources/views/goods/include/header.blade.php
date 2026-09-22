@@ -1,0 +1,2481 @@
+<style>
+
+/* ===========================
+   MOBILE CALL BUTTON
+=========================== */
+
+.mobile-call-btn{
+    display:none;
+}
+
+@media (max-width:991px){
+
+    .mobile-call-btn{
+        display:block;
+        width:100%;
+        /*margin:10px 0 15px;*/
+        /*padding:0 15px;*/
+    }
+
+    .mobile-call-btn a{
+                display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 46%;
+        height: auto;
+        text-decoration: none;
+        color: #fff;
+        font-size: 17px;
+        font-weight: 700;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #1a64e5, #004ad4, green);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+        animation: callAnimation 1.5s infinite;
+        position: absolute;
+        top: -37px;
+        font-size: 14px;
+        padding: 8px 0;
+        left: 119px;
+    }
+    #slide-menus img {
+    height: auto !important;
+}
+
+    .mobile-call-btn a:hover{
+        color:#fff;
+        text-decoration:none;
+    }
+
+    .mobile-call-btn i{
+        font-size:15px;
+        animation:phoneShake .8s infinite;
+    }
+
+    #slide-menus{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+
+    
+
+    .menu-btn{
+        font-size:26px;
+        cursor:pointer;
+    }
+
+}
+
+/* Pulse Animation */
+
+@keyframes callAnimation{
+
+    0%{
+        transform:scale(1);
+        box-shadow:0 0 0 0 rgba(21,87,214,.35);
+    }
+
+    70%{
+        transform:scale(1.03);
+        box-shadow:0 0 0 15px rgba(21,87,214,0);
+    }
+
+    100%{
+        transform:scale(1);
+        box-shadow:0 0 0 0 rgba(21,87,214,0);
+    }
+
+}
+
+/* Phone Icon Shake */
+
+@keyframes phoneShake{
+
+    0%,100%{
+        transform:rotate(0deg);
+    }
+
+    20%{
+        transform:rotate(-15deg);
+    }
+
+    40%{
+        transform:rotate(15deg);
+    }
+
+    60%{
+        transform:rotate(-10deg);
+    }
+
+    80%{
+        transform:rotate(10deg);
+    }
+
+}
+
+@media (min-width: 768px) {
+    
+    }
+
+@media(max-width:480px){
+
+    .sidenav{
+        width:290px;
+    }
+
+    .menu-links a{
+        font-size:15px;
+    }
+
+}
+
+
+/* =========================================================
+   BN TAXI - PREMIUM HEADER
+========================================================= */
+
+.bn-premium-header {
+    position: sticky;
+
+    top: 0;
+
+    z-index: 9999;
+
+    width: 100%;
+
+    background: rgba(255,255,255,0.97);
+
+    border-bottom: 1px solid #e8edf2;
+
+    box-shadow:
+        0 5px 25px rgba(6,31,52,0.08);
+
+    backdrop-filter: blur(12px);
+
+    transition:
+        box-shadow .25s ease;
+}
+
+
+/* TOP ACCENT */
+
+.bn-premium-header::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1557d6 0%,
+            #1557d6 35%,
+            #0c92c2 35%,
+            #0c92c2 65%,
+            #1557d6 65%,
+            #1557d6 100%
+        );
+}
+
+
+/* =========================================
+   HEADER INNER
+========================================= */
+
+.bn-header-inner {
+    min-height: 92px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.bn-header-logo {
+    flex: 0 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.bn-header-logo a {
+    display: flex;
+
+    align-items: center;
+
+    text-decoration: none;
+}
+
+
+.bn-header-logo img {
+    display: block;
+
+    width: 158px;
+
+    max-width: 100%;
+
+    height: auto;
+}
+
+
+/* =========================================
+   MOBILE MENU BUTTON
+========================================= */
+
+.bn-mobile-menu-btn {
+    display: none;
+
+    width: 43px;
+    height: 43px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #082a47,
+            #075c72
+        );
+
+    color: #1557d6;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 15px rgba(8,42,71,0.15);
+}
+
+
+/* =========================================
+   MOBILE CALL
+========================================= */
+
+.bn-mobile-call {
+    display: none;
+}
+
+
+/* =========================================
+   NAV
+========================================= */
+
+.bn-main-nav {
+    margin-left: auto;
+}
+
+
+.bn-navigation {
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    margin: 0;
+
+    padding: 0;
+
+    list-style: none;
+}
+
+
+.bn-navigation > li {
+    position: relative;
+}
+
+
+.bn-navigation > li > a {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 12px 13px;
+
+    color: #102b44;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        color .25s ease;
+}
+
+
+/* Nav hover underline */
+
+.bn-navigation > li > a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 13px;
+    right: 13px;
+
+    bottom: 5px;
+
+    height: 2px;
+
+    border-radius: 5px;
+
+    background: #1557d6;
+
+    transform:
+        scaleX(0);
+
+    transform-origin: center;
+
+    transition:
+        transform .25s ease;
+}
+
+
+.bn-navigation > li > a:hover {
+    color: #1557d6;
+}
+
+
+.bn-navigation > li > a:hover::after {
+    transform:
+        scaleX(1);
+}
+
+
+/* =========================================
+   DROPDOWN ARROW
+========================================= */
+
+.bn-dropdown-toggle > i {
+    font-size: 8px;
+
+    color: #71808e;
+
+    transition:
+        transform .25s ease;
+}
+
+
+.bn-nav-dropdown:hover
+.bn-dropdown-toggle > i {
+    transform:
+        rotate(180deg);
+}
+
+
+/* =========================================
+   SERVICES DROPDOWN
+========================================= */
+
+.bn-dropdown-menu {
+    position: absolute;
+
+    top: calc(100% + 13px);
+
+    left: 50%;
+
+    width: 300px;
+
+    margin: 0;
+
+    padding: 9px;
+
+    list-style: none;
+
+    background: #fff;
+
+    border: 1px solid #e5ebf0;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 18px 45px rgba(5,31,52,0.15);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translate(-50%, 8px);
+
+    transition:
+        opacity .25s ease,
+        visibility .25s ease,
+        transform .25s ease;
+}
+
+
+/* Dropdown arrow */
+
+.bn-dropdown-menu::before {
+    content: "";
+
+    position: absolute;
+
+    top: -6px;
+
+    left: 50%;
+
+    width: 11px;
+    height: 11px;
+
+    background: #fff;
+
+    border-left: 1px solid #e5ebf0;
+    border-top: 1px solid #e5ebf0;
+
+    transform:
+        translateX(-50%)
+        rotate(45deg);
+}
+
+
+.bn-nav-dropdown:hover
+.bn-dropdown-menu {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translate(-50%, 0);
+}
+
+
+/* =========================================
+   DROPDOWN ITEM
+========================================= */
+
+.bn-dropdown-menu li {
+    margin: 0;
+}
+
+
+.bn-dropdown-menu li a {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-height: 48px;
+
+    padding: 9px 10px;
+
+    border-radius: 9px;
+
+    color: #1a344b;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+}
+
+
+.bn-dropdown-menu li a:hover {
+    background: #eef5ff;
+
+    color: #087fa8;
+
+    transform: translateX(3px);
+}
+
+
+.bn-dropdown-icon {
+    width: 32px;
+    height: 32px;
+
+    flex: 0 0 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    background: #eaf3ff;
+
+    color: #1557d6;
+
+    font-size: 11px;
+}
+
+
+.bn-dropdown-menu li a > .fa-arrow-right {
+    margin-left: auto;
+
+    color: #c4ccd3;
+
+    font-size: 8px;
+}
+
+
+.bn-disabled-link {
+    color: #929ca5 !important;
+
+    cursor: default;
+}
+
+
+/* =========================================
+   LOGIN DROPDOWN
+========================================= */
+
+.bn-login-dropdown {
+    width: 245px;
+
+    left: auto;
+
+    right: 0;
+
+    transform:
+        translate(0, 8px);
+}
+
+
+.bn-nav-dropdown:hover
+.bn-login-dropdown {
+    transform:
+        translate(0, 0);
+}
+
+
+.bn-login-dropdown::before {
+    left: auto;
+
+    right: 23px;
+
+    transform:
+        rotate(45deg);
+}
+
+
+.bn-login-dropdown li a {
+    min-height: 62px;
+}
+
+
+.bn-login-dropdown li a > span:nth-child(2) {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.bn-login-dropdown strong {
+    color: #16344c;
+
+    font-size: 12px;
+}
+
+
+.bn-login-dropdown small {
+    color: #87939d;
+
+    font-size: 9px;
+
+    font-weight: 500;
+}
+
+
+.bn-dropdown-icon.customer {
+    background: #edf6ff;
+
+    color: #1675c1;
+}
+
+
+.bn-dropdown-icon.driver {
+    background: #eaf3ff;
+
+    color: #1557d6;
+}
+
+
+/* =========================================
+   BOOK NOW
+========================================= */
+
+.bn-book-nav {
+    margin-left: 5px;
+}
+
+
+.bn-navigation > .bn-book-nav > a {
+    padding: 11px 17px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1479f5,
+            #0965da
+        );
+
+    color: #fff;
+
+    box-shadow:
+        0 7px 18px rgba(20,121,245,0.22);
+}
+
+
+.bn-navigation > .bn-book-nav > a::after {
+    display: none;
+}
+
+
+.bn-book-icon {
+    width: 23px;
+    height: 23px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 6px;
+
+    background: rgba(255,255,255,0.15);
+
+    font-size: 9px;
+}
+
+
+.bn-book-nav > a > .fa-arrow-right {
+    font-size: 9px;
+
+    transition:
+        transform .25s ease;
+}
+
+
+.bn-book-nav:hover > a {
+    background:
+        linear-gradient(
+            135deg,
+            #1557d6,
+            #0b3d9e
+        );
+
+    color: #08243d;
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 10px 23px rgba(21,87,214,0.18);
+}
+
+
+.bn-book-nav:hover
+.fa-arrow-right {
+    transform:
+        translateX(3px);
+}
+
+
+/* =========================================
+   USER ICON
+========================================= */
+
+.bn-user-icon {
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eef5fa;
+
+    color: #087fa8;
+
+    font-size: 10px;
+}
+
+
+.bn-account-nav > a {
+    gap: 7px;
+}
+
+
+.bn-account-icon {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eef5ff;
+
+    color: #1557d6;
+
+    font-size: 10px;
+}
+
+
+.bn-account-nav > a:hover {
+    color: #1557d6;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1199px) {
+
+    .bn-header-inner {
+        gap: 18px;
+    }
+
+
+    .bn-header-logo img {
+        width: 140px;
+    }
+
+
+    .bn-navigation > li > a {
+        padding-left: 8px;
+        padding-right: 8px;
+
+        font-size: 12px;
+    }
+
+
+    .bn-navigation > li > a::after {
+        left: 8px;
+        right: 8px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 991px) {
+
+    .bn-premium-header {
+        position: relative;
+    }
+
+
+    .bn-header-inner {
+        min-height: 72px;
+
+        flex-wrap: wrap;
+
+        gap: 0;
+    }
+
+
+    .bn-header-logo {
+        width: 100%;
+
+        min-height: 72px;
+
+        justify-content: space-between;
+    }
+
+
+    .bn-header-logo img {
+        width: 145px;
+    }
+
+
+    .bn-mobile-menu-btn {
+        display: flex;
+    }
+
+
+    /* Mobile call */
+
+    .bn-mobile-call {
+        display: block;
+
+        width: 100%;
+
+        padding: 0 0 12px;
+    }
+
+
+    .bn-mobile-call a {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 9px;
+
+        width: 100%;
+
+        padding: 10px 15px;
+
+        border-radius: 9px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #082a47,
+                #075c72
+            );
+
+        color: #fff;
+
+        text-decoration: none;
+
+        font-size: 12px;
+
+        font-weight: 700;
+    }
+
+
+    .bn-mobile-call-icon {
+        width: 27px;
+        height: 27px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 7px;
+
+        background: #1557d6;
+
+        color: #08243d;
+
+        font-size: 10px;
+    }
+
+
+    .bn-mobile-call small {
+        display: block;
+
+        margin-bottom: 1px;
+
+        color: rgba(255,255,255,0.55);
+
+        font-size: 8px;
+
+        text-transform: uppercase;
+
+        letter-spacing: .7px;
+    }
+
+
+    /* Navigation */
+
+    .bn-main-nav {
+        display: none;
+
+        width: 100%;
+
+        padding: 10px 0 18px;
+    }
+
+
+    .bn-navigation {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 3px;
+    }
+
+
+    .bn-navigation > li {
+        width: 100%;
+    }
+
+
+    .bn-navigation > li > a {
+        width: 100%;
+
+        justify-content: space-between;
+
+        padding: 12px 13px;
+
+        border-radius: 9px;
+
+        font-size: 13px;
+    }
+
+
+    .bn-navigation > li > a::after {
+        display: none;
+    }
+
+
+    .bn-navigation > li > a:hover {
+        background: #f5f8fa;
+    }
+
+
+    /* Book button */
+
+    .bn-book-nav {
+        margin: 5px 0;
+    }
+
+
+    .bn-navigation > .bn-book-nav > a {
+        justify-content: center;
+
+        padding: 12px;
+    }
+
+
+    /* Dropdown */
+
+    .bn-dropdown-menu {
+        position: static;
+
+        width: 100%;
+
+        padding: 5px;
+
+        margin-top: 3px;
+
+        border-radius: 10px;
+
+        box-shadow:
+            inset 0 0 0 1px #edf1f4;
+
+        opacity: 1;
+
+        visibility: visible;
+
+        transform: none;
+
+        display: none;
+    }
+
+
+    .bn-dropdown-menu::before {
+        display: none;
+    }
+
+
+    .bn-nav-dropdown:hover
+    .bn-dropdown-menu {
+        transform: none;
+    }
+
+
+    .bn-dropdown-menu li a {
+        min-height: 43px;
+    }
+
+
+    /* Login */
+
+    .bn-login-dropdown {
+        width: 100%;
+
+        right: auto;
+    }
+
+
+    /* Existing openNav can still work */
+
+    .bn-main-nav.mobile-open {
+        display: block;
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .bn-header-logo img {
+        width: 135px;
+    }
+
+
+    .bn-mobile-menu-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .bn-header-inner {
+        min-height: 68px;
+    }
+
+
+    .bn-header-logo {
+        min-height: 68px;
+    }
+
+}
+
+/* =========================================================
+   BN TAXI - MOBILE CALL CTA
+   Premium / Eye Catching
+========================================================= */
+
+.bn-mobile-call {
+    display: none;
+}
+
+
+/* =========================================
+   MOBILE ONLY
+========================================= */
+
+@media (max-width: 991px) {
+
+    .bn-mobile-call {
+        display: block;
+
+        width: 100%;
+
+        padding: 0 0 13px;
+    }
+
+
+    .bn-mobile-call a {
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+
+        width: 100%;
+
+        min-height: 62px;
+
+        padding: 8px 13px;
+
+        overflow: hidden;
+
+        border-radius: 13px;
+
+        background:
+            linear-gradient(
+                105deg,
+                #062742 0%,
+                #074c67 55%,
+                #086d7b 100%
+            );
+
+        color: #fff;
+
+        text-decoration: none;
+
+        border: 1px solid rgba(21,87,214,0.25);
+
+        box-shadow:
+            0 8px 22px rgba(5,39,66,0.20);
+
+        transition:
+            transform .25s ease,
+            box-shadow .25s ease;
+    }
+
+
+    /* Yellow shine */
+
+    .bn-mobile-call a::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 5px;
+        height: 100%;
+
+        background:
+            linear-gradient(
+                to bottom,
+                #1557d6,
+                #0b3d9e
+            );
+    }
+
+
+    /* Decorative circle */
+
+    .bn-mobile-call a::after {
+        content: "";
+
+        position: absolute;
+
+        width: 120px;
+        height: 120px;
+
+        right: -55px;
+        top: -55px;
+
+        border-radius: 50%;
+
+        border: 20px solid rgba(21,87,214,0.08);
+
+        pointer-events: none;
+    }
+
+
+    /* =====================================
+       PHONE ICON
+    ====================================== */
+
+    .bn-mobile-call-icon {
+        position: relative;
+
+        z-index: 2;
+
+        width: 44px;
+        height: 44px;
+
+        flex: 0 0 44px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        margin-left: 3px;
+        margin-right: 12px;
+
+        border-radius: 12px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #1557d6,
+                #0b3d9e
+            );
+
+        color: #062742;
+
+        font-size: 17px;
+
+        box-shadow:
+            0 6px 16px rgba(21,87,214,0.18);
+
+        animation:
+            bn-phone-pulse 2s infinite;
+    }
+
+
+    /* =====================================
+       TEXT
+    ====================================== */
+
+    .bn-mobile-call a > span:last-child {
+        position: relative;
+
+        z-index: 2;
+
+        display: flex;
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        min-width: 0;
+    }
+
+
+    .bn-mobile-call small {
+        display: block;
+
+        margin-bottom: 2px;
+
+        color: rgba(255,255,255,0.58);
+
+        font-size: 9px;
+
+        line-height: 1;
+
+        font-weight: 800;
+
+        letter-spacing: 1.2px;
+
+        text-transform: uppercase;
+    }
+
+
+    .bn-mobile-call a > span:last-child {
+        color: #fff;
+
+        font-size: 17px;
+
+        line-height: 1.25;
+
+        font-weight: 850;
+
+        letter-spacing: .3px;
+    }
+
+
+    /* =====================================
+       24/7 BADGE
+    ====================================== */
+
+    .bn-mobile-call a > span:last-child::after {
+        display:none;
+        
+
+        display: inline-flex;
+
+        align-items: center;
+
+        width: fit-content;
+
+        margin-top: 4px;
+
+        padding: 3px 7px;
+
+        border-radius: 20px;
+
+        background: rgba(21,87,214,0.12);
+
+        color: #1557d6;
+
+        font-size: 7px;
+
+        font-weight: 800;
+
+        letter-spacing: .8px;
+    }
+
+
+    /* =====================================
+       HOVER / TAP
+    ====================================== */
+
+    .bn-mobile-call a:hover {
+        color: #fff;
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 12px 27px rgba(5,39,66,0.27);
+    }
+
+}
+
+
+/* =========================================
+   PHONE PULSE
+========================================= */
+
+@keyframes bn-phone-pulse {
+
+    0% {
+        box-shadow:
+            0 0 0 0 rgba(21,87,214,0.35);
+    }
+
+    60% {
+        box-shadow:
+            0 0 0 9px rgba(21,87,214,0);
+    }
+
+    100% {
+        box-shadow:
+            0 0 0 0 rgba(21,87,214,0);
+    }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .bn-mobile-call {
+        padding-bottom: 11px;
+    }
+
+
+    .bn-mobile-call a {
+        min-height: 59px;
+
+        padding: 7px 11px;
+
+        border-radius: 12px;
+    }
+
+
+    .bn-mobile-call-icon {
+        width: 41px;
+        height: 41px;
+
+        flex-basis: 41px;
+
+        margin-right: 10px;
+
+        border-radius: 11px;
+
+        font-size: 15px;
+    }
+
+
+    .bn-mobile-call small {
+        font-size: 8px;
+    }
+
+
+    .bn-mobile-call a > span:last-child {
+        font-size: 15px;
+    }
+
+}
+<style>
+/* =========================================================
+   BN TAXI - FINAL MOBILE HEADER FIX
+   Royal Blue + White
+   ========================================================= */
+
+/* Desktop: keep call CTA hidden */
+.bn-mobile-call {
+    display: none;
+}
+
+/* Mobile / tablet */
+@media (max-width: 991px) {
+
+    .bn-premium-header {
+        position: relative;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 6px 24px rgba(8,47,125,.10);
+        border-bottom: 1px solid #dce7f5;
+    }
+
+    .bn-header-inner {
+        min-height: auto !important;
+        display: block !important;
+        width: 100%;
+    }
+
+    .bn-header-logo {
+        width: 100% !important;
+        min-height: 68px !important;
+        height: 68px;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 12px !important;
+        padding: 0 !important;
+        box-sizing: border-box;
+    }
+
+    .bn-header-logo a {
+        display: flex !important;
+        align-items: center;
+        min-width: 0;
+    }
+
+    .bn-header-logo img {
+        width: 140px !important;
+        max-width: 65vw;
+        height: auto;
+        display: block;
+    }
+
+    /* Menu button */
+    .bn-mobile-menu-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        flex: 0 0 42px;
+
+        width: 42px !important;
+        height: 42px !important;
+
+        margin: 0 !important;
+
+        border: 0 !important;
+        border-radius: 10px !important;
+
+        background: linear-gradient(
+            135deg,
+            #082f7d,
+            #1557d6
+        ) !important;
+
+        color: #ffffff !important;
+
+        font-size: 17px !important;
+
+        box-shadow:
+            0 7px 18px rgba(21,87,214,.22);
+    }
+
+    .bn-mobile-menu-btn:hover,
+    .bn-mobile-menu-btn:focus {
+        color: #ffffff !important;
+        background: #0b3d9e !important;
+        outline: none;
+    }
+
+    /* =====================================================
+       MOBILE CALL BUTTON - ALWAYS HIGHLIGHTED
+       ===================================================== */
+
+    .bn-mobile-call {
+        display: block !important;
+
+        width: 100% !important;
+
+        padding: 0 0 12px !important;
+
+        box-sizing: border-box;
+    }
+
+    .bn-mobile-call a {
+        position: relative;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+
+        width: 100% !important;
+        min-height: 58px !important;
+
+        box-sizing: border-box;
+
+        padding: 8px 13px !important;
+
+        overflow: hidden;
+
+        border-radius: 12px !important;
+
+        border: 1px solid rgba(21,87,214,.25) !important;
+
+        background:
+            linear-gradient(
+                135deg,
+                #082f7d 0%,
+                #1557d6 100%
+            ) !important;
+
+        color: #ffffff !important;
+
+        text-decoration: none !important;
+
+        box-shadow:
+            0 9px 23px rgba(8,47,125,.22);
+
+        transform: none !important;
+    }
+
+    /* Blue shine / accent */
+    .bn-mobile-call a::before {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+        top: 0;
+
+        width: 5px;
+        height: 100%;
+
+        background:
+            linear-gradient(
+                to bottom,
+                #60a5fa,
+                #1557d6
+            );
+
+        z-index: 1;
+    }
+
+    /* Decorative circle */
+    .bn-mobile-call a::after {
+        content: "";
+
+        position: absolute;
+
+        right: -55px;
+        top: -55px;
+
+        width: 125px;
+        height: 125px;
+
+        border-radius: 50%;
+
+        border:
+            20px solid
+            rgba(255,255,255,.08);
+
+        pointer-events: none;
+    }
+
+    /* Phone icon */
+    .bn-mobile-call-icon {
+        position: relative;
+
+        z-index: 3;
+
+        width: 42px !important;
+        height: 42px !important;
+
+        flex: 0 0 42px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        margin-left: 3px !important;
+        margin-right: 12px !important;
+
+        border-radius: 11px !important;
+
+        background: #ffffff !important;
+
+        color: #1557d6 !important;
+
+        font-size: 16px !important;
+
+        box-shadow:
+            0 5px 14px rgba(0,0,0,.16);
+
+        animation: bn-phone-pulse-blue 2s infinite;
+    }
+
+    /* Text */
+    .bn-mobile-call a > span:last-child {
+        position: relative;
+
+        z-index: 3;
+
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+
+        min-width: 0;
+
+        color: #ffffff !important;
+
+        font-size: 16px !important;
+        line-height: 1.2 !important;
+
+        font-weight: 850 !important;
+
+        letter-spacing: .25px;
+    }
+
+    .bn-mobile-call small {
+        display: block !important;
+
+        margin-bottom: 3px !important;
+
+        color: rgba(255,255,255,.72) !important;
+
+        font-size: 8px !important;
+
+        line-height: 1 !important;
+
+        font-weight: 800 !important;
+
+        letter-spacing: 1px !important;
+
+        text-transform: uppercase;
+    }
+
+    /* 24/7 badge */
+    .bn-mobile-call a > span:last-child::after {
+        display:none;
+        
+
+        display: inline-flex;
+
+        align-items: center;
+
+        width: fit-content;
+
+        margin-top: 4px;
+
+        padding: 3px 7px;
+
+        border-radius: 20px;
+
+        background: rgba(255,255,255,.14);
+
+        color: #ffffff;
+
+        border: 1px solid rgba(255,255,255,.16);
+
+        font-size: 7px;
+
+        font-weight: 800;
+
+        letter-spacing: .75px;
+    }
+
+    /* Navigation */
+    .bn-main-nav {
+        display: none;
+
+        width: 100%;
+
+        padding: 5px 0 17px;
+    }
+
+    .bn-main-nav.mobile-open {
+        display: block !important;
+    }
+
+    .bn-navigation {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 3px;
+
+        margin: 0;
+        padding: 0;
+
+        list-style: none;
+    }
+
+    .bn-navigation > li,
+    .bn-navigation > li > a {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .bn-navigation > li > a {
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+
+        min-height: 44px;
+
+        padding: 11px 13px;
+
+        border-radius: 9px;
+
+        color: #14264a;
+
+        font-size: 13px;
+
+        font-weight: 650;
+
+        text-decoration: none;
+    }
+
+    .bn-navigation > li > a:hover {
+        background: #eef5ff;
+        color: #1557d6;
+    }
+
+    /* Book now */
+    .bn-book-nav {
+        margin: 5px 0 !important;
+    }
+
+    .bn-navigation > .bn-book-nav > a {
+        justify-content: center;
+
+        min-height: 45px;
+
+        padding: 11px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #1557d6,
+                #0b3d9e
+            ) !important;
+
+        color: #ffffff !important;
+
+        box-shadow:
+            0 7px 18px rgba(21,87,214,.20);
+    }
+
+    /* Dropdown */
+    .bn-dropdown-menu {
+        position: static !important;
+
+        width: 100% !important;
+
+        padding: 5px !important;
+
+        margin-top: 3px !important;
+
+        border-radius: 10px !important;
+
+        background: #f7faff !important;
+
+        box-shadow:
+            inset 0 0 0 1px #dfe9f6 !important;
+
+        opacity: 1 !important;
+
+        visibility: visible !important;
+
+        transform: none !important;
+
+        display: none;
+    }
+
+    .bn-dropdown-menu::before {
+        display: none !important;
+    }
+
+    .bn-dropdown-menu li a {
+        min-height: 42px;
+
+        border-radius: 8px;
+
+        color: #183153;
+    }
+
+    .bn-dropdown-menu li a:hover {
+        background: #eaf3ff !important;
+        color: #1557d6 !important;
+    }
+
+    .bn-login-dropdown {
+        width: 100% !important;
+        right: auto !important;
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .bn-header-logo {
+        min-height: 64px !important;
+        height: 64px;
+    }
+
+    .bn-header-logo img {
+        width: 130px !important;
+    }
+
+    .bn-mobile-menu-btn {
+        width: 39px !important;
+        height: 39px !important;
+        flex-basis: 39px;
+        border-radius: 9px !important;
+        font-size: 16px !important;
+    }
+
+    .bn-mobile-call {
+        padding-bottom: 10px !important;
+    }
+
+    .bn-mobile-call a {
+        min-height: 55px !important;
+        padding: 7px 11px !important;
+        border-radius: 11px !important;
+    }
+
+    .bn-mobile-call-icon {
+        width: 39px !important;
+        height: 39px !important;
+        flex-basis: 39px !important;
+        margin-right: 10px !important;
+        border-radius: 10px !important;
+        font-size: 14px !important;
+    }
+
+    .bn-mobile-call a > span:last-child {
+        font-size: 14px !important;
+    }
+
+    .bn-mobile-call small {
+        font-size: 7px !important;
+    }
+
+    .bn-mobile-call a > span:last-child::after {
+        font-size: 6px;
+        padding: 3px 6px;
+    }
+}
+
+/* =========================================================
+   BLUE PHONE PULSE
+   ========================================================= */
+
+@keyframes bn-phone-pulse-blue {
+
+    0% {
+        box-shadow:
+            0 0 0 0 rgba(255,255,255,.40);
+    }
+
+    60% {
+        box-shadow:
+            0 0 0 9px rgba(255,255,255,0);
+    }
+
+    100% {
+        box-shadow:
+            0 0 0 0 rgba(255,255,255,0);
+    }
+}
+</style>
+</style>
+
+
+
+<style>
+/* =========================================================
+   FINAL MOBILE CALL BAR
+   Call BN Taxi + number left / 24/7 highlighted right
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .bn-premium-header .bn-mobile-call {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 0 11px !important;
+        box-sizing: border-box !important;
+    }
+
+    .bn-premium-header .bn-mobile-call > a {
+        position: relative !important;
+
+        display: flex !important;
+        align-items: center !important;
+
+        width: 100% !important;
+        min-height: 58px !important;
+
+        box-sizing: border-box !important;
+
+        padding: 7px 9px !important;
+
+        gap: 0 !important;
+
+        border-radius: 12px !important;
+        border: 1px solid #0b3d9e !important;
+
+        background:
+            linear-gradient(
+                135deg,
+                #082f7d 0%,
+                #1557d6 100%
+            ) !important;
+
+        color: #fff !important;
+
+        text-decoration: none !important;
+
+        box-shadow:
+            0 8px 22px rgba(8,47,125,.24) !important;
+
+        overflow: hidden !important;
+    }
+
+    /* Phone icon */
+    .bn-premium-header .bn-mobile-call-icon {
+        position: relative !important;
+        z-index: 2 !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        flex: 0 0 40px !important;
+
+        width: 40px !important;
+        height: 40px !important;
+
+        margin: 0 10px 0 0 !important;
+
+        border-radius: 10px !important;
+
+        background: #fff !important;
+        color: #1557d6 !important;
+
+        font-size: 14px !important;
+
+        box-shadow:
+            0 4px 12px rgba(0,0,0,.16) !important;
+    }
+
+    /* Left text block */
+    .bn-premium-header .bn-mobile-call-details {
+        position: relative !important;
+        z-index: 2 !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+
+        color: #fff !important;
+
+        line-height: 1.1 !important;
+    }
+
+    .bn-premium-header .bn-mobile-call-details small {
+        display: block !important;
+
+        margin: 0 0 4px !important;
+
+        color: rgba(255,255,255,.75) !important;
+
+        font-size: 8px !important;
+        line-height: 1 !important;
+
+        font-weight: 800 !important;
+
+        letter-spacing: 1px !important;
+        text-transform: uppercase !important;
+    }
+
+    .bn-premium-header .bn-mobile-call-details strong {
+        display: block !important;
+
+        margin: 0 !important;
+
+        color: #fff !important;
+
+        font-size: 15px !important;
+        line-height: 1.1 !important;
+
+        font-weight: 850 !important;
+
+        letter-spacing: .2px !important;
+        white-space: nowrap !important;
+    }
+
+    /* Right 24/7 badge */
+    .bn-premium-header .bn-mobile-247 {
+        position: relative !important;
+        z-index: 3 !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        flex: 0 0 auto !important;
+
+        min-width: 70px !important;
+        height: 42px !important;
+
+        margin-left: 9px !important;
+        padding: 4px 9px !important;
+
+        box-sizing: border-box !important;
+
+        border-radius: 9px !important;
+
+        background: #fff !important;
+
+        color: #0b3d9e !important;
+
+        box-shadow:
+            0 5px 14px rgba(0,0,0,.18) !important;
+    }
+
+    .bn-premium-header .bn-mobile-247 i {
+        margin-bottom: 1px !important;
+
+        color: #1557d6 !important;
+
+        font-size: 9px !important;
+    }
+
+    .bn-premium-header .bn-mobile-247 strong {
+        display: block !important;
+
+        color: #082f7d !important;
+
+        font-size: 13px !important;
+        line-height: 1 !important;
+
+        font-weight: 900 !important;
+    }
+
+    .bn-premium-header .bn-mobile-247 small {
+        display: block !important;
+
+        margin-top: 2px !important;
+
+        color: #1557d6 !important;
+
+        font-size: 6px !important;
+        line-height: 1 !important;
+
+        font-weight: 900 !important;
+
+        letter-spacing: .6px !important;
+    }
+
+    /* Keep logo and menu aligned */
+    .bn-premium-header .bn-header-logo {
+        width: 100% !important;
+        min-height: 66px !important;
+        height: 66px !important;
+
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+
+        box-sizing: border-box !important;
+    }
+
+    .bn-premium-header .bn-header-logo img {
+        width: 135px !important;
+        height: auto !important;
+        max-width: 65vw !important;
+    }
+
+    .bn-premium-header .bn-mobile-menu-btn {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        width: 40px !important;
+        height: 40px !important;
+
+        flex: 0 0 40px !important;
+
+        margin: 0 !important;
+
+        border: 0 !important;
+        border-radius: 9px !important;
+
+        background:
+            linear-gradient(
+                135deg,
+                #082f7d,
+                #1557d6
+            ) !important;
+
+        color: #fff !important;
+
+        box-shadow:
+            0 6px 16px rgba(21,87,214,.22) !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .bn-premium-header .bn-mobile-call > a {
+        min-height: 55px !important;
+        padding: 6px 8px !important;
+        border-radius: 11px !important;
+    }
+
+    .bn-premium-header .bn-mobile-call-icon {
+        width: 38px !important;
+        height: 38px !important;
+        flex-basis: 38px !important;
+        margin-right: 9px !important;
+        border-radius: 9px !important;
+    }
+
+    .bn-premium-header .bn-mobile-call-details small {
+        font-size: 7px !important;
+    }
+
+    .bn-premium-header .bn-mobile-call-details strong {
+        font-size: 15px !important;
+    }
+
+    .bn-premium-header .bn-mobile-247 {
+        min-width: 65px !important;
+        height: 40px !important;
+        margin-left: 7px !important;
+        padding: 3px 7px !important;
+    }
+
+    .bn-premium-header .bn-mobile-247 strong {
+        font-size: 12px !important;
+    }
+
+    .bn-premium-header .bn-mobile-247 small {
+        font-size: 5.5px !important;
+    }
+}
+</style>
+
+<header class="bn-premium-header">
+
+    <div class="container">
+
+        <div class="bn-header-inner">
+
+            <!-- =====================================
+                 LOGO
+            ====================================== -->
+
+            <div class="bn-header-logo">
+
+                <a href="{{ url('/') }}">
+
+                    <img
+                        src="{{ url('goods') }}/images/logo.png"
+                        alt="BN Taxi Anytime"
+                    >
+
+                </a>
+
+                <!-- MOBILE MENU -->
+
+                <button
+                    type="button"
+                    class="bn-mobile-menu-btn"
+                    onclick="openNav()"
+                    aria-label="Open Menu"
+                >
+                    <i class="fas fa-bars"></i>
+                </button>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 MOBILE CALL
+            ====================================== -->
+
+            <div class="bn-mobile-call">
+
+                <a href="tel:+441273757373">
+
+                    <span class="bn-mobile-call-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </span>
+
+                    <span class="bn-mobile-call-details">
+                        <small>Call BN Taxi</small>
+                        <strong>01273 757373</strong>
+                    </span>
+
+                    <span class="bn-mobile-247">
+                        <i class="fas fa-clock"></i>
+                        <strong>24/7</strong>
+                        <small>AVAILABLE</small>
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 NAVIGATION
+            ====================================== -->
+
+            <nav class="bn-main-nav">
+
+                <ul class="bn-navigation">
+
+                    <li>
+                        <a href="{{ url('') }}">
+                            Home
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="{{ url('about') }}">
+                            About Us
+                        </a>
+                    </li>
+
+
+
+                    <!-- SERVICES -->
+
+                    <li class="bn-nav-dropdown">
+
+                        <a
+                            href="#"
+                            class="bn-dropdown-toggle"
+                        >
+                            Services
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+
+
+                        <ul class="bn-dropdown-menu">
+
+                            @php
+                                $services = App\Models\Service::all();
+                            @endphp
+
+
+                            @if(isset($services) && count($services) > 0)
+
+                                @foreach($services as $service)
+
+                                    <li>
+
+                                        <a
+                                            href="{{ url('/service-details/'.$service->slug) }}"
+                                        >
+
+                                            <span class="bn-dropdown-icon">
+                                                <i class="fas fa-taxi"></i>
+                                            </span>
+
+                                            <span>
+                                                {{ $service->title }}
+                                            </span>
+
+                                            <i class="fas fa-arrow-right"></i>
+
+                                        </a>
+
+                                    </li>
+
+                                @endforeach
+
+                            @else
+
+                                <li>
+
+                                    <a href="#" class="bn-disabled-link">
+
+                                        <span class="bn-dropdown-icon">
+                                            <i class="fas fa-info-circle"></i>
+                                        </span>
+
+                                        No Services Available
+
+                                    </a>
+
+                                </li>
+
+                            @endif
+
+                        </ul>
+
+                    </li>
+
+
+
+                    <li>
+                        <a href="{{ url('faq') }}">
+                            FAQs
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="{{ url('news') }}">
+                            Blog
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="{{ url('contact') }}">
+                            Contact Us
+                        </a>
+                    </li>
+
+
+
+                    <!-- BOOK NOW -->
+
+                    <li class="bn-book-nav">
+
+                        <a href="{{ url('book-now') }}">
+
+                            <span class="bn-book-icon">
+                                <i class="fas fa-taxi"></i>
+                            </span>
+
+                            Book Now
+
+                            <i class="fas fa-arrow-right"></i>
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+                        <a href="{{ url('gallery') }}">
+                            Gallery
+                        </a>
+                    </li>
+
+
+
+                    <!-- LOGIN -->
+
+                    @if(!auth()->user())
+
+                        <li class="bn-nav-dropdown bn-login-nav">
+
+                            <a
+                                href="#"
+                                class="bn-dropdown-toggle"
+                            >
+
+                                <span class="bn-user-icon">
+                                    <i class="fas fa-user"></i>
+                                </span>
+
+                                Login
+
+                                <i class="fas fa-chevron-down"></i>
+
+                            </a>
+
+
+                            <ul class="bn-dropdown-menu bn-login-dropdown">
+
+                                <li>
+
+                                    <a href="{{ url('/user-login') }}">
+
+                                        <span class="bn-dropdown-icon customer">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+
+                                        <span>
+                                            <strong>Customer Login</strong>
+                                            <small>Manage your bookings</small>
+                                        </span>
+
+                                    </a>
+
+                                </li>
+
+
+                                <li>
+
+                                    <a href="{{ url('/driver-login') }}">
+
+                                        <span class="bn-dropdown-icon driver">
+                                            <i class="fas fa-car"></i>
+                                        </span>
+
+                                        <span>
+                                            <strong>Driver Login</strong>
+                                            <small>Driver account access</small>
+                                        </span>
+
+                                    </a>
+
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                    @else
+
+                        <li class="bn-account-nav">
+
+                            <a href="{{ url('/user-account') }}">
+
+                                <span class="bn-account-icon">
+                                    <i class="fas fa-user"></i>
+                                </span>
+
+                                My Account
+
+                            </a>
+
+                        </li>
+
+                    @endif
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </div>
+
+</header>
+
+<script>
+
+function openNav(){
+    document.getElementById("mySidenav").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
+}
+
+function closeNav(){
+    document.getElementById("mySidenav").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
+}
+
+</script>

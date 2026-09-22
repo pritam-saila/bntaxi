@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>BN Taxi Anytime</title>
+
+        @include('goods.include.assets')
+
+        <style>
+            /* =========================================================
+               BN TAXI - BOOK NOW PAGE
+               HEAVY PREMIUM ROYAL BLUE + WHITE THEME
+               Dynamic get-a-quote remains unchanged
+               ========================================================= */
+
+            :root {
+                --bn-blue: #1557d6;
+                --bn-blue-dark: #0b3d9e;
+                --bn-blue-deep: #082f7d;
+                --bn-light-blue: #eaf3ff;
+                --bn-soft-blue: #f5f9ff;
+                --bn-white: #ffffff;
+                --bn-text: #10234f;
+                --bn-border: #d8e4f5;
+            }
+
+            /* =========================================================
+               BODY
+               ========================================================= */
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                min-height: 100%;
+            }
+
+            body {
+                background: #f4f8ff;
+                color: var(--bn-text);
+            }
+
+            /* =========================================================
+               MAIN BOOKING AREA
+               ========================================================= */
+
+            .bn-heavy-booking-area {
+                position: relative;
+                overflow: hidden;
+
+                padding: 38px 15px 65px;
+
+                background:
+                    radial-gradient(
+                        circle at 88% 8%,
+                        rgba(21, 87, 214, 0.09),
+                        transparent 220px
+                    ),
+                    radial-gradient(
+                        circle at 7% 88%,
+                        rgba(21, 87, 214, 0.07),
+                        transparent 210px
+                    ),
+                    linear-gradient(
+                        135deg,
+                        #e6f1ff 0%,
+                        #f7faff 45%,
+                        #eaf4ff 100%
+                    );
+            }
+
+            /* TOP BLUE STRIPE */
+
+            .bn-heavy-booking-area::before {
+                content: "";
+
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                width: 100%;
+                height: 5px;
+
+               
+
+                z-index: 5;
+            }
+
+            /* =========================================================
+               DECORATIVE ROYAL BLUE CIRCLES
+               ========================================================= */
+
+            .bn-heavy-booking-area::after {
+                content: "";
+
+                position: absolute;
+
+                width: 430px;
+                height: 430px;
+
+                right: -230px;
+                top: -245px;
+
+                border: 65px solid rgba(21, 87, 214, 0.07);
+
+                border-radius: 50%;
+
+                pointer-events: none;
+            }
+
+            /* =========================================================
+               DECORATIVE INNER SHAPE
+               ========================================================= */
+
+            .bn-heavy-booking-decoration {
+                position: absolute;
+
+                width: 260px;
+                height: 260px;
+
+                left: -170px;
+                bottom: -170px;
+
+                border: 45px solid rgba(21, 87, 214, 0.06);
+
+                border-radius: 50%;
+
+                pointer-events: none;
+            }
+
+            /* =========================================================
+               DYNAMIC GET A QUOTE CONTAINER
+               ========================================================= */
+
+            .bn-heavy-booking-content {
+                position: relative;
+
+                z-index: 3;
+
+                width: min(850px, 100%);
+
+                margin: 0 auto;
+
+                padding: 10px 0;
+            }
+
+            /* =========================================================
+               STYLE THE EXISTING DYNAMIC INCLUDE FROM OUTSIDE
+               ========================================================= */
+
+            .bn-heavy-booking-content > * {
+                position: relative;
+
+                z-index: 4;
+
+                overflow: hidden;
+
+                background: #ffffff;
+
+                border: 1px solid rgba(21, 87, 214, 0.13);
+
+                border-radius: 24px;
+
+                box-shadow:
+                    0 25px 65px rgba(8, 47, 125, 0.16),
+                    0 6px 20px rgba(8, 47, 125, 0.08);
+            }
+
+            /* =========================================================
+               COMMON TEXT
+               ========================================================= */
+
+            .bn-heavy-booking-content h1,
+            .bn-heavy-booking-content h2,
+            .bn-heavy-booking-content h3,
+            .bn-heavy-booking-content h4 {
+                color: var(--bn-text);
+            }
+
+            /* =========================================================
+               BLUE HEADER AREAS INSIDE DYNAMIC QUOTE
+               ========================================================= */
+
+            .bn-heavy-booking-content
+                :where(
+                    .quote-header,
+                    .get-quote-header,
+                    .booking-header,
+                    .form-header,
+                    .instant-quote-header
+                ) {
+                background:
+                    radial-gradient(
+                        circle at 45% 0%,
+                        rgba(255, 255, 255, 0.13),
+                        transparent 190px
+                    ),
+                    linear-gradient(
+                        135deg,
+                        var(--bn-blue-deep),
+                        var(--bn-blue)
+                    );
+
+                color: #fff;
+            }
+
+            /* =========================================================
+               INPUTS
+               ========================================================= */
+
+            .bn-heavy-booking-content
+                :where(
+                    input,
+                    select,
+                    textarea,
+                    .form-control,
+                    .form-select
+                ) {
+                border-color: var(--bn-border);
+
+                background: #fff;
+
+                color: var(--bn-text);
+
+                border-radius: 10px;
+
+                transition:
+                    border-color 0.25s ease,
+                    box-shadow 0.25s ease;
+            }
+
+            .bn-heavy-booking-content
+                :where(
+                    input,
+                    select,
+                    textarea,
+                    .form-control,
+                    .form-select
+                ):focus {
+                border-color: var(--bn-blue);
+
+                box-shadow:
+                    0 0 0 3px rgba(21, 87, 214, 0.10);
+            }
+
+            /* =========================================================
+               INPUT ICON / BLUE BOX
+               ========================================================= */
+
+            .bn-heavy-booking-content
+                :where(
+                    .input-group-text,
+                    .icon-box,
+                    .location-icon,
+                    .form-icon
+                ) {
+                background: var(--bn-blue) !important;
+
+                border-color: var(--bn-blue) !important;
+
+                color: #fff !important;
+            }
+
+            /* =========================================================
+               PRIMARY BUTTONS
+               ========================================================= */
+
+            .bn-heavy-booking-content
+                :where(
+                    button,
+                    .btn,
+                    .btn-primary,
+                    .quote-btn,
+                    .book-btn
+                ) {
+                background:
+                    linear-gradient(
+                        135deg,
+                        var(--bn-blue),
+                        var(--bn-blue-dark)
+                    ) !important;
+
+                border-color: var(--bn-blue) !important;
+
+                color: #fff !important;
+
+                font-weight: 800;
+
+                box-shadow:
+                    0 9px 22px rgba(21, 87, 214, 0.23);
+
+                transition: all 0.25s ease;
+            }
+
+            .bn-heavy-booking-content
+                :where(
+                    button,
+                    .btn,
+                    .btn-primary,
+                    .quote-btn,
+                    .book-btn
+                ):hover {
+                background:
+                    linear-gradient(
+                        135deg,
+                        var(--bn-blue-dark),
+                        var(--bn-blue-deep)
+                    ) !important;
+
+                color: #fff !important;
+
+                transform: translateY(-2px);
+
+                box-shadow:
+                    0 13px 28px rgba(21, 87, 214, 0.28);
+            }
+
+            /* =========================================================
+               SECONDARY BUTTON
+               ========================================================= */
+
+            .bn-heavy-booking-content
+                :where(.btn-secondary, .secondary-btn) {
+                background: var(--bn-light-blue) !important;
+
+                border-color: #d7e5fb !important;
+
+                color: var(--bn-blue-dark) !important;
+            }
+
+            .bn-heavy-booking-content
+                :where(.btn-secondary, .secondary-btn):hover {
+                background: var(--bn-blue) !important;
+
+                color: #fff !important;
+            }
+
+            /* =========================================================
+               LINKS
+               ========================================================= */
+
+            .bn-heavy-booking-content a {
+                color: var(--bn-blue);
+            }
+
+            .bn-heavy-booking-content a:hover {
+                color: var(--bn-blue-deep);
+            }
+
+            /* =========================================================
+               LABELS
+               ========================================================= */
+
+            .bn-heavy-booking-content label {
+                color: var(--bn-text);
+                font-weight: 750;
+            }
+
+            /* =========================================================
+               CHECKBOX / RADIO
+               ========================================================= */
+
+            .bn-heavy-booking-content
+                input[type="checkbox"],
+            .bn-heavy-booking-content
+                input[type="radio"] {
+                accent-color: var(--bn-blue);
+            }
+
+            /* =========================================================
+               ALERT
+               ========================================================= */
+
+            .bn-heavy-booking-content .alert {
+                border-radius: 10px;
+                border-color: var(--bn-border);
+            }
+
+            /* =========================================================
+               PRICE / RESULT BOX
+               ========================================================= */
+
+            .bn-heavy-booking-content
+                :where(
+                    .price-box,
+                    .quote-result,
+                    .fare-box,
+                    .total-box
+                ) {
+                background:
+                    linear-gradient(
+                        135deg,
+                        #f2f7ff,
+                        #ffffff
+                    );
+
+                border: 1px solid #dce8f8;
+
+                border-radius: 14px;
+            }
+
+            /* =========================================================
+               MOBILE / TABLET
+               ========================================================= */
+
+            @media (max-width: 991px) {
+
+                .bn-heavy-booking-area {
+                    padding: 32px 12px 55px;
+                }
+
+                .bn-heavy-booking-content {
+                    width: min(780px, 100%);
+                }
+
+                .bn-heavy-booking-content > * {
+                    border-radius: 20px;
+                }
+            }
+
+            /* =========================================================
+               MOBILE
+               ========================================================= */
+
+            @media (max-width: 767px) {
+
+                .bn-heavy-booking-area {
+                    padding: 24px 8px 42px;
+                }
+
+                .bn-heavy-booking-area::after {
+                    width: 300px;
+                    height: 300px;
+
+                    right: -190px;
+                    top: -180px;
+
+                    border-width: 45px;
+                }
+
+                .bn-heavy-booking-content {
+                    padding: 5px 0;
+                }
+
+                .bn-heavy-booking-content > * {
+                    border-radius: 17px;
+                }
+            }
+
+            /* =========================================================
+               SMALL MOBILE
+               ========================================================= */
+
+            @media (max-width: 480px) {
+
+                .bn-heavy-booking-area {
+                    padding: 18px 6px 35px;
+                }
+
+                .bn-heavy-booking-content > * {
+                    border-radius: 15px;
+                }
+
+                .bn-heavy-booking-content
+                    :where(
+                        input,
+                        select,
+                        textarea,
+                        .form-control,
+                        .form-select
+                    ) {
+                    border-radius: 9px;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+
+        @include('goods.include.header')
+
+
+        <!-- =========================================================
+             PREMIUM BOOKING / GET A QUOTE AREA
+             ========================================================= -->
+
+        <main class="bn-heavy-booking-area">
+
+            <div class="bn-heavy-booking-decoration"></div>
+
+            <div class="bn-heavy-booking-content">
+
+                {{-- KEEP THIS DYNAMIC SYSTEM EXACTLY AS IT IS --}}
+                @include('goods.include.get-a-quote')
+
+            </div>
+
+        </main>
+
+
+        @include('goods.include.footer')
+
+
+        <!-- =========================================================
+             OWL CAROUSEL
+             ========================================================= -->
+
+        <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
+        ></script>
+
+
+        <script>
+            $(document).ready(function () {
+
+                $(".testimonial_owlCarousel").owlCarousel({
+
+                    loop: true,
+
+                    margin: 10,
+
+                    dots: false,
+
+                    nav: true,
+
+                    autoplay: false,
+
+                    smartSpeed: 3000,
+
+                    autoplayTimeout: 4000,
+
+                    responsive: {
+
+                        0: {
+                            items: 1,
+                        },
+
+                        600: {
+                            items: 1,
+                        },
+
+                        1000: {
+                            items: 1,
+                        },
+
+                    },
+
+                });
+
+            });
+        </script>
+
+    </body>
+</html>

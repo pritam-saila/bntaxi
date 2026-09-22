@@ -1,0 +1,239 @@
+<?php
+
+namespace App\Services;
+
+use App\Exceptions\DriverDocumentException;
+use App\Models\DriverDocument;
+use App\Models\DriverDocumentReview;
+use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\DB;
+
+/**
+ * Every state change to a driver document goes through here, so the audit
+ * trail (driver_document_reviews) can never be skipped.
+ */
+class DriverDocumentService
+{
+    public function __construct(private DriverDocumentStorage $storage)
+    {
+    }
+
+    public static function roleOf(User $user): string
+    {
+        return (int) $user->getRawOriginal('type') === 1 ? 'admin' : 'driver';
+    }
+
+    /**
+     * Upload a new document, or replace the existing one for this type.
+     *
+     * A replacement resets the review: status goes back to "uploaded", and the
+     * issue / expiry dates and any rejection are cleared (it's a new file).
+     * Replacing an *approved* document needs an explicit $confirmReplace.
+     */
+    public function upload(User $driver, string $type, UploadedFile $file, User $actor, bool $confirmReplace = false): DriverDocument
+    {
+        $existing = DriverDocument::where('user_id', $driver->id)->where('type', $type)->first();
+
+        $this->guardReplace($existing, $confirmReplace);
+
+        $meta = $this->storage->store($file, $driver->id);
+
+        try {
+            $doc = DB::transaction(function () use ($driver, $type, $meta, $actor, $confirmReplace) {
+                $current = DriverDocument::where('user_id', $driver->id)->where('type', $type)->lockForUpdate()->first();
+                $this->guardReplace($current, $confirmReplace);
+
+                $fromStatus = $current?->status;
+
+                $attributes = $meta + [
+                    'status'           => DriverDocument::STATUS_UPLOADED,
+                    'issue_date'       => null,
+                    'expiry_date'      => null,
+                    'uploaded_at'      => now(),
+                    'uploaded_by'      => $actor->id,
+                    'reviewed_by'      => null,
+                    'reviewed_at'      => null,
+                    'rejection_reason' => null,
+                    'rejected_at'      => null,
+                ];
+
+                if ($current) {
+                    $current->update($attributes);
+                    $doc = $current;
+                } else {
+                    $doc = DriverDocument::create($attributes + ['user_id' => $driver->id, 'type' => $type]);
+                }
+
+                $this->log($doc, $actor, $current ? 'replaced' : 'uploaded', $fromStatus, DriverDocument::STATUS_UPLOADED);
+
+                return $doc;
+            });
+        } catch (\Throwable $e) {
+            $this->storage->delete($meta['path'], $meta['thumb_path']);
+            throw $e;
+        }
+
+        // Only once the new row is safely committed do we drop the old file.
+        if ($existing) {
+            $this->storage->delete($existing->path, $existing->thumb_path);
+        }
+
+        return $doc;
+    }
+
+    /** Drivers can't delete an approved document (they must use Replace); admins can. */
+    public function delete(DriverDocument $doc, User $actor): void
+    {
+        if ($doc->effectiveStatus() === DriverDocument::STATUS_APPROVED && self::roleOf($actor) !== 'admin') {
+            throw new DriverDocumentException(
+                'approved_locked',
+                'This document is approved, so it can\'t be deleted. Use "Replace Document" to upload a new version.',
+                403
+            );
+        }
+
+        [$path, $thumb] = [$doc->path, $doc->thumb_path];
+
+        DB::transaction(function () use ($doc, $actor) {
+            $this->log($doc, $actor, 'deleted', $doc->status, DriverDocument::STATUS_NOT_UPLOADED);
+            $doc->delete();
+        });
+
+        $this->storage->delete($path, $thumb);
+    }
+
+    /**
+     * Admin review action.
+     *
+     * @param array{action:string,reason?:?string,note?:?string,issue_date?:?string,expiry_date?:?string} $data
+     *   action: approve | reject | reupload | dates | note
+     */
+    public function review(DriverDocument $doc, User $admin, array $data): DriverDocument
+    {
+        $action = $data['action'];
+        $reason = $this->clean($data['reason'] ?? null);
+        $note   = $this->clean($data['note'] ?? null);
+
+        return DB::transaction(function () use ($doc, $admin, $action, $reason, $note, $data) {
+            $from = $doc->status;
+            $def  = $doc->definition();
+
+            // Dates only mean something for document types configured to have them.
+            if (in_array($action, ['approve', 'dates'], true)) {
+                if (!empty($def['has_issue_date'])) {
+                    $doc->issue_date = $data['issue_date'] ?? null ?: null;
+                }
+                if (!empty($def['has_expiry'])) {
+                    $doc->expiry_date = $data['expiry_date'] ?? null ?: null;
+                }
+            }
+
+            switch ($action) {
+                case 'approve':
+                    $doc->status = DriverDocument::STATUS_APPROVED;
+                    $doc->rejection_reason = null;
+                    $doc->rejected_at = null;
+                    $this->stampReview($doc, $admin);
+                    $logAction = 'approved';
+                    break;
+
+                case 'reject':
+                case 'reupload':
+                    $doc->status = DriverDocument::STATUS_REJECTED;
+                    $doc->rejection_reason = $reason;
+                    $doc->rejected_at = now();
+                    $this->stampReview($doc, $admin);
+                    $logAction = $action === 'reject' ? 'rejected' : 'reupload_requested';
+                    break;
+
+                case 'dates':
+                    $logAction = 'dates_updated';
+                    break;
+
+                default: // note
+                    $logAction = 'note';
+            }
+
+            $doc->save();
+
+            $summary = $logAction === 'dates_updated' ? $this->describeDates($doc) : null;
+
+            $this->log($doc, $admin, $logAction, $from, $doc->status, in_array($action, ['reject', 'reupload'], true) ? $reason : $summary, $note);
+
+            return $doc;
+        });
+    }
+
+    /** Move every freshly uploaded document into "under review". Returns how many. */
+    public function startReview(User $driver, User $admin): int
+    {
+        return DB::transaction(function () use ($driver, $admin) {
+            $docs = DriverDocument::where('user_id', $driver->id)
+                ->where('status', DriverDocument::STATUS_UPLOADED)
+                ->lockForUpdate()
+                ->get();
+
+            foreach ($docs as $doc) {
+                $doc->update(['status' => DriverDocument::STATUS_UNDER_REVIEW]);
+                $this->log($doc, $admin, 'started_review', DriverDocument::STATUS_UPLOADED, DriverDocument::STATUS_UNDER_REVIEW);
+            }
+
+            return $docs->count();
+        });
+    }
+
+    private function guardReplace(?DriverDocument $existing, bool $confirmed): void
+    {
+        // An approved-but-expired document is already invalid, so replacing it needs no warning.
+        if ($existing && $existing->effectiveStatus() === DriverDocument::STATUS_APPROVED && !$confirmed) {
+            throw new DriverDocumentException(
+                'confirm_replace',
+                'This document is already approved. Replacing it will send it back for review.',
+                409
+            );
+        }
+    }
+
+    private function stampReview(DriverDocument $doc, User $admin): void
+    {
+        $doc->reviewed_by = $admin->id;
+        $doc->reviewed_at = now();
+    }
+
+    private function describeDates(DriverDocument $doc): string
+    {
+        $parts = [];
+        if ($doc->issue_date) {
+            $parts[] = 'Issued ' . $doc->issue_date->format('d M Y');
+        }
+        if ($doc->expiry_date) {
+            $parts[] = 'Expires ' . $doc->expiry_date->format('d M Y');
+        }
+
+        return $parts ? implode(' · ', $parts) : 'Dates cleared';
+    }
+
+    private function clean(?string $text): ?string
+    {
+        $text = trim((string) $text);
+
+        return $text === '' ? null : $text;
+    }
+
+    private function log(DriverDocument $doc, User $actor, string $action, ?string $from, ?string $to, ?string $reason = null, ?string $note = null): void
+    {
+        DriverDocumentReview::create([
+            'driver_document_id' => $doc->id,
+            'user_id'            => $doc->user_id,
+            'document_type'      => $doc->type,
+            'actor_id'           => $actor->id,
+            'actor_role'         => self::roleOf($actor),
+            'action'             => $action,
+            'from_status'        => $from,
+            'to_status'          => $to,
+            'reason'             => $reason,
+            'note'               => $note,
+        ]);
+    }
+}

@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>BN Taxi Anytime - Login</title>
+
+    @include('goods.include.assets')
+
+    <style>
+        :root {
+            --bn-dark: #061b45;
+            --bn-navy: #082f7d;
+            --bn-blue: #1557d6;
+            --bn-light: #eef6ff;
+            --bn-border: #dbe7f5;
+            --bn-text: #172f50;
+            --bn-muted: #718096;
+        }
+
+        /* ==============================
+           BANNER
+        ============================== */
+
+        .banners {
+            position: relative;
+            overflow: hidden;
+            min-height: 175px;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #04183f 0%,
+                    #082f7d 52%,
+                    #1557d6 100%
+                );
+
+            box-shadow:
+                0 12px 35px rgba(6, 36, 95, .16);
+        }
+
+        .banners::before {
+            content: "";
+            position: absolute;
+
+            width: 370px;
+            height: 370px;
+
+            right: -220px;
+            top: -240px;
+
+            border: 55px solid rgba(255,255,255,.055);
+            border-radius: 50%;
+        }
+
+        .banners::after {
+            content: "";
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            left: -150px;
+            bottom: -175px;
+
+            border: 35px solid rgba(255,255,255,.045);
+            border-radius: 50%;
+        }
+
+        .banner-paras {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            max-width: 1180px;
+
+            margin: auto;
+            padding: 32px 20px;
+        }
+
+        .banner-paras h1 {
+            margin: 0 0 8px;
+
+            color: #fff;
+
+            font-size: 35px;
+            line-height: 1.15;
+
+            font-weight: 850;
+        }
+
+        .banner-paras h5 {
+            margin: 0;
+
+            color: rgba(255,255,255,.72);
+
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .banner-paras h5 a {
+            color: #a8ceff;
+            text-decoration: none;
+            font-weight: 750;
+        }
+
+
+        /* ==============================
+           QUOTE STRIP
+        ============================== */
+
+        .banner_bottom {
+            background: #fff;
+
+            border-bottom: 1px solid var(--bn-border);
+
+            box-shadow:
+                0 5px 18px rgba(8,47,125,.05);
+        }
+
+        .banner_bottom .container {
+            padding-top: 14px;
+            padding-bottom: 14px;
+        }
+
+        .banner_bottom h2 {
+            margin: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 18px;
+
+            color: var(--bn-text);
+
+            font-size: 14px;
+            line-height: 1.4;
+
+            font-weight: 750;
+        }
+
+        .banner_bottom h2 span {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 37px;
+
+            padding: 7px 17px;
+
+            border-radius: 8px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--bn-blue),
+                    var(--bn-navy)
+                );
+
+            color: #fff;
+
+            font-size: 11px;
+            font-weight: 800;
+
+            box-shadow:
+                0 7px 18px rgba(21,87,214,.22);
+        }
+
+
+        /* ==============================
+           MAIN LOGIN BACKGROUND
+        ============================== */
+
+        .main.pages {
+            background: transparent;
+        }
+
+        .page-content {
+            position: relative;
+            overflow: hidden;
+
+            padding-top: 58px !important;
+            padding-bottom: 65px !important;
+
+            background:
+                radial-gradient(
+                    circle at 8% 20%,
+                    rgba(21,87,214,.09),
+                    transparent 240px
+                ),
+                radial-gradient(
+                    circle at 94% 78%,
+                    rgba(21,87,214,.08),
+                    transparent 280px
+                ),
+                linear-gradient(
+                    135deg,
+                    #eaf3ff 0%,
+                    #ffffff 50%,
+                    #edf6ff 100%
+                );
+        }
+
+        .page-content::before {
+            content: "";
+
+            position: absolute;
+
+            width: 430px;
+            height: 430px;
+
+            right: -280px;
+            top: -250px;
+
+            border: 60px solid rgba(21,87,214,.045);
+
+            border-radius: 50%;
+
+            pointer-events: none;
+        }
+
+        .page-content::after {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            left: -205px;
+            bottom: -185px;
+
+            border: 40px solid rgba(21,87,214,.04);
+
+            border-radius: 50%;
+
+            pointer-events: none;
+        }
+
+
+        /* ==============================
+           LOGIN CARD
+        ============================== */
+
+        .login_wrap {
+            position: relative;
+            z-index: 3;
+
+            max-width: 540px;
+
+            margin: 0 auto;
+
+            overflow: hidden;
+
+            border-radius: 24px !important;
+
+            background: #fff !important;
+
+            border:
+                1px solid rgba(21,87,214,.13);
+
+            box-shadow:
+                0 28px 65px rgba(6,36,95,.16),
+                0 7px 20px rgba(6,36,95,.06) !important;
+        }
+
+        .login_wrap::before {
+            content: "";
+
+            display: block;
+
+            width: 100%;
+            height: 7px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #061b45,
+                    #1557d6,
+                    #061b45
+                );
+        }
+
+        .login_wrap::after {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            right: -160px;
+            top: -135px;
+
+            border: 32px solid rgba(21,87,214,.045);
+
+            border-radius: 50%;
+
+            pointer-events: none;
+        }
+
+        .padding_eight_all {
+            position: relative;
+            z-index: 2;
+
+            padding: 38px 42px 40px !important;
+
+            background: #fff !important;
+        }
+
+
+        /* ==============================
+           HEADING
+        ============================== */
+
+        .heading_s1 {
+            margin-bottom: 27px;
+        }
+
+        .heading_s1 h1 {
+            position: relative;
+
+            margin: 0 0 13px !important;
+
+            padding-bottom: 13px;
+
+            color: var(--bn-dark);
+
+            font-size: 29px;
+
+            line-height: 1.2;
+
+            font-weight: 850;
+        }
+
+        .heading_s1 h1::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 53px;
+            height: 4px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--bn-navy),
+                    var(--bn-blue)
+                );
+        }
+
+        .heading_s1 > p {
+            margin: 15px 0 0 !important;
+
+            color: var(--bn-muted);
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            font-weight: 500;
+        }
+
+        .heading_s1 > p a {
+            color: var(--bn-blue);
+
+            font-weight: 800;
+
+            text-decoration: none;
+        }
+
+        .heading_s1 > p a:hover {
+            color: var(--bn-dark);
+
+            text-decoration: underline;
+        }
+
+
+        /* ==============================
+           ALERTS
+        ============================== */
+
+        .login_wrap .alert {
+            position: relative;
+
+            margin: 0 0 19px !important;
+
+            padding:
+                11px 40px 11px 14px !important;
+
+            border-radius: 9px !important;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+            font-weight: 600;
+        }
+
+        .login_wrap .alert-success {
+            color: #155724;
+
+            background: #edf9f1;
+
+            border: 1px solid #ccebd6;
+        }
+
+        .login_wrap .alert-danger {
+            color: #842029;
+
+            background: #fff2f3;
+
+            border: 1px solid #f2c6cb;
+        }
+
+        .login_wrap .alert .close {
+            position: absolute;
+
+            top: 6px;
+            right: 8px;
+
+            color: inherit;
+
+            opacity: .7;
+        }
+
+
+        /* ==============================
+           FORM
+        ============================== */
+
+        .login_wrap form {
+            position: relative;
+            z-index: 4;
+        }
+
+        .login_wrap .form-group {
+            margin-bottom: 17px;
+        }
+
+        .login_wrap .form-group input {
+            width: 100%;
+
+            height: 52px;
+
+            padding: 0 15px;
+
+            box-sizing: border-box;
+
+            border:
+                1px solid var(--bn-border) !important;
+
+            border-radius: 10px !important;
+
+            background: #f9fbff !important;
+
+            color: var(--bn-text) !important;
+
+            font-size: 13px !important;
+
+            font-weight: 550;
+
+            outline: none;
+
+            box-shadow:
+                inset 0 1px 2px rgba(8,47,125,.025);
+
+            transition:
+                border-color .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+        .login_wrap .form-group input::placeholder {
+            color: #8997aa;
+
+            opacity: 1;
+        }
+
+        .login_wrap .form-group input:focus {
+            border-color:
+                var(--bn-blue) !important;
+
+            background: #fff !important;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(21,87,214,.09) !important;
+        }
+
+
+        /* ==============================
+           FORGOT PASSWORD
+        ============================== */
+
+        .login_footer {
+            display: flex;
+
+            justify-content: flex-end;
+
+            margin-bottom: 22px !important;
+        }
+
+        .login_footer a {
+            color: #66778d !important;
+
+            font-size: 11px;
+
+            font-weight: 650;
+
+            text-decoration: none;
+        }
+
+        .login_footer a:hover {
+            color: var(--bn-blue) !important;
+
+            text-decoration: underline;
+        }
+
+
+        /* ==============================
+           LOGIN BUTTON
+        ============================== */
+
+        .login_wrap .btn-heading {
+            width: 100%;
+
+            min-height: 52px;
+
+            border: 0 !important;
+
+            border-radius: 10px !important;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1557d6 0%,
+                    #0b3d9e 100%
+                ) !important;
+
+            color: #fff !important;
+
+            font-size: 13px !important;
+
+            font-weight: 850 !important;
+
+            letter-spacing: .2px;
+
+            box-shadow:
+                0 12px 26px
+                rgba(21,87,214,.25);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                background .2s ease;
+        }
+
+        .login_wrap .btn-heading:hover {
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b3d9e,
+                    #061b45
+                ) !important;
+
+            color: #fff !important;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 16px 32px
+                rgba(8,47,125,.28);
+        }
+
+        .login_wrap .btn-heading:active {
+            transform: translateY(0);
+        }
+
+
+        /* ==============================
+           TABLET
+        ============================== */
+
+        @media (max-width: 767px) {
+
+            .banners {
+                min-height: 150px;
+            }
+
+            .banner-paras {
+                padding: 28px 18px;
+            }
+
+            .banner-paras h1 {
+                font-size: 30px;
+            }
+
+            .banner_bottom .container {
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+
+            .banner_bottom h2 {
+                font-size: 12px;
+            }
+
+            .page-content {
+                padding-top: 42px !important;
+                padding-bottom: 48px !important;
+            }
+
+            .login_wrap {
+                max-width: 100%;
+
+                border-radius: 20px !important;
+            }
+
+            .padding_eight_all {
+                padding:
+                    30px 25px 32px !important;
+            }
+
+            .heading_s1 h1 {
+                font-size: 26px;
+            }
+
+            /* Mobile input = 14px */
+
+            .login_wrap .form-group input {
+                height: 51px;
+
+                font-size: 14px !important;
+            }
+
+            .login_footer a {
+                font-size: 12px;
+            }
+
+            .login_wrap .btn-heading {
+                min-height: 51px;
+
+                font-size: 14px !important;
+            }
+        }
+
+
+        /* ==============================
+           SMALL MOBILE
+        ============================== */
+
+        @media (max-width: 480px) {
+
+            .banners {
+                min-height: 135px;
+            }
+
+            .banner-paras {
+                padding: 25px 15px;
+            }
+
+            .banner-paras h1 {
+                font-size: 27px;
+            }
+
+            .banner-paras h5 {
+                font-size: 11px;
+            }
+
+            .banner_bottom h2 {
+                display: block;
+
+                font-size: 11px;
+
+                line-height: 1.5;
+            }
+
+            .banner_bottom h2 span {
+                margin-top: 7px;
+
+                min-height: 34px;
+
+                padding: 6px 13px;
+
+                font-size: 10px;
+            }
+
+            .page-content {
+                padding:
+                    32px 8px 42px !important;
+            }
+
+            .padding_eight_all {
+                padding:
+                    27px 17px 29px !important;
+            }
+
+            .heading_s1 {
+                margin-bottom: 24px;
+            }
+
+            .heading_s1 h1 {
+                font-size: 24px;
+            }
+
+            .heading_s1 > p {
+                font-size: 11px;
+            }
+
+            /* Mobile form remains 14px */
+
+            .login_wrap .form-group input {
+                height: 50px;
+
+                padding: 0 13px;
+
+                font-size: 14px !important;
+            }
+
+            .login_footer {
+                margin-bottom: 20px !important;
+            }
+
+            .login_footer a {
+                font-size: 12px;
+            }
+
+            .login_wrap .btn-heading {
+                min-height: 49px;
+
+                font-size: 14px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    @include('goods.include.header')
+
+
+    <!-- ============================
+         PAGE BANNER
+    ============================= -->
+
+    <div class="banners">
+
+        <div class="banner-paras">
+
+            <h1>Login</h1>
+
+            <h5>
+                Home //
+                <a href="">
+                    Login
+                </a>
+            </h5>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================
+         QUOTE STRIP
+    ============================= -->
+
+    <div class="banner_bottom">
+
+        <div class="container">
+
+            <h2>
+
+                <span>
+                    Get a FREE Instant Quote Here
+                </span>
+
+                <span>
+                    Get A Quote
+                </span>
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================
+         LOGIN
+    ============================= -->
+
+    <main class="main pages">
+
+        <div class="page-content pt-50 pb-50">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-12">
+
+
+                        <div class="login_wrap widget-taber-content background-white">
+
+                            <div class="padding_eight_all bg-white">
+
+
+                                <!-- HEADING -->
+
+                                <div class="heading_s1">
+
+                                    <h1 class="mb-3">
+                                        Login
+                                    </h1>
+
+
+                                    @if(session()->has('success'))
+
+                                    <div
+                                        class="alert alert-success mb-0 alert-dismissible fade show"
+                                        role="alert"
+                                    >
+
+                                        {{ session()->get('success') }}
+
+                                        <button
+                                            type="button"
+                                            class="close"
+                                            data-dismiss="alert"
+                                            aria-label="Close"
+                                        >
+                                            <span aria-hidden="true">
+                                                &times;
+                                            </span>
+                                        </button>
+
+                                    </div>
+
+                                    @endif
+
+
+                                    @if(session()->has('error'))
+
+                                    <div
+                                        class="alert alert-danger mb-0 alert-dismissible fade show"
+                                        role="alert"
+                                    >
+
+                                        {{ session()->get('error') }}
+
+                                        <button
+                                            type="button"
+                                            class="close"
+                                            data-dismiss="alert"
+                                            aria-label="Close"
+                                        >
+                                            <span aria-hidden="true">
+                                                &times;
+                                            </span>
+                                        </button>
+
+                                    </div>
+
+                                    @endif
+
+
+                                    <p class="mb-30">
+
+                                        Don't have an account?
+
+                                        <a href="{{url('/user-register')}}">
+                                            Create here
+                                        </a>
+
+                                    </p>
+
+                                </div>
+
+
+                                <!-- FORM -->
+
+                                <form
+                                    method="POST"
+                                    action="{{ route('login') }}"
+                                >
+
+                                    @csrf
+
+                                    <input
+                                        type="hidden"
+                                        name="type"
+                                        value="0"
+                                    >
+
+
+                                    <!-- USERNAME / EMAIL -->
+
+                                    <div class="form-group">
+
+                                        <input
+                                            type="text"
+                                            required=""
+                                            name="email"
+                                            placeholder="Username or Email *"
+                                        />
+
+                                    </div>
+
+
+                                    <!-- PASSWORD -->
+
+                                    <div class="form-group">
+
+                                        <input
+                                            required=""
+                                            type="password"
+                                            name="password"
+                                            placeholder="Your password *"
+                                        />
+
+                                    </div>
+
+
+                                    <!-- FORGOT PASSWORD -->
+
+                                    <div class="login_footer form-group mb-50">
+
+                                        <a
+                                            class="text-muted"
+                                            href="#"
+                                        >
+                                            Forgot password?
+                                        </a>
+
+                                    </div>
+
+
+                                    <!-- LOGIN BUTTON -->
+
+                                    <div class="form-group">
+
+                                        <button
+                                            type="submit"
+                                            class="btn btn-heading btn-block hover-up"
+                                            name="login"
+                                        >
+                                            Log in
+                                        </button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    @include('goods.include.footer')
+
+
+    <script
+        type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"
+    ></script>
+
+</body>
+</html>
