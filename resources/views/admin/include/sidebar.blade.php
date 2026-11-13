@@ -341,10 +341,16 @@
                                
                 @elseif(auth()->user()->type  == 2)
                 @if(auth()->user()->status == 1)
+                @php
+                    $ddBlockedFromJobs = app(\App\Services\DriverVerificationService::class)->blocksNewJobs(auth()->user());
+                @endphp
                 <li class="{{request()->routeIs('driver-booking.*') ? 'active':''}}">
                     <a href="{{route('driver-booking.index')}}">
                         <i class="fa fa-book" aria-hidden="true" style="margin-right: 20px"></i>
                         Booking
+                        @if($ddBlockedFromJobs)
+                            <i class="fa fa-exclamation-triangle" title="Blocked - a required document needs attention" style="margin-left: 8px; color: #ffd54a;"></i>
+                        @endif
                     </a>
                 </li>
 

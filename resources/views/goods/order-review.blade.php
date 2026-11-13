@@ -6,6 +6,13 @@
         <title>BN Taxi Anytime - Order Review</title>
 
         @include('goods.include.assets')
+        
+        <style>
+            #bags-note {
+    font-size: 11px;
+    white-space: nowrap;
+}
+        </style>
     </head>
     <body>
         @include('goods.include.header')
@@ -119,10 +126,30 @@
                                                 <label class="form-label text-muted small font-weight-bold text-uppercase">Number of Passengers *</label>
                                                 <input type="number" class="form-control bg-light px-3 py-2" name="passengers" min="1" max="16" required placeholder="e.g. 2" style="border: 1px solid #eee;">
                                             </div>
+                                            <!--<div class="col-md-6 mb-3">-->
+                                            <!--    <label class="form-label text-muted small font-weight-bold text-uppercase">Number of Bags *</label>-->
+                                            <!--    <input type="number" class="form-control bg-light px-3 py-2" name="bags" min="0" max="16" placeholder="e.g. 2" required style="border: 1px solid #eee;">-->
+                                            <!--</div>-->
                                             <div class="col-md-6 mb-3">
-                                                <label class="form-label text-muted small font-weight-bold text-uppercase">Number of Bags *</label>
-                                                <input type="number" class="form-control bg-light px-3 py-2" name="bags" min="0" max="16" placeholder="e.g. 2" required style="border: 1px solid #eee;">
-                                            </div>
+                                            <label class="form-label text-muted small font-weight-bold text-uppercase">
+                                                Number of Bags *
+                                            </label>
+                                        
+                                            <input type="number"
+                                                   class="form-control bg-light px-3 py-2"
+                                                   name="bags"
+                                                   min="0"
+                                                   max="4"
+                                                   step="1"
+                                                   placeholder="e.g. 2"
+                                                   required
+                                                   style="border: 1px solid #eee;">
+                                        
+                                            <small class="text-muted" id="bags-note">
+                                                Maximum 4 bags allowed
+                                                (2 large suitcases + 2 small bags).
+                                            </small>
+                                        </div>
                                             <div class="col-md-12 mb-3">
                                                 <label class="form-label text-muted small font-weight-bold text-uppercase">Special Instructions / Notes</label>
                                                 <textarea class="form-control bg-light px-3 py-2" name="special_instructions" rows="3" placeholder="Enter any extra requests (e.g. child seat, pickup notes, extra stops details)..." style="border: 1px solid #eee;"></textarea>

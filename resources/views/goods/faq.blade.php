@@ -3,9 +3,10 @@
     <head>
         
           <meta charset="UTF-8">
-          <title>BN Taxi Anytime | Brighton Taxi & Airport Transfers </title>
-  <meta name="description" content="Reliable Brighton taxi service, available 24/7. Airport transfers, wedding cars & corporate travel with fixed prices. Book your ride online now. ">
-  <meta name="keywords" content="Brighton taxi">
+          <title>Brighton Taxi FAQs | BN Taxi Anytime </title>
+  <meta name="description" content="Answers to common questions about booking a Brighton taxi with BN Taxi
+Anytime - pricing, airport transfers, cancellations, payment & more.">
+  <meta name="keywords" content="Brighton taxi FAQs">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

@@ -59,6 +59,12 @@ class DriverDocumentRoutes
         return $this->admin() ? route('admin.dv.destroy', $doc) : route('driver.docs.destroy', $doc);
     }
 
+    /** Driver only - admin corrects dates through review() instead. */
+    public function dates(DriverDocument $doc): string
+    {
+        return route('driver.docs.dates', $doc);
+    }
+
     /** Admin only. */
     public function review(DriverDocument $doc): string
     {

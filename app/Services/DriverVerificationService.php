@@ -30,6 +30,28 @@ class DriverVerificationService
         self::REQUIRES_ACTION     => ['Requires Action',     'danger',  'One or more items need attention before verification can continue.'],
     ];
 
+    /**
+     * An active driver whose overall status is "Requires Action" has a required
+     * document that's expired, rejected, or gone missing after being approved -
+     * they must not be able to pick up new jobs until it's sorted out. This is
+     * live off today's date (see DriverDocument::effectiveStatus()), so a
+     * document simply reaching its expiry date blocks them automatically, with
+     * no admin action needed.
+     *
+     * Uploading a corrected document lifts the block straight away, ahead of
+     * admin review (it moves out of "Requires Action" into "Under Review" /
+     * "Partially Approved") - if the admin then rejects it, that puts the
+     * driver straight back into "Requires Action" and blocks them again.
+     * This deliberately does NOT apply to a driver who was force-activated by
+     * an admin despite incomplete verification (config('driver_documents')
+     * status INCOMPLETE / DOCUMENTS_SUBMITTED, not REQUIRES_ACTION) - that's
+     * an explicit admin override, not something this should second-guess.
+     */
+    public function blocksNewJobs(User $driver): bool
+    {
+        return $this->overall($driver)['status'] === self::REQUIRES_ACTION;
+    }
+
     /** @return array<string,array> document type => config */
     public function types(): array
     {
@@ -194,6 +216,7 @@ class DriverVerificationService
             'profile'     => $profile,
             'application' => $profile->application_status,
             'isApplicant' => $mode === 'driver' && $driver->isPendingDriverApplicant(),
+            'blockedFromJobs' => $driver->status == 1 && $this->blocksNewJobs($driver),
             'overall' => $this->overall($driver),
             'docs'    => $driver->driverDocuments->keyBy('type'),
             'groups'  => $groups,

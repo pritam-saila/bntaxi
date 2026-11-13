@@ -152,6 +152,14 @@
 
     // ----------------------------------------------------------------- upload
 
+    /** Reads the driver's own issue/expiry date inputs on this card, if present. */
+    function appendDates(wrap, form) {
+        var issue = wrap.querySelector('.dd-upload-issue-date');
+        var expiry = wrap.querySelector('.dd-upload-expiry-date');
+        if (issue && issue.value) { form.append('issue_date', issue.value); }
+        if (expiry && expiry.value) { form.append('expiry_date', expiry.value); }
+    }
+
     function startUpload(wrap, file, confirmed) {
         var problem = errorFor(file);
         if (problem) { showMsg(wrap, problem, false); return; }
@@ -168,6 +176,7 @@
         var form = new FormData();
         form.append('document', file);
         if (confirmed) { form.append('confirm_replace', '1'); }
+        appendDates(wrap, form);
 
         var progress = wrap.querySelector('.dd-progress');
         var bar      = progress.querySelector('.dd-progress-bar');
@@ -312,9 +321,40 @@
             } else if (action === 'cancel') {
                 var xhr = uploads.get(wrap);
                 if (xhr) { xhr.abort(); }
+            } else if (action === 'save-dates') {
+                saveDates(wrap, btn.getAttribute('data-url'));
             }
         }
     });
+
+    function saveDates(wrap, url) {
+        // Visible the instant the click registers, before the network call even
+        // starts - so it's obvious from the click alone whether this handler ran.
+        showMsg(wrap, 'Saving…', true);
+
+        var form = new FormData();
+        appendDates(wrap, form);
+
+        setBusy(wrap, true);
+        fetch(url, {
+            method: 'POST',
+            body: form,
+            headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest', 'X-CSRF-TOKEN': TOKEN },
+            credentials: 'same-origin'
+        }).then(function (res) {
+            return res.text().then(function (text) { return { status: res.status, data: parse(text) }; });
+        }).then(function (r) {
+            setBusy(wrap, false);
+            if (r.status >= 200 && r.status < 300 && r.data && r.data.ok) {
+                applyServerResult(wrap, r.data, 'Dates saved.');
+            } else {
+                showMsg(wrap, (r.data && r.data.message) || statusMessage(r.status), false);
+            }
+        }).catch(function () {
+            setBusy(wrap, false);
+            showMsg(wrap, 'Network problem — dates weren’t saved. Please try again.', false);
+        });
+    }
 
     function deleteDocument(wrap, url) {
         setBusy(wrap, true);

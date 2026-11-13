@@ -1,6 +1,9 @@
 @include('admin.include.sidebar')
 
-@php $cssVer = @filemtime(public_path('admin/css/driver-documents.css')) ?: 1; @endphp
+{{-- A content hash survives deploys that don't update file mtimes (zip/FTP
+     uploads often don't) - filemtime() alone can silently keep serving a
+     stale cached .js/.css to the browser after a real code change. --}}
+@php $cssVer = @md5_file(public_path('admin/css/driver-documents.css')) ?: 1; @endphp
 <link rel="stylesheet" href="{{ url('/admin/css/driver-documents.css') }}?v={{ $cssVer }}">
 
 <div class="wrapper">
@@ -49,7 +52,7 @@
                 </thead>
                 <tbody>
                     @foreach($rows as $row)
-                        @php $o = $row['overall']; $d = $row['driver']; @endphp
+                        @php $o = $row['overall']; $d = $row['driver']; $blocked = $row['blocked']; @endphp
                         <tr>
                             <td><strong>{{ $d->name }}</strong><small>{{ $d->email }}</small></td>
                             <td>{{ $d->phone ?: '—' }}</td>
@@ -58,6 +61,7 @@
                                 @php $app = $d->driverProfile?->application_status; @endphp
                                 @if($app === 'pending')<small class="dd-warn-text">Application pending</small>
                                 @elseif($app === 'declined')<small>Application declined</small>@endif
+                                @if($blocked)<small class="dd-warn-text">🚫 Blocked from jobs</small>@endif
                             </td>
                             <td>
                                 <span class="dd-pill dd-pill-{{ $o['tone'] }}">{{ $o['label'] }}</span>

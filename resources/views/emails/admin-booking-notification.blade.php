@@ -59,7 +59,16 @@
                 <tr><th>Return date &amp; time</th><td>{{ $booking->return_date }} {{ $booking->return_time }}</td></tr>
             @endif
             <tr><th>Vehicle</th><td>{{ optional($booking->carDetail)->name ?? 'To be assigned' }}</td></tr>
-            <tr><th>Passengers / Bags</th><td>{{ $booking->passengers ?? 1 }} / {{ $booking->bags ?? 0 }}</td></tr>
+            
+            <tr>
+                <th>Passengers</th>
+                <td>{{ $booking->passengers ?? 1 }}</td>
+            </tr>
+            
+            <tr>
+                <th>Bags</th>
+                <td>{{ $booking->bags ?? 0 }}</td>
+            </tr>
             <tr><th>Distance</th><td>{{ $booking->distance ? number_format((float) $booking->distance, 1) . ' miles' : 'N/A' }}</td></tr>
             @if(!empty($booking->special_instructions))
                 <tr><th>Special instructions</th><td>{{ $booking->special_instructions }}</td></tr>

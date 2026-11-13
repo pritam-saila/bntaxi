@@ -152,25 +152,36 @@ trait ManagesDriverDocumentation
 
     protected function storeDocument(Request $request, User $driver, string $type): JsonResponse
     {
-        $this->documentType($type);
+        $def = $this->documentType($type);
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'document' => [
                 'required', 'file',
                 'max:' . config('driver_documents.max_size_kb'),
                 'mimes:' . implode(',', config('driver_documents.allowed_extensions')),
                 'mimetypes:' . implode(',', config('driver_documents.allowed_mimes')),
             ],
-        ], [
+        ];
+        // Only validated (and later stored) when this document type actually uses that date.
+        if (!empty($def['has_issue_date'])) {
+            $rules['issue_date'] = ['nullable', 'date'];
+        }
+        if (!empty($def['has_expiry'])) {
+            $rules['expiry_date'] = ['nullable', 'date'];
+        }
+
+        $validator = Validator::make($request->all(), $rules, [
             'document.required'  => 'Choose a file to upload.',
             'document.uploaded'  => 'The file couldn\'t be uploaded. It may be larger than the server allows.',
             'document.max'       => 'The file is too large. The maximum size is ' . round(config('driver_documents.max_size_kb') / 1024) . ' MB.',
             'document.mimes'     => 'Only PDF, JPG, JPEG and PNG files are accepted.',
             'document.mimetypes' => 'Only PDF, JPG, JPEG and PNG files are accepted.',
+            'issue_date.date'    => 'Enter a valid issue date.',
+            'expiry_date.date'   => 'Enter a valid expiry date.',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['ok' => false, 'message' => $validator->errors()->first('document')], 422);
+            return response()->json(['ok' => false, 'message' => $validator->errors()->first()], 422);
         }
 
         try {
@@ -179,7 +190,9 @@ trait ManagesDriverDocumentation
                 $type,
                 $request->file('document'),
                 $request->user(),
-                $request->boolean('confirm_replace')
+                $request->boolean('confirm_replace'),
+                $request->input('issue_date'),
+                $request->input('expiry_date')
             );
         } catch (DriverDocumentException $e) {
             return response()->json(['ok' => false, 'reason' => $e->reason, 'message' => $e->getMessage()], $e->status);
@@ -200,6 +213,37 @@ trait ManagesDriverDocumentation
         }
 
         return $this->documentResponse($driver, $document->type, 'Document removed.');
+    }
+
+    /** Driver self-service: fix the issue/expiry date without re-uploading the file. */
+    protected function updateDocumentDates(Request $request, User $driver, DriverDocument $document): JsonResponse
+    {
+        $def = $document->definition();
+
+        $rules = [];
+        if (!empty($def['has_issue_date'])) {
+            $rules['issue_date'] = ['nullable', 'date'];
+        }
+        if (!empty($def['has_expiry'])) {
+            $rules['expiry_date'] = ['nullable', 'date'];
+        }
+
+        $validator = Validator::make($request->all(), $rules, [
+            'issue_date.date'  => 'Enter a valid issue date.',
+            'expiry_date.date' => 'Enter a valid expiry date.',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['ok' => false, 'message' => $validator->errors()->first()], 422);
+        }
+
+        try {
+            $this->documents()->updateDates($document, $request->user(), $request->input('issue_date'), $request->input('expiry_date'));
+        } catch (DriverDocumentException $e) {
+            return response()->json(['ok' => false, 'reason' => $e->reason, 'message' => $e->getMessage()], $e->status);
+        }
+
+        return $this->documentResponse($driver, $document->type, 'Dates saved.');
     }
 
     /** Fresh HTML for the changed card and the summary panel, rendered by the same Blade partials. */

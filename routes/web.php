@@ -72,6 +72,29 @@ All Admin Routes List
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+
+    // Runs only the newest migration file (by --path), for servers without shell access.
+    Route::get('/admin/run-last-migration', function () {
+        $files = glob(database_path('migrations/*.php'));
+        sort($files);
+        $path = 'database/migrations/' . basename(end($files));
+
+        try {
+            \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => $path, '--force' => true]);
+
+            return response()->json([
+                'status' => 'success',
+                'migration' => $path,
+                'output' => \Illuminate\Support\Facades\Artisan::output(),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'migration' => $path,
+                'message' => $e->getMessage(),
+            ], 500);
+        }
+    })->name('admin.run-last-migration');
     Route::resource('/admtestimonial', TestimonialController::class);
     Route::resource('/admblog', BlogController::class)->parameter('admblog', 'blog');
     Route::resource('/admbanner', BannerController::class);
@@ -137,12 +160,14 @@ Route::middleware(['auth', 'user-access:manager'])->group(function () {
         Route::post('/upload/{type}', [DriverDocumentController::class, 'upload'])->middleware('throttle:30,1')->name('upload');
         Route::get('/file/{document}', [DriverDocumentController::class, 'file'])->middleware('throttle:120,1')->name('file');
         Route::delete('/{document}', [DriverDocumentController::class, 'destroy'])->name('destroy');
+        Route::post('/{document}/dates', [DriverDocumentController::class, 'dates'])->name('dates');
     });
 
     // Everything else needs an active account.
     Route::middleware('active-driver')->group(function () {
         Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
-        Route::resource('/driver-booking', DriverBookingController::class);
+        // The available-jobs pool is off-limits while a required document needs attention.
+        Route::resource('/driver-booking', DriverBookingController::class)->middleware('can-take-jobs');
         Route::resource('/driver-accepted-booking', DriverAceptedBookingController::class);
         Route::get('/driver-account', [DriverDashboardController::class, 'useraccount'])->name('driveraccount');
         Route::post('/driver-update', [DriverDashboardController::class, 'userupdate']);
@@ -166,6 +191,7 @@ Route::get('/booking/confirmation/{token}', [WebController::class, 'bookingConfi
 Route::get('/booking/{token}/receipt', [WebController::class, 'bookingReceipt'])->name('booking.receipt');
 Route::get('/booking/{token}/cancel', [WebController::class, 'cancelBookingShow'])->name('booking.cancel.show');
 Route::post('/booking/{token}/cancel', [WebController::class, 'cancelBookingByToken'])->name('booking.cancel.perform');
+Route::get('/booking/{token}/payment-cancelled', [WebController::class, 'paymentCancelled'])->name('booking.payment.cancelled');
 Route::get('/my-payment', [WebController::class, 'mypayment']);
 Route::get('/book-now', [WebController::class, 'booknow']);
 Route::get('/my-profile', [WebController::class, 'myprofile']);

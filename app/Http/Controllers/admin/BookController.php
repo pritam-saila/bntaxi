@@ -22,7 +22,15 @@ class BookController extends Controller
      */
     public function index()
     {
-        $query = Book::leftJoin('users', 'books.user_id', '=', 'users.id')
+        // Abandoned card checkouts must never sit in the list as pending, even
+        // if the scheduled clean-up has not run yet.
+        try {
+            app(\App\Services\CardPaymentService::class)->cancelAbandoned();
+        } catch (\Throwable $e) {
+            report($e);
+        }
+
+        $query =Book::leftJoin('users', 'books.user_id', '=', 'users.id')
             ->select('books.*', 'users.name as username', 'users.phone as userphone', 'users.address as useraddress');
 
         $filter = request('filter');

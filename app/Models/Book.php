@@ -113,6 +113,7 @@ class Book extends Model
         'driver_status',
         'payment_method',
         'payment_status',
+        'stripe_session_id',
         'amount_paid',
         'outstanding_amount',
         'payment_actual_method',
@@ -365,6 +366,19 @@ class Book extends Model
     public function isOnlinePayment(): bool
     {
         return $this->payment_method === 'stripe';
+    }
+
+    /**
+     * An online booking where the customer chose card but Stripe has not
+     * (yet) taken the money. These never reach the dispatch desk: they are
+     * either paid within the checkout window or cancelled for non-payment.
+     */
+    public function isAwaitingCardPayment(): bool
+    {
+        return $this->source === 'web'
+            && $this->payment_method === 'stripe'
+            && $this->payment_status === 'pending_payment'
+            && $this->status === 'PENDING APPROVAL';
     }
 
     public function isPayInCar(): bool

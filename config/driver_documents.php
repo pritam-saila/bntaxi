@@ -53,20 +53,20 @@ return [
     'types' => [
 
         'driving_licence_front' => [
-            'label'          => 'UK Driving Licence / PHV Driver Licence — Front',
-            'short'          => 'Driver Licence (front)',
+            'label'          => 'Private Hire / Hackney Carriage Driver\'s Licence — Front',
+            'short'          => 'PH/Hackney Licence (front)',
             'group'          => 'licence',
-            'description'    => 'The front of your UK photocard driving licence or PHV driver licence. All four corners and every detail must be readable.',
+            'description'    => 'The front of your Private Hire or Hackney Carriage driver\'s licence issued by your local council. All four corners and every detail must be readable.',
             'required'       => true,
             'has_issue_date' => true,
             'has_expiry'     => true,
         ],
 
         'driving_licence_back' => [
-            'label'          => 'UK Driving Licence / PHV Driver Licence — Back',
-            'short'          => 'Driver Licence (back)',
+            'label'          => 'Private Hire / Hackney Carriage Driver\'s Licence — Back',
+            'short'          => 'PH/Hackney Licence (back)',
             'group'          => 'licence',
-            'description'    => 'The reverse of your licence, where applicable (photocard licences have entitlements printed on the back).',
+            'description'    => 'The reverse of your licence, where applicable (some licences have entitlements or conditions printed on the back).',
             'required'       => false,
             'has_issue_date' => false,
             'has_expiry'     => false,

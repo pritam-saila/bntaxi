@@ -2,8 +2,11 @@
 
 @php
     $admin  = $mode === 'admin';
-    $cssVer = @filemtime(public_path('admin/css/driver-documents.css')) ?: 1;
-    $jsVer  = @filemtime(public_path('admin/js/driver-documents.js')) ?: 1;
+    // A content hash survives deploys that don't update file mtimes (zip/FTP
+    // uploads often don't) - filemtime() alone can silently keep serving a
+    // stale cached .js/.css to the browser after a real code change.
+    $cssVer = @md5_file(public_path('admin/css/driver-documents.css')) ?: 1;
+    $jsVer  = @md5_file(public_path('admin/js/driver-documents.js')) ?: 1;
 
     // Which section should the page scroll to after a save / validation error?
     $scrollTo = session('dd_section')
@@ -85,6 +88,11 @@
                     <span class="dd-hint">Moves every newly uploaded document to “Under Review”.</span>
                 </form>
             @endif
+            @if($blockedFromJobs)
+                <div class="dd-flash dd-flash-error" role="alert" style="margin-top: 10px;">
+                    🚫 This driver is currently <strong>blocked from taking new jobs</strong> - a required document is expired, rejected, or missing.
+                </div>
+            @endif
         @elseif($isApplicant)
             <h1>Complete your driver application</h1>
             <ol class="dd-steps" aria-label="Application steps">
@@ -96,6 +104,12 @@
         @else
             <h1>Driver &amp; Vehicle Documentation</h1>
             <p class="dd-sub">Complete your details and upload each document. An administrator will review everything you submit.</p>
+            @if($blockedFromJobs)
+                <div class="dd-flash dd-flash-error" role="alert">
+                    🚫 <strong>You can't take new jobs right now.</strong> A required document below is expired, rejected, or missing.
+                    Any job you've already accepted is unaffected — upload a renewed document to be able to take new jobs again.
+                </div>
+            @endif
         @endif
     </header>
 

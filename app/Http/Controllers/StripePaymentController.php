@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Stripe;
 use App\Models\Book;
 use App\Mail\BookingMail;
-use App\Mail\CustomerBookingConfirmationMail;
-use App\Mail\AdminBookingNotificationMail;
+use App\Services\CardPaymentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -60,43 +59,36 @@ class StripePaymentController extends Controller
      */
     public function success(Request $request)
     {
-        $id = Session::get('stripedata');
-        if ($id) {
+        $payments = app(CardPaymentService::class);
+        $sessionId = $request->get('session_id');
+
+        // Prefer the booking the Stripe session was opened for; fall back to the
+        // browser session for payments started before that link was recorded.
+        $booking = $sessionId ? Book::where('stripe_session_id', $sessionId)->first() : null;
+        if (!$booking && ($id = Session::get('stripedata'))) {
             $booking = Book::findOrFail($id);
+        }
+
+        if ($booking) {
             $paymentIntentId = null;
 
-            if ($request->has('session_id')) {
+            if ($sessionId) {
                 try {
-                    $stripeSecretKey = env('STRIPE_SECRET');
-                    $stripe = new \Stripe\StripeClient($stripeSecretKey);
-                    $session = $stripe->checkout->sessions->retrieve($request->get('session_id'));
+                    $session = $payments->retrieveSession($sessionId);
                     $paymentIntentId = $session->payment_intent;
+
+                    if ($session->payment_status !== 'paid') {
+                        return redirect()->route('booking.confirmation', $booking->access_token)
+                            ->with('error', 'Your payment has not been completed, so this booking is not yet paid for.');
+                    }
                 } catch (\Exception $e) {
                     // Ignore or log
                 }
             }
 
-            $booking->update([
-               'status' => 'PENDING APPROVAL',
-               'payment_method' => 'stripe',
-               'payment_status' => 'paid',
-               'payment_actual_method' => 'stripe',
-               'amount_paid' => $booking->price,
-               'outstanding_amount' => 0,
-               'payment_date' => now(),
-               'payment_confirmed_by' => 'Stripe (online)',
-               'refund_transaction_reference' => $paymentIntentId
-            ]);
-
-            // Log timeline and save
-            $booking->logTimeline('Payment Received', 'Online payment of £' . number_format($booking->price, 2) . ' received successfully via Stripe.', 'Stripe');
-
-            try {
-                Mail::to($booking->email)->send(new CustomerBookingConfirmationMail($booking));
-                Mail::to(Book::adminNotificationRecipients())->send(new AdminBookingNotificationMail($booking));
-                $booking->logTimeline('Confirmation Emails Sent', 'Customer confirmation (with receipt) and admin notification sent.', 'System');
-            } catch (\Exception $e) {
-                $booking->logTimeline('Confirmation Email Failed', 'Could not send booking emails: ' . $e->getMessage(), 'System');
+            // Reloading the success page must not record the payment (or email) twice.
+            if (!$booking->isPaid()) {
+                $payments->markPaid($booking, $paymentIntentId);
             }
 
             return redirect()->route('booking.confirmation', $booking->access_token)

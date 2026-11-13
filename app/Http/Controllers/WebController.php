@@ -15,6 +15,7 @@ use App\Models\Service;
 use App\Models\Routehandle;
 use Illuminate\Support\Str;
 use App\Services\PricingService;
+use App\Services\CardPaymentService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,9 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\BookingMail;
 use App\Mail\CustomerBookingConfirmationMail;
 use App\Mail\AdminBookingNotificationMail;
+use App\Mail\DriverApplicationSubmittedMail;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Log;
 
 class WebController extends Controller
 {
@@ -242,6 +245,14 @@ class WebController extends Controller
         \Illuminate\Support\Facades\Auth::login($driver);
         $request->session()->regenerate();
 
+        // Let the office know a new application is waiting - never let a mail
+        // problem stop the driver from completing registration.
+        try {
+            Mail::to(Book::adminNotificationRecipients())->send(new DriverApplicationSubmittedMail($driver));
+        } catch (\Throwable $e) {
+            Log::error('driver.application_submitted_mail_failed', ['driver_id' => $driver->id, 'error' => $e->getMessage()]);
+        }
+
         return redirect()->route('driver.docs.index')->with(
             'dd_success',
             'Your account has been created. Step 2 of 2: complete your details and upload your documents below — an administrator will verify them and activate your account.'
@@ -446,29 +457,40 @@ class WebController extends Controller
 
         session()->put('stripedata', $booking->id);
 
-        $stripeSecretKey = env('STRIPE_SECRET');
-        $stripe = new \Stripe\StripeClient($stripeSecretKey);
+        $payments = app(CardPaymentService::class);
 
-        $product = $stripe->products->create(['name' => 'Booking ' . $booking->booking_id]);
-        $strstipe = $stripe->prices->create([
-            'product' => $product->id,
-            'unit_amount' => (int) round(floatval($booking->price) * 100),
-            'currency' => 'GBP',
-        ]);
+        try {
+            $checkoutUrl = $payments->startCheckout($booking);
+        } catch (\Throwable $e) {
+            Log::error("Could not start card payment for booking {$booking->booking_id}: " . $e->getMessage());
+            $payments->cancelIfUnpaid($booking, 'payment page could not be opened');
 
-        $checkout_session = $stripe->checkout->sessions->create([
-            'line_items' => [[
-                'price' => $strstipe->id,
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
-            'success_url' => url('success?session_id={CHECKOUT_SESSION_ID}'),
-            'cancel_url' => url('user-account'),
-        ]);
+            return redirect('/')->with('error', 'We could not start the card payment, so your booking was not completed. Please try again or call us.');
+        }
 
-        return redirect()->away($checkout_session->url);
+        return redirect()->away($checkoutUrl);
     }
-    
+
+    /**
+     * Stripe sends the customer here when they back out of the payment page.
+     * A card booking that is not paid for is not a booking: cancel it now and
+     * tell the customer and the office.
+     */
+    public function paymentCancelled($token)
+    {
+        $booking = Book::where('access_token', $token)->firstOrFail();
+
+        $outcome = app(CardPaymentService::class)->cancelIfUnpaid($booking, 'customer left the payment page');
+
+        if ($outcome === 'paid') {
+            return redirect()->route('booking.confirmation', $token)
+                ->with('success', 'Your payment was received. Your booking request is now pending approval.');
+        }
+
+        return redirect()->route('booking.confirmation', $token)
+            ->with('error', 'Your booking was not completed because the card payment was not made. No money has been taken. Please book again if you still need this journey.');
+    }
+
     public function serviceDetails($slug){
          $data['service'] = Service::where('slug', $slug)->firstOrFail();
          return view('goods.service-details')->with($data);

@@ -1520,84 +1520,239 @@ font-size:24px;
             @endif
 
             <div class="row g-4">
-                @if(isset($cars) && count($cars) > 0)
-                    @foreach($cars as $car)
-                <!-- ITEM -->
-                <div class="col-md-6">
-                    <div class="bntaxi-item">
-                        <div class="row align-items-center">
-                            <!-- IMAGE -->
-                            <div class="col-4">
-                                @if($car->image)
-                                    <img src="{{ url(Storage::url($car->image)) }}" class="img-fluid" />
-                                @else
-                                    <img src="https://crcdiag.com/bntaxifinal/wp-content/uploads/Exploring-the-True-Essence-of-BN-Taxis-Brighton-Anytime-Luxury-Car-Hire-Service-400x250.jpg" class="img-fluid" />
-                                @endif
-                            </div>
 
-                            <!-- INFO -->
-                            <div class="col-5">
-                                <h5 class="mb-1">{{ $car->name }}</h5>
-                                <small>{{ $car->description ?? 'Up to 4 passengers' }}</small>
-                                @if($car->call_for_quote)
-                                    <div class="bntaxi-price" style="font-size: 15px; color: #d9534f; white-space: nowrap;">Please call for quotes</div>
-                                @else
-                                    <div class="bntaxi-price">£{{ number_format($car->calculated_price, 2) }}</div>
-                                @endif
-                            </div>
+    @php
+        usort($cars, function ($a, $b) {
 
-                            <!-- BUTTON RIGHT -->
-                            <div class="col-3 text-end">
-                                @if($car->call_for_quote)
-                                    <!--<a href="tel:+441273757373" class="btn btn-danger btn-sm" style="white-space: nowrap;">Call Now</a>-->
-                                    <a href="javascript:void(0)"
-                                   class="btn btn-danger btn-sm"
-                                   onclick="showNumber()"
-                                   style="white-space: nowrap;">
+            $nameA = strtolower(trim($a->name));
+            $nameB = strtolower(trim($b->name));
+
+            // Saloon Car = 1st
+            if ($nameA === 'saloon car') {
+                $rankA = 0;
+            } elseif (str_contains($nameA, '8 seater')) {
+                $rankA = 1;
+            } else {
+                $rankA = 2;
+            }
+
+            // 8 Seater = 2nd
+            if ($nameB === 'saloon car') {
+                $rankB = 0;
+            } elseif (str_contains($nameB, '8 seater')) {
+                $rankB = 1;
+            } else {
+                $rankB = 2;
+            }
+
+            return $rankA <=> $rankB;
+        });
+    @endphp
+
+    @if(isset($cars) && count($cars) > 0)
+
+        @foreach($cars as $car)
+
+            <!-- ITEM -->
+            <div class="col-md-6">
+
+                <div class="bntaxi-item">
+
+                    <div class="row align-items-center">
+
+                        <!-- IMAGE -->
+                        <div class="col-4">
+
+                            @if($car->image)
+
+                                <img
+                                    src="{{ url(Storage::url($car->image)) }}"
+                                    class="img-fluid"
+                                />
+
+                            @else
+
+                                <img
+                                    src="https://crcdiag.com/bntaxifinal/wp-content/uploads/Exploring-the-True-Essence-of-BN-Taxis-Brighton-Anytime-Luxury-Car-Hire-Service-400x250.jpg"
+                                    class="img-fluid"
+                                />
+
+                            @endif
+
+                        </div>
+
+
+                        <!-- INFO -->
+                        <div class="col-5">
+
+                            <h5 class="mb-1">
+                                {{ $car->name }}
+                            </h5>
+
+                            <small>
+                                {{ $car->description ?? 'Up to 4 passengers' }}
+                            </small>
+
+
+                            @if($car->call_for_quote)
+
+                                <div
+                                    class="bntaxi-price"
+                                    style="font-size: 15px; color: #d9534f; white-space: nowrap;"
+                                >
+                                    Please call for quotes
+                                </div>
+
+                            @else
+
+                                <div class="bntaxi-price">
+                                    £{{ number_format($car->calculated_price, 2) }}
+                                </div>
+
+                            @endif
+
+                        </div>
+
+
+                        <!-- BUTTON RIGHT -->
+                        <div class="col-3 text-end">
+
+                            @if($car->call_for_quote)
+
+                                <a
+                                    href="javascript:void(0)"
+                                    class="btn btn-danger btn-sm"
+                                    onclick="showNumber()"
+                                    style="white-space: nowrap;"
+                                >
                                     Call Now
                                 </a>
-                                @else
-                                    <button class="btn btn-primary btn-sm select-btn"
-                                        onclick="selectCar(this)">
+
+                            @else
+
+                                <button
+                                    class="btn btn-primary btn-sm select-btn"
+                                    onclick="selectCar(this)"
+                                >
                                     Select
                                 </button>
-                                @endif
-                            </div>
+
+                            @endif
+
                         </div>
 
-                        <!-- DRIVER -->
-                        @if(!$car->call_for_quote)
+                    </div>
+
+
+                    <!-- DRIVER -->
+                    @if(!$car->call_for_quote)
+
                         <div class="bntaxi-driver-box">
-                            <form action="{{ url('order-review') }}" method="GET">
-                                <input type="hidden" name="car_id" value="{{ $car->id }}">
-                                <input type="hidden" name="distance" value="{{ $distance ?? 0 }}">
-                                <input type="hidden" name="price" value="{{ $car->calculated_price }}">
-                                <input type="hidden" name="pickup" value="{{ $pickup ?? '' }}">
-                                <input type="hidden" name="dropoff" value="{{ $dropoff ?? '' }}">
-                                @if(isset($distancearr))
-                                    @foreach($distancearr as $via)
-                                        <input type="hidden" name="distancearr[]" value="{{ $via }}">
-                                    @endforeach
-                                @endif
-                                <input type="hidden" name="pickup_date" value="{{ $pickup_date ?? '' }}">
-                                <input type="hidden" name="pickup_time" value="{{ $pickup_time ?? '' }}">
-                                <input type="hidden" name="return_date" value="{{ $return_date ?? '' }}">
-                                <input type="hidden" name="return_time" value="{{ $return_time ?? '' }}">
-                                <input type="hidden" name="is_return" value="{{ $is_return ?? '0' }}">
 
-                                <button type="submit" class="btn btn-success w-100 mt-2">Continue</button>
+                            <form action="{{ url('order-review') }}" method="GET">
+
+                                <input
+                                    type="hidden"
+                                    name="car_id"
+                                    value="{{ $car->id }}"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="distance"
+                                    value="{{ $distance ?? 0 }}"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="price"
+                                    value="{{ $car->calculated_price }}"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="pickup"
+                                    value="{{ $pickup ?? '' }}"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="dropoff"
+                                    value="{{ $dropoff ?? '' }}"
+                                >
+
+                                @if(isset($distancearr))
+
+                                    @foreach($distancearr as $via)
+
+                                        <input
+                                            type="hidden"
+                                            name="distancearr[]"
+                                            value="{{ $via }}"
+                                        >
+
+                                    @endforeach
+
+                                @endif
+
+                                <input
+                                    type="hidden"
+                                    name="pickup_date"
+                                    value="{{ $pickup_date ?? '' }}"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="pickup_time"
+                                    value="{{ $pickup_time ?? '' }}"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="return_date"
+                                    value="{{ $return_date ?? '' }}"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="return_time"
+                                    value="{{ $return_time ?? '' }}"
+                                >
+
+                                <input
+                                    type="hidden"
+                                    name="is_return"
+                                    value="{{ $is_return ?? '0' }}"
+                                >
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-success w-100 mt-2"
+                                >
+                                    Continue
+                                </button>
+
                             </form>
+
                         </div>
-                        @endif
-                    </div>
+
+                    @endif
+
                 </div>
-                    @endforeach
-                @else
-                    <div class="col-12 text-center">
-                        <p>No vehicles available for this route.</p>
-                    </div>
-                @endif
+
             </div>
+
+        @endforeach
+
+    @else
+
+        <div class="col-12 text-center">
+            <p>No vehicles available for this route.</p>
+        </div>
+
+    @endif
+
+</div>
 
             @endif {{-- minimum-distance block --}}
         </div>

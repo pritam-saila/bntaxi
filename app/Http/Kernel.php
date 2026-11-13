@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'user-access' => UserAccess::class,
         'active-driver' => \App\Http\Middleware\ActiveDriver::class,
+        'can-take-jobs' => \App\Http\Middleware\EnsureDriverCanTakeJobs::class,
     ];
 }

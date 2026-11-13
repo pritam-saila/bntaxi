@@ -32,7 +32,11 @@ class DriverVerificationController extends Controller
             ->with(['driverProfile', 'driverDocuments'])
             ->orderBy('name')
             ->get()
-            ->map(fn (User $driver) => ['driver' => $driver, 'overall' => $verification->overall($driver)]);
+            ->map(fn (User $driver) => [
+                'driver'  => $driver,
+                'overall' => $verification->overall($driver),
+                'blocked' => $driver->status == 1 && $verification->blocksNewJobs($driver),
+            ]);
 
         $counts = $rows->countBy(fn ($row) => $row['overall']['status']);
 

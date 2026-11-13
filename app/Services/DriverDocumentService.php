@@ -3,11 +3,15 @@
 namespace App\Services;
 
 use App\Exceptions\DriverDocumentException;
+use App\Mail\DriverDocumentUploadedMail;
+use App\Models\Book;
 use App\Models\DriverDocument;
 use App\Models\DriverDocumentReview;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Every state change to a driver document goes through here, so the audit
@@ -27,11 +31,19 @@ class DriverDocumentService
     /**
      * Upload a new document, or replace the existing one for this type.
      *
-     * A replacement resets the review: status goes back to "uploaded", and the
-     * issue / expiry dates and any rejection are cleared (it's a new file).
-     * Replacing an *approved* document needs an explicit $confirmReplace.
+     * A replacement resets the review: status goes back to "uploaded", and any
+     * rejection is cleared (it's a new file). Replacing an *approved* document
+     * needs an explicit $confirmReplace.
+     *
+     * $issueDate/$expiryDate are the driver's own reading of the physical
+     * document, given alongside the file. Only stored for a type that's
+     * configured to have that date (see config/driver_documents.php) - a
+     * value submitted for a type that doesn't use it is silently dropped,
+     * same as the admin review form already treats it. They're a starting
+     * point only - the admin review form still shows and can correct them
+     * before approving.
      */
-    public function upload(User $driver, string $type, UploadedFile $file, User $actor, bool $confirmReplace = false): DriverDocument
+    public function upload(User $driver, string $type, UploadedFile $file, User $actor, bool $confirmReplace = false, ?string $issueDate = null, ?string $expiryDate = null): DriverDocument
     {
         $existing = DriverDocument::where('user_id', $driver->id)->where('type', $type)->first();
 
@@ -40,16 +52,17 @@ class DriverDocumentService
         $meta = $this->storage->store($file, $driver->id);
 
         try {
-            $doc = DB::transaction(function () use ($driver, $type, $meta, $actor, $confirmReplace) {
+            $doc = DB::transaction(function () use ($driver, $type, $meta, $actor, $confirmReplace, $issueDate, $expiryDate) {
                 $current = DriverDocument::where('user_id', $driver->id)->where('type', $type)->lockForUpdate()->first();
                 $this->guardReplace($current, $confirmReplace);
 
                 $fromStatus = $current?->status;
+                $def        = config("driver_documents.types.{$type}", []);
 
                 $attributes = $meta + [
                     'status'           => DriverDocument::STATUS_UPLOADED,
-                    'issue_date'       => null,
-                    'expiry_date'      => null,
+                    'issue_date'       => !empty($def['has_issue_date']) ? ($issueDate ?: null) : null,
+                    'expiry_date'      => !empty($def['has_expiry']) ? ($expiryDate ?: null) : null,
                     'uploaded_at'      => now(),
                     'uploaded_by'      => $actor->id,
                     'reviewed_by'      => null,
@@ -79,7 +92,52 @@ class DriverDocumentService
             $this->storage->delete($existing->path, $existing->thumb_path);
         }
 
+        // Only when the driver uploaded it themselves - an admin uploading on a
+        // driver's behalf doesn't need to be told about their own action. Never
+        // let a mail problem get in the way of the upload actually succeeding.
+        if (self::roleOf($actor) === 'driver') {
+            try {
+                Mail::to(Book::adminNotificationRecipients())->send(new DriverDocumentUploadedMail($doc, (bool) $existing));
+            } catch (\Throwable $e) {
+                Log::error('driver.document_uploaded_mail_failed', ['document' => $doc->uuid, 'error' => $e->getMessage()]);
+            }
+        }
+
         return $doc;
+    }
+
+    /**
+     * Driver self-service: correct the issue/expiry date without re-uploading
+     * the file (e.g. fixing a typo). Same "can't touch an approved document"
+     * guard as delete() - once approved, a date change needs a fresh upload via
+     * Replace, so the approval can't quietly drift out of sync with the file.
+     */
+    public function updateDates(DriverDocument $doc, User $actor, ?string $issueDate, ?string $expiryDate): DriverDocument
+    {
+        if ($doc->effectiveStatus() === DriverDocument::STATUS_APPROVED && self::roleOf($actor) !== 'admin') {
+            throw new DriverDocumentException(
+                'approved_locked',
+                'This document is approved, so its dates can\'t be changed here. Use "Replace Document" to upload a new version.',
+                403
+            );
+        }
+
+        return DB::transaction(function () use ($doc, $actor, $issueDate, $expiryDate) {
+            $def = $doc->definition();
+            $from = $doc->status;
+
+            if (!empty($def['has_issue_date'])) {
+                $doc->issue_date = $issueDate ?: null;
+            }
+            if (!empty($def['has_expiry'])) {
+                $doc->expiry_date = $expiryDate ?: null;
+            }
+            $doc->save();
+
+            $this->log($doc, $actor, 'dates_updated', $from, $doc->status, null, null);
+
+            return $doc;
+        });
     }
 
     /** Drivers can't delete an approved document (they must use Replace); admins can. */

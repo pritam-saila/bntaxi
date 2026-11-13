@@ -60,6 +60,13 @@ class DriverDocumentController extends Controller
         return $this->removeDocument($request, $request->user(), $document);
     }
 
+    public function dates(Request $request, DriverDocument $document)
+    {
+        $this->own($request, $document);
+
+        return $this->updateDocumentDates($request, $request->user(), $document);
+    }
+
     private function own(Request $request, DriverDocument $document): void
     {
         abort_unless($document->user_id === $request->user()->id, 404);

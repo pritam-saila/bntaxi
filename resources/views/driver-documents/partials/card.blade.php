@@ -28,6 +28,41 @@
         </header>
         <p class="dd-desc">{{ $def['description'] }}</p>
 
+        {{-- Driver-entered dates: read off the physical document and sent together
+             with whichever upload/replace request follows. Admin has their own,
+             review-integrated date fields further down, so this is driver-only. --}}
+        @unless($admin)
+            @if($def['has_issue_date'] || $def['has_expiry'])
+                <div class="dd-upload-dates">
+                    <div class="dd-row">
+                        @if($def['has_issue_date'])
+                            <label class="dd-mini">Issue date
+                                <input type="date" class="dd-upload-issue-date" @disabled($doc && $approved) value="{{ $doc?->issue_date?->format('Y-m-d') }}">
+                            </label>
+                        @endif
+                        @if($def['has_expiry'])
+                            <label class="dd-mini">Expiry date
+                                <input type="date" class="dd-upload-expiry-date" @disabled($doc && $approved) value="{{ $doc?->expiry_date?->format('Y-m-d') }}">
+                            </label>
+                        @endif
+                    </div>
+                    <p class="dd-hint">
+                        Read these off the document itself.
+                        @if($doc && !$approved)
+                            Save them below, or replace the file above to set both together.
+                        @elseif($doc)
+                            This document is approved, so dates can only be changed by replacing the file.
+                        @else
+                            They'll be saved together with the file you upload.
+                        @endif
+                    </p>
+                    @if($doc && !$approved)
+                        <button type="button" class="dd-btn dd-btn-outline dd-btn-sm" data-dd-action="save-dates" data-url="{{ $routes->dates($doc) }}">Save dates</button>
+                    @endif
+                </div>
+            @endif
+        @endunless
+
         @if(!$doc)
             {{-- ───────── Empty: drop zone ───────── --}}
             <div class="dd-drop" role="button" tabindex="0" data-dd-pick aria-label="Upload {{ $def['label'] }}. Drag and drop a file here, or press Enter to browse.">

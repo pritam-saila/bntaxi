@@ -8,6 +8,13 @@
     @include('goods.include.assets')
 
     <style>
+    
+        .bnc-hero h1{
+            color:#fff !important;
+        } 
+        .bnc-hero p{
+            color:#fff !important;
+        } 
         .bnc-wrap { background: #f4f7fb; padding: 45px 0 70px; }
         .bnc-card { max-width: 760px; margin: 0 auto; background: #fff; border: 1px solid #e6edf4;
                     border-radius: 16px; overflow: hidden; box-shadow: 0 14px 40px rgba(20,50,90,.08); }
@@ -49,10 +56,19 @@
 
 <div class="bnc-wrap">
     <div class="bnc-card">
+        @php
+            $paymentNotCompleted = $booking->status === 'CANCELLED' && $booking->payment_status === 'payment_failed';
+        @endphp
         <div class="bnc-hero">
-            <div class="tick">&#10003;</div>
-            <h1>Thank you, {{ $booking->name }}</h1>
-            <p>Your booking request has been received.</p>
+            @if($paymentNotCompleted)
+                <div class="tick">&#10007;</div>
+                <h1>Booking not completed</h1>
+                <p>The card payment was not made, so no taxi has been booked and no money has been taken.</p>
+            @else
+                <div class="tick">&#10003;</div>
+                <h1>Thank you, {{ $booking->name }}</h1>
+                <p>Your booking request has been received.</p>
+            @endif
         </div>
 
         <div class="bnc-ref">
@@ -78,6 +94,9 @@
                     emailed to <strong>{{ $booking->email }}</strong>.
                 @elseif($booking->status === 'CONFIRMED')
                     Your journey is confirmed. See you at your pickup time.
+                @elseif($paymentNotCompleted)
+                    This booking was cancelled because the card payment was not completed. If you still need
+                    this journey, please <a href="{{ url('/') }}">make a new booking</a> or call us.
                 @elseif(in_array($booking->status, ['CANCELLED', 'REJECTED']))
                     This booking is no longer active. If you believe this is a mistake, please contact us.
                 @else
