@@ -10,8 +10,11 @@ corporate travel with fixed prices. Book your ride online now. ">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-        @include('goods.include.assets')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+        <link rel="preload" as="image" href="{{ url('goods/images/bntaxi1.webp') }}"
+              imagesrcset="{{ url('goods/images/bntaxi1-800.webp') }} 800w, {{ url('goods/images/bntaxi1.webp') }} 1600w"
+              imagesizes="100vw" fetchpriority="high">
+        @include('goods.include.assets', ['lean' => true])
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css">
 
         <style>
             .bannerSwiper {
@@ -28,6 +31,8 @@ corporate travel with fixed prices. Book your ride online now. ">
 .bannerSwiper img {
     width: 100%;
     height: auto;
+    aspect-ratio: 1600 / 667;
+    display: block;
     object-fit: cover;
 }
 
@@ -1260,35 +1265,40 @@ corporate travel with fixed prices. Book your ride online now. ">
             
 <div class="swiper bannerSwiper">
     <div class="swiper-wrapper">
-
-        <!-- Slide 1 -->
         <div class="swiper-slide">
-             <img src="{{url('goods')}}/images/bntaxi1.png" />
-
-            
+            <img src="{{ url('goods/images/bntaxi1.webp') }}"
+                 srcset="{{ url('goods/images/bntaxi1-800.webp') }} 800w, {{ url('goods/images/bntaxi1.webp') }} 1600w"
+                 sizes="100vw" width="1600" height="667" fetchpriority="high" decoding="async"
+                 alt="BN Taxi Anytime - book your Brighton taxi in 4 easy steps">
         </div>
 
-        <!-- Slide 2 -->
         <div class="swiper-slide">
-             <img src="{{url('goods')}}/images/banner2nd.png" />
-
+            <img src="{{ url('goods/images/banner2nd.webp') }}"
+                 srcset="{{ url('goods/images/banner2nd-800.webp') }} 800w, {{ url('goods/images/banner2nd.webp') }} 1600w"
+                 sizes="100vw" width="1600" height="667" loading="lazy" decoding="async"
+                 alt="BN Taxi Anytime airport transfers">
         </div>
 
-         
         <div class="swiper-slide">
-            <img src="{{url('goods')}}/images/banner33.png" />
-
-        </div>
-        <div class="swiper-slide">
-            <img src="{{url('goods')}}/images/banner4.png" />
-
-        </div>
-        
-        <div class="swiper-slide">
-            <img src="{{url('goods')}}/images/banner5.png" />
-
+            <img src="{{ url('goods/images/banner33.webp') }}"
+                 srcset="{{ url('goods/images/banner33-800.webp') }} 800w, {{ url('goods/images/banner33.webp') }} 1600w"
+                 sizes="100vw" width="1600" height="667" loading="lazy" decoding="async"
+                 alt="BN Taxi Anytime fixed price taxis">
         </div>
 
+        <div class="swiper-slide">
+            <img src="{{ url('goods/images/banner4.webp') }}"
+                 srcset="{{ url('goods/images/banner4-800.webp') }} 800w, {{ url('goods/images/banner4.webp') }} 1600w"
+                 sizes="100vw" width="1600" height="667" loading="lazy" decoding="async"
+                 alt="BN Taxi Anytime professional drivers">
+        </div>
+
+        <div class="swiper-slide">
+            <img src="{{ url('goods/images/banner5.webp') }}"
+                 srcset="{{ url('goods/images/banner5-800.webp') }} 800w, {{ url('goods/images/banner5.webp') }} 1600w"
+                 sizes="100vw" width="1600" height="667" loading="lazy" decoding="async"
+                 alt="BN Taxi Anytime 24/7 taxi service">
+        </div>
     </div>
 
     <div class="swiper-pagination"></div>
@@ -1729,7 +1739,7 @@ corporate travel with fixed prices. Book your ride online now. ">
 
         @include('goods.include.footer')
 
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
 
         <script>
             var swiper = new Swiper(".bannerSwiper", {

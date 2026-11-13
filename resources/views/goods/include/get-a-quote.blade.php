@@ -873,8 +873,26 @@
 </div>
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places"></script>
 <script>
+    // Google Maps (~1 MB of JS) is loaded only when the visitor starts using an address field,
+    // so it no longer blocks the initial page load.
+    window.bnLoadPlaces = (function () {
+        let promise = null;
+        return function () {
+            if (promise) return promise;
+            promise = new Promise(function (resolve, reject) {
+                if (window.google && google.maps && google.maps.places) return resolve();
+                window.__bnPlacesReady = resolve;
+                const s = document.createElement('script');
+                s.src = "https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_API_KEY') }}&libraries=places&loading=async&callback=__bnPlacesReady";
+                s.async = true;
+                s.onerror = reject;
+                document.head.appendChild(s);
+            });
+            return promise;
+        };
+    })();
+
     function setupAutocomplete(inputId, listId) {
         const input = document.getElementById(inputId);
         const box = document.getElementById(listId);
@@ -888,6 +906,22 @@
         if (box) {
             box.style.display = "none";
         }
+
+        if (!(window.google && google.maps && google.maps.places)) {
+            // Attach once the visitor focuses/touches the field (or immediately if Maps is already loading).
+            const start = function () {
+                input.removeEventListener('focus', start);
+                input.removeEventListener('pointerdown', start);
+                bnLoadPlaces().then(function () { setupAutocomplete(inputId, listId); })
+                    .catch(function () { console.error("Google Maps Places API failed to load."); });
+            };
+            input.addEventListener('focus', start);
+            input.addEventListener('pointerdown', start);
+            return;
+        }
+
+        if (input.dataset.placesBound) return;
+        input.dataset.placesBound = '1';
 
         if (typeof google !== "undefined" && google.maps && google.maps.places) {
             const autocomplete = new google.maps.places.Autocomplete(input, {
