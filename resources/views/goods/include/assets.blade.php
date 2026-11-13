@@ -30,8 +30,8 @@
 <link rel="preload" as="font" type="font/woff2" href="{{ url('goods/fonts/fa-solid-900.woff2') }}" crossorigin>
 <style>{!! str_replace('__FONTS__', url('goods/fonts'), $homeCss) !!}</style>
 @else
-<link rel="stylesheet" href="{{ url('goods') }}/css/style.css?v=4">
-<link rel="stylesheet" href="{{url('goods')}}/css/main.css?v=5">
+<link rel="stylesheet" href="{{ url('goods') }}/css/style.css?v=6">
+<link rel="stylesheet" href="{{url('goods')}}/css/main.css?v=6">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 @endif
 
