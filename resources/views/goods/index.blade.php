@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
     <head>
          <meta charset="UTF-8">
          <title>BN Taxi Anytime | Brighton Taxi & Airport Transfers </title>
@@ -14,27 +14,24 @@ corporate travel with fixed prices. Book your ride online now. ">
               imagesrcset="{{ url('goods/images/bntaxi1-800.webp') }} 800w, {{ url('goods/images/bntaxi1.webp') }} 1600w"
               imagesizes="100vw" fetchpriority="high">
         @include('goods.include.assets', ['lean' => true])
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css">
+
 
         <style>
-            .bannerSwiper {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-    position: relative;
-}
-
-.bannerSwiper .swiper-slide {
-    position: relative;
-}
-
-.bannerSwiper img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1600 / 667;
-    display: block;
-    object-fit: cover;
-}
+            /* Hero slider (no library) */
+.bn-hero{position:relative;width:100%;overflow:hidden;background:#06122b;touch-action:pan-y}
+.bn-hero-track{display:flex;transition:transform .8s ease;will-change:transform}
+.bn-hero-slide{flex:0 0 100%;min-width:100%;position:relative}
+.bn-hero img{width:100%;height:auto;aspect-ratio:1600/667;display:block;object-fit:cover}
+.bn-hero-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:44px;height:44px;border:0;border-radius:50%;
+    background:rgba(0,0,0,.35);color:#fff;font-size:26px;line-height:44px;text-align:center;cursor:pointer;padding:0}
+.bn-hero-btn:hover,.bn-hero-btn:focus-visible{background:rgba(0,0,0,.6)}
+.bn-hero-prev{left:12px}.bn-hero-next{right:12px}
+.bn-hero-dots{position:absolute;left:0;right:0;bottom:6px;z-index:3;display:flex;justify-content:center;gap:4px}
+.bn-hero-dots button{width:24px;height:24px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.bn-hero-dots button::before{content:"";width:12px;height:12px;border-radius:50%;background:#fff;opacity:.6;transition:.2s}
+.bn-hero-dots button[aria-current="true"]::before{opacity:1;background:#ff6600}
+@media (prefers-reduced-motion:reduce){.bn-hero-track{transition:none}}
+@media (max-width:768px){.bn-hero-btn{display:none}.bn-hero-dots{bottom:2px}}
 
 .banner-overlay {
     position: absolute;
@@ -69,29 +66,7 @@ corporate travel with fixed prices. Book your ride online now. ">
     border-radius:50px;
 }
 
-.swiper-button-next,
-.swiper-button-prev{
-    color:#fff;
-}
-
-.swiper-pagination-bullet{
-    width:12px;
-    height:12px;
-    background:#fff;
-    opacity:.5;
-}
-
-.swiper-pagination-bullet-active{
-    opacity:1;
-    background:#ff6600;
-}
-
 @media(max-width:768px){
-
-.bannerSwiper,
-.bannerSwiper img{
-    height:auto;
-}
 
 .banner-content{
     left:20px;
@@ -105,11 +80,6 @@ corporate travel with fixed prices. Book your ride online now. ">
 .banner-content p{
     font-size:14px;
     line-height:22px;
-}
-
-.swiper-button-next,
-.swiper-button-prev{
-    display:none;
 }
 
 }
@@ -412,7 +382,7 @@ corporate travel with fixed prices. Book your ride online now. ">
 
     border-radius: 7px;
 
-    color: #687890;
+    color: #4d5b70;
 
     font-size: 14px;
 
@@ -1085,7 +1055,7 @@ corporate travel with fixed prices. Book your ride online now. ">
    CARD TITLE
    ========================================================= */
 
-.why-card h4 {
+.why-card h3 {
     position: relative;
 
     z-index: 2;
@@ -1197,7 +1167,7 @@ corporate travel with fixed prices. Book your ride online now. ">
         font-size: 22px;
     }
 
-    .why-card h4 {
+    .why-card h3 {
         font-size: 15px;
 
         margin-bottom: 9px;
@@ -1244,7 +1214,7 @@ corporate travel with fixed prices. Book your ride online now. ">
         font-size: 20px;
     }
 
-    .why-card h4 {
+    .why-card h3 {
         font-size: 14px;
     }
 
@@ -1255,6 +1225,27 @@ corporate travel with fixed prices. Book your ride online now. ">
 
 
 
+.bn-map{height:450px;background:#e8eef6 linear-gradient(135deg,#eef3fa 25%,#e3eaf4 25%,#e3eaf4 50%,#eef3fa 50%,#eef3fa 75%,#e3eaf4 75%) 0 0/40px 40px;display:flex;align-items:center;justify-content:center}
+.bn-map iframe{width:100%;height:100%;border:0;display:block}
+.bn-map-btn{background:#0856b0;color:#fff;border:0;border-radius:8px;padding:12px 20px;font-size:16px;font-weight:600;cursor:pointer}
+.bn-map-btn:hover{background:#06428a}
+.testimonial_section .section_title .bn-about-kicker{font-family:"Open Sans",sans-serif;font-weight:400;font-size:15px;line-height:28px;color:#818a8f;margin:-5px 0 6px}
+/* Below-the-fold sections: the browser skips their layout/paint until they're scrolled near.
+   The sizes are placeholders (measured heights) so the scrollbar doesn't jump. */
+.airport-section,.why-section,.testimonial_section,.bn-routes-section>.container,.bn-footer>.container{content-visibility:auto}
+.airport-section{contain-intrinsic-size:auto 1080px}
+.why-section{contain-intrinsic-size:auto 1330px}
+.testimonial_section{contain-intrinsic-size:auto 1120px}
+.bn-routes-section>.container{contain-intrinsic-size:auto 1680px}
+.bn-footer>.container{contain-intrinsic-size:auto 1280px}
+@media (min-width:992px){
+.airport-section{contain-intrinsic-size:auto 780px}
+.why-section{contain-intrinsic-size:auto 650px}
+.testimonial_section{contain-intrinsic-size:auto 620px}
+.bn-routes-section>.container{contain-intrinsic-size:auto 960px}
+.bn-footer>.container{contain-intrinsic-size:auto 680px}
+}
+.banner_bottom span{background-color:#1a73e8}
         </style>
     </head>
     <body>
@@ -1263,47 +1254,27 @@ corporate travel with fixed prices. Book your ride online now. ">
         
             
             
-<div class="swiper bannerSwiper">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <img src="{{ url('goods/images/bntaxi1.webp') }}"
-                 srcset="{{ url('goods/images/bntaxi1-800.webp') }} 800w, {{ url('goods/images/bntaxi1.webp') }} 1600w"
-                 sizes="100vw" width="1600" height="667" fetchpriority="high" decoding="async"
-                 alt="BN Taxi Anytime - book your Brighton taxi in 4 easy steps">
+<div class="bn-hero" id="bnHero" aria-roledescription="carousel" aria-label="BN Taxi Anytime highlights">
+    <div class="bn-hero-track">
+        <div class="bn-hero-slide" role="group" aria-roledescription="slide" aria-label="1 of 5">
+            <img src="{{ url('goods/images/bntaxi1.webp') }}" srcset="{{ url('goods/images/bntaxi1-800.webp') }} 800w, {{ url('goods/images/bntaxi1.webp') }} 1600w" sizes="100vw" width="1600" height="667" fetchpriority="high" alt="BN Taxi Anytime - book your Brighton taxi in 4 easy steps">
         </div>
-
-        <div class="swiper-slide">
-            <img src="{{ url('goods/images/banner2nd.webp') }}"
-                 srcset="{{ url('goods/images/banner2nd-800.webp') }} 800w, {{ url('goods/images/banner2nd.webp') }} 1600w"
-                 sizes="100vw" width="1600" height="667" loading="lazy" decoding="async"
-                 alt="BN Taxi Anytime airport transfers">
+        <div class="bn-hero-slide" role="group" aria-roledescription="slide" aria-label="2 of 5" aria-hidden="true">
+            <img data-src="{{ url('goods/images/banner2nd.webp') }}" data-srcset="{{ url('goods/images/banner2nd-800.webp') }} 800w, {{ url('goods/images/banner2nd.webp') }} 1600w" sizes="100vw" width="1600" height="667" decoding="async" alt="BN Taxi Anytime airport transfers">
         </div>
-
-        <div class="swiper-slide">
-            <img src="{{ url('goods/images/banner33.webp') }}"
-                 srcset="{{ url('goods/images/banner33-800.webp') }} 800w, {{ url('goods/images/banner33.webp') }} 1600w"
-                 sizes="100vw" width="1600" height="667" loading="lazy" decoding="async"
-                 alt="BN Taxi Anytime fixed price taxis">
+        <div class="bn-hero-slide" role="group" aria-roledescription="slide" aria-label="3 of 5" aria-hidden="true">
+            <img data-src="{{ url('goods/images/banner33.webp') }}" data-srcset="{{ url('goods/images/banner33-800.webp') }} 800w, {{ url('goods/images/banner33.webp') }} 1600w" sizes="100vw" width="1600" height="667" decoding="async" alt="BN Taxi Anytime fixed price taxis">
         </div>
-
-        <div class="swiper-slide">
-            <img src="{{ url('goods/images/banner4.webp') }}"
-                 srcset="{{ url('goods/images/banner4-800.webp') }} 800w, {{ url('goods/images/banner4.webp') }} 1600w"
-                 sizes="100vw" width="1600" height="667" loading="lazy" decoding="async"
-                 alt="BN Taxi Anytime professional drivers">
+        <div class="bn-hero-slide" role="group" aria-roledescription="slide" aria-label="4 of 5" aria-hidden="true">
+            <img data-src="{{ url('goods/images/banner4.webp') }}" data-srcset="{{ url('goods/images/banner4-800.webp') }} 800w, {{ url('goods/images/banner4.webp') }} 1600w" sizes="100vw" width="1600" height="667" decoding="async" alt="BN Taxi Anytime professional drivers">
         </div>
-
-        <div class="swiper-slide">
-            <img src="{{ url('goods/images/banner5.webp') }}"
-                 srcset="{{ url('goods/images/banner5-800.webp') }} 800w, {{ url('goods/images/banner5.webp') }} 1600w"
-                 sizes="100vw" width="1600" height="667" loading="lazy" decoding="async"
-                 alt="BN Taxi Anytime 24/7 taxi service">
+        <div class="bn-hero-slide" role="group" aria-roledescription="slide" aria-label="5 of 5" aria-hidden="true">
+            <img data-src="{{ url('goods/images/banner5.webp') }}" data-srcset="{{ url('goods/images/banner5-800.webp') }} 800w, {{ url('goods/images/banner5.webp') }} 1600w" sizes="100vw" width="1600" height="667" decoding="async" alt="BN Taxi Anytime 24/7 taxi service">
         </div>
     </div>
-
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+    <button type="button" class="bn-hero-btn bn-hero-prev" aria-label="Previous slide">&#8249;</button>
+    <button type="button" class="bn-hero-btn bn-hero-next" aria-label="Next slide">&#8250;</button>
+    <div class="bn-hero-dots"></div>
 </div>
 
             <div class="banner_bottom">
@@ -1479,9 +1450,9 @@ corporate travel with fixed prices. Book your ride online now. ">
                     <i class="fas fa-user-tie"></i>
                 </div>
 
-                <h4>
+                <h3>
                     Professional Chauffeurs
-                </h4>
+                </h3>
 
                 <p>
                     Our drivers at Brighton Taxis carry valid license and have an excellent amount of
@@ -1499,9 +1470,9 @@ corporate travel with fixed prices. Book your ride online now. ">
                     <i class="fas fa-tags"></i>
                 </div>
 
-                <h4>
+                <h3>
                     Clear Prices
-                </h4>
+                </h3>
 
                 <p>
                     Bn taxi anytime follows a guiding ethical principle. Our taxi service by Brighton taxis
@@ -1520,9 +1491,9 @@ corporate travel with fixed prices. Book your ride online now. ">
                     <i class="fas fa-clock"></i>
                 </div>
 
-                <h4>
+                <h3>
                     Reliable Service
-                </h4>
+                </h3>
 
                 <p>
                     Brighton Taxis is the name that you can rely on if you are planning to hire a Brighton
@@ -1541,9 +1512,9 @@ corporate travel with fixed prices. Book your ride online now. ">
                     <i class="fas fa-map-marked-alt"></i>
                 </div>
 
-                <h4>
+                <h3>
                     Free Cancellation
-                </h4>
+                </h3>
 
                 <p>
                     We do not charge a single amount if you cancel the Brighton taxis within 6 hours period.
@@ -1567,7 +1538,7 @@ corporate travel with fixed prices. Book your ride online now. ">
                                 <div class="background_layer"></div>
                                 <div class="layer_content">
                                     <div class="section_title">
-                                        <h5>ABOUT US</h5>
+                                        <div class="bn-about-kicker">ABOUT US</div>
                                         <h2>{{ $about->heading ?? 'Brighton Taxi Company' }}</h2>
                                         <div class="heading_line"><span></span></div>
                                        <p> {!! \Illuminate\Support\Str::limit(strip_tags($about->description ?? '<p>BN Taxi anytime</p>'), 700) !!}</p>
@@ -1623,7 +1594,7 @@ corporate travel with fixed prices. Book your ride online now. ">
                                 .bn-tm-kicker{display:inline-block;font-size:10.5px;letter-spacing:2.3px;font-weight:800;color:#0757d9;background:#eaf2ff;padding:5px 11px;border-radius:999px}
                                 .bn-tm-head h3{margin:11px 0 0;font-size:19.5px;font-weight:800;color:#12233d;letter-spacing:-.2px}
                                 .testimonialSwiper{overflow:hidden;padding-bottom:38px;width:100%}
-                                .testimonialSwiper .swiper-slide{height:auto}
+                                .testimonialSwiper{overflow:hidden;position:relative}.testimonialSwiper .swiper-wrapper{display:flex}.testimonialSwiper .swiper-slide{flex:0 0 100%;min-width:100%;height:auto}
                                 .bn-tm-card{position:relative;padding:4px 2px 2px}
                                 .bn-tm-quotemark{position:absolute;top:-14px;right:2px;font-size:84px;line-height:1;font-family:Georgia,"Times New Roman",serif;color:#0757d9;opacity:.12;pointer-events:none}
                                 .bn-tm-stars{color:#f5a623;font-size:14px;letter-spacing:2px;margin-bottom:12px}
@@ -1631,7 +1602,7 @@ corporate travel with fixed prices. Book your ride online now. ">
                                 .bn-tm-person{display:flex;align-items:center;gap:14px;border-top:1px solid #eef2f7;padding-top:18px}
                                 .bn-tm-avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;border:3px solid #eaf2ff;flex:0 0 52px}
                                 .bn-tm-meta strong{display:block;font-size:15px;color:#12233d;font-weight:800}
-                                .bn-tm-meta span{display:block;font-size:12.5px;color:#8595a8;text-transform:capitalize;margin-top:2px}
+                                .bn-tm-meta span{display:block;font-size:12.5px;color:#5c6b7e;text-transform:capitalize;margin-top:2px}
                                 .bn-tm-pagination{position:absolute;bottom:12px;left:0;width:100%;text-align:center;line-height:0}
                                 .bn-tm-pagination .swiper-pagination-bullet{width:8px;height:8px;background:#c6d2e2;opacity:1;transition:width .25s,background .25s}
                                 .bn-tm-pagination .swiper-pagination-bullet-active{width:24px;border-radius:6px;background:#0757d9}
@@ -1664,7 +1635,7 @@ corporate travel with fixed prices. Book your ride online now. ">
 
                             <div class="bn-tm-wrap">
                                 <div class="bn-tm-badge">
-                                    <img src="{{ url('goods/images/logo.png') }}" alt="BN Taxi Anytime" onerror="this.style.display='none'">
+                                    <img src="{{ url('goods/images/logo.png') }}" width="288" height="100" loading="lazy" alt="BN Taxi Anytime" onerror="this.style.display='none'">
                                 </div>
                                 <div class="bn-tm-head">
                                     <span class="bn-tm-kicker">TESTIMONIALS</span>
@@ -1672,8 +1643,8 @@ corporate travel with fixed prices. Book your ride online now. ">
                                 </div>
 
                                 <div class="bn-tm-nav">
-                                    <button type="button" class="bn-tm-prev" aria-label="Previous testimonial"><i class="fas fa-arrow-left"></i></button>
-                                    <button type="button" class="bn-tm-next" aria-label="Next testimonial"><i class="fas fa-arrow-right"></i></button>
+                                    <button type="button" class="bn-tm-prev" aria-label="Previous testimonial"><i class="fas fa-arrow-left" aria-hidden="true"></i></button>
+                                    <button type="button" class="bn-tm-next" aria-label="Next testimonial"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
                                 </div>
 
                                 <div class="swiper testimonialSwiper">
@@ -1726,43 +1697,96 @@ corporate travel with fixed prices. Book your ride online now. ">
   		</div>
   	</div> -->
 
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.4320217800564!2d-0.12533568826761446!3d50.84168367155134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487585893d3c75f3%3A0xdf0cf8b8d9f5aee8!2sSaunders%20Park%20View%2C%20Brighton%20and%20Hove%2C%20Brighton%2C%20UK!5e0!3m2!1sen!2sin!4v1775154471291!5m2!1sen!2sin"
-                width="100%"
-                height="450"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <div class="bn-map" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.4320217800564!2d-0.12533568826761446!3d50.84168367155134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487585893d3c75f3%3A0xdf0cf8b8d9f5aee8!2sSaunders%20Park%20View%2C%20Brighton%20and%20Hove%2C%20Brighton%2C%20UK!5e0!3m2!1sen!2sin!4v1775154471291!5m2!1sen!2sin">
+                <button type="button" class="bn-map-btn"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Show map: Saunders Park View, Brighton</button>
+            </div>
         </div>
 
         @include('goods.include.footer')
 
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
-
         <script>
-            var swiper = new Swiper(".bannerSwiper", {
-    loop: true,
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-    },
-    speed: 800,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-    },
-});
+        /* Hero slider: tiny replacement for Swiper (autoplay, arrows, dots, swipe). */
+        (function () {
+            var root = document.getElementById('bnHero');
+            if (!root) return;
+            var track = root.querySelector('.bn-hero-track');
+            var slides = root.querySelectorAll('.bn-hero-slide');
+            var dotsBox = root.querySelector('.bn-hero-dots');
+            var n = slides.length, i = 0, timer = null, DELAY = 4000;
 
-            if (document.querySelector('.testimonialSwiper')) {
-                var initTmSwiper = function () {
-                    var el = document.querySelector('.testimonialSwiper');
-                    if (!el || el.swiper) return;
+            function hydrate(k) {
+                var img = slides[k] && slides[k].querySelector('img[data-src]');
+                if (!img) return;
+                img.srcset = img.getAttribute('data-srcset');
+                img.src = img.getAttribute('data-src');
+                img.removeAttribute('data-src');
+                img.removeAttribute('data-srcset');
+            }
+
+            var dots = [];
+            for (var k = 0; k < n; k++) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.setAttribute('aria-label', 'Go to slide ' + (k + 1));
+                b.addEventListener('click', (function (k) { return function () { go(k); restart(); }; })(k));
+                dotsBox.appendChild(b);
+                dots.push(b);
+            }
+
+            function go(k) {
+                i = (k + n) % n;
+                hydrate(i);
+                hydrate((i + 1) % n);
+                track.style.transform = 'translateX(' + (-100 * i) + '%)';
+                for (var j = 0; j < n; j++) {
+                    dots[j].setAttribute('aria-current', j === i ? 'true' : 'false');
+                    if (j === i) slides[j].removeAttribute('aria-hidden');
+                    else slides[j].setAttribute('aria-hidden', 'true');
+                }
+            }
+
+            function restart() {
+                clearInterval(timer);
+                timer = setInterval(function () { go(i + 1); }, DELAY);
+            }
+
+            root.querySelector('.bn-hero-prev').addEventListener('click', function () { go(i - 1); restart(); });
+            root.querySelector('.bn-hero-next').addEventListener('click', function () { go(i + 1); restart(); });
+
+            var x0 = null;
+            root.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+            root.addEventListener('touchend', function (e) {
+                if (x0 === null) return;
+                var dx = e.changedTouches[0].clientX - x0;
+                x0 = null;
+                if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); restart(); }
+            }, { passive: true });
+
+            // Set up dots without fetching extra banners yet.
+            for (var j = 0; j < n; j++) dots[j].setAttribute('aria-current', j === 0 ? 'true' : 'false');
+
+            // Start rotating (and fetch the other banners) only after the page has finished loading.
+            window.addEventListener('load', function () {
+                setTimeout(function () { hydrate(1); restart(); }, 1500);
+            });
+        })();
+
+        /* Load Swiper only when the testimonials come near the screen. */
+        (function () {
+            var el = document.querySelector('.testimonialSwiper');
+            if (!el) return;
+            var started = false;
+
+            function start() {
+                if (started) return;
+                started = true;
+                var css = document.createElement('link');
+                css.rel = 'stylesheet';
+                css.href = 'https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css';
+                document.head.appendChild(css);
+                var js = document.createElement('script');
+                js.src = 'https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js';
+                js.onload = function () {
                     var tmSwiper = new Swiper(el, {
                         slidesPerView: 1,
                         spaceBetween: 24,
@@ -1780,9 +1804,43 @@ corporate travel with fixed prices. Book your ride online now. ">
                     });
                     setTimeout(function () { tmSwiper.update(); }, 250);
                 };
-                if (document.readyState === 'complete') { initTmSwiper(); }
-                else { window.addEventListener('load', initTmSwiper); }
+                document.body.appendChild(js);
             }
+
+            if ('IntersectionObserver' in window) {
+                var io = new IntersectionObserver(function (entries) {
+                    if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); start(); }
+                }, { rootMargin: '300px 0px' });
+                io.observe(el);
+            } else {
+                start();
+            }
+        })();
+
+        /* Google map: only embed it when it is about to be seen (or clicked). */
+        (function () {
+            var box = document.querySelector('.bn-map');
+            if (!box) return;
+
+            function load() {
+                if (box.querySelector('iframe')) return;
+                var f = document.createElement('iframe');
+                f.src = box.getAttribute('data-src');
+                f.title = 'BN Taxi Anytime location on Google Maps';
+                f.referrerPolicy = 'no-referrer-when-downgrade';
+                f.allowFullscreen = true;
+                box.innerHTML = '';
+                box.appendChild(f);
+            }
+
+            box.querySelector('.bn-map-btn').addEventListener('click', load);
+            if ('IntersectionObserver' in window) {
+                var io = new IntersectionObserver(function (entries) {
+                    if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }
+                }, { rootMargin: '200px 0px' });
+                io.observe(box);
+            }
+        })();
         </script>
         
         

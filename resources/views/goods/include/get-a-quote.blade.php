@@ -741,7 +741,7 @@
 
                 <input
                     type="date"
-                    id="pickup-date"
+                    id="pickup-date" aria-label="Pickup date"
                     name="pickup_date"
                     required
                 >
@@ -763,7 +763,7 @@
 
                 <input
                     type="time"
-                    id="pickup-time"
+                    id="pickup-time" aria-label="Pickup time"
                     name="pickup_time"
                     required
                 >
@@ -803,7 +803,7 @@
 
                 <input
                     type="date"
-                    id="return-date"
+                    id="return-date" aria-label="Return date"
                     name="return_date"
                 >
 
@@ -826,7 +826,7 @@
 
                 <input
                     type="time"
-                    id="return-time"
+                    id="return-time" aria-label="Return time"
                     name="return_time"
                 >
 

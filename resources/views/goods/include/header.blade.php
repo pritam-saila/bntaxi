@@ -2166,6 +2166,31 @@
         font-size: 5.5px !important;
     }
 }
+/* Phone-icon pulse: same look, but animates transform/opacity on a pseudo-element
+   (GPU-composited) instead of box-shadow, which forced a repaint on every frame. */
+.bn-mobile-call-icon,
+.bn-premium-header .bn-mobile-call-icon {
+    position: relative !important;
+    animation: none !important;
+}
+.bn-mobile-call-icon::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 0 9px rgba(255,255,255,.4);
+    opacity: 0;
+    pointer-events: none;
+    animation: bn-phone-ring 2s infinite;
+}
+@keyframes bn-phone-ring {
+    0%   { opacity: 1; transform: scale(.72); }
+    60%  { opacity: 0; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .bn-mobile-call-icon::after { animation: none; }
+}
 </style>
 
 <header class="bn-premium-header">

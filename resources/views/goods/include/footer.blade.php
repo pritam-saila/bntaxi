@@ -1100,7 +1100,7 @@
    COLUMN HEADINGS
 ========================================= */
 
-.bn-footer-col h4 {
+.bn-footer-col h3 {
     display: flex;
 
     align-items: center;
@@ -1598,7 +1598,7 @@
     }
 
 
-    .bn-footer-col h4 {
+    .bn-footer-col h3 {
         margin-bottom: 18px;
 
         font-size: 18px;
@@ -1945,10 +1945,10 @@
             ====================================== -->
             <div class="bn-footer-col">
 
-                <h4>
+                <h3>
                     <span class="bn-title-line"></span>
                     Quick Links
-                </h4>
+                </h3>
 
                 <ul>
 
@@ -2011,10 +2011,10 @@
             ====================================== -->
             <div class="bn-footer-col">
 
-                <h4>
+                <h3>
                     <span class="bn-title-line"></span>
                     Our Services
-                </h4>
+                </h3>
 
                 <ul>
 
@@ -2055,10 +2055,10 @@
             ====================================== -->
             <div class="bn-footer-col bn-footer-location">
 
-                <h4>
+                <h3>
                     <span class="bn-title-line"></span>
                     Find Us
-                </h4>
+                </h3>
 
 
                 <!-- ADDRESS CARD -->
@@ -3052,5 +3052,5 @@ document.querySelectorAll('.dropdown-toggle').forEach(function(btn){
 </script>
 
 <div class="whatsapp-position">
-  <a id="wpClick" href="https://wa.me/447491757373" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  <a id="wpClick" href="https://wa.me/447491757373" target="_blank" rel="noopener" aria-label="Chat with BN Taxi on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
 </div>
