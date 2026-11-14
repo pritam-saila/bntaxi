@@ -39,7 +39,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
 @endunless
-<link rel="shortcut icon" href="{{url('goods')}}/images/logo.png">
+{{-- Favicons (source design: public/favicon.svg) --}}
+<link rel="icon" href="{{ \App\Support\SiteAssets::url('favicon.ico') }}" sizes="48x48">
+<link rel="icon" href="{{ \App\Support\SiteAssets::url('favicon.svg') }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ \App\Support\SiteAssets::url('apple-touch-icon.png') }}">
+<link rel="manifest" href="{{ \App\Support\SiteAssets::url('site.webmanifest') }}">
+<meta name="theme-color" content="#0a3a9e">
 
 @if ($homeCss)
 <link rel="preload" as="font" type="font/woff2" href="{{ url('goods/fonts/quicksand-latin-700.woff2') }}" crossorigin>

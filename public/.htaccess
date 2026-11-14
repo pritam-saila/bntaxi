@@ -38,3 +38,9 @@
     ExpiresByType application/javascript "access plus 1 month"
     ExpiresByType text/javascript "access plus 1 month"
 </IfModule>
+
+# Favicon / web app manifest file types
+<IfModule mod_mime.c>
+    AddType application/manifest+json .webmanifest
+    AddType image/svg+xml .svg
+</IfModule>
