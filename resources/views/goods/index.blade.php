@@ -371,6 +371,13 @@
                 </div>
             </section>
 
+            <div class="bn-home-faqs">
+                @include('goods.include.faqs', [
+                    'faqs' => $faqs ?? [],
+                    'subtitle' => 'Booking, availability and fares with BN Taxi Anytime',
+                ])
+            </div>
+
             <!-- <div class="simplify">
   		<div class="container">
   			<div class="col-md-6">

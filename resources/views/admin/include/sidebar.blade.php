@@ -338,6 +338,13 @@
                     </a>
                 </li>
 
+                <li class="{{request()->routeIs('admin.pagefaqs.*') ? 'active':''}}">
+                    <a href="{{route('admin.pagefaqs.index')}}">
+                        <i class="fa fa-question-circle" aria-hidden="true" style="margin-right: 20px"></i>
+                        Page FAQs
+                    </a>
+                </li>
+
                                
                 @elseif(auth()->user()->type  == 2)
                 @if(auth()->user()->status == 1)

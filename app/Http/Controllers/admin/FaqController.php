@@ -37,6 +37,7 @@ class FaqController extends Controller
     {
         $data = $request->all();
         $data['routehandle_id'] = $routehandle;
+        $data['sort_order'] = (int) ($data['sort_order'] ?? 0);
         unset($data['_token']);
         Faq::create($data);
         
@@ -70,6 +71,7 @@ class FaqController extends Controller
         $data = $request->all();
         unset($data['_token']);
         unset($data['_method']);
+        $data['sort_order'] = (int) ($data['sort_order'] ?? $faq->sort_order);
         
         $faq->update($data);
         

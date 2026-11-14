@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\DriverController;
 use App\Http\Controllers\admin\DriverVerificationController;
 use App\Http\Controllers\driver\DriverDocumentController;
 use App\Http\Controllers\admin\FaqController;
+use App\Http\Controllers\admin\PageFaqController;
 use App\Http\Controllers\admin\GalleryController;
 use App\Http\Controllers\admin\HolidayController;
 use App\Http\Controllers\admin\RoutehandleController;
@@ -119,6 +120,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('/admin/service', ServiceController::class)->names('admin.service');
     Route::resource('/admin/routehandles', RoutehandleController::class)->names('admin.routehandles');
     Route::resource('/admin/routehandles.faq', FaqController::class)->names('admin.routehandles.faq');
+    Route::resource('/admin/page-faqs', PageFaqController::class)->except('show')->names('admin.pagefaqs');
 
     Route::post('/update-booking', [BookController::class,'updbooking']);
 

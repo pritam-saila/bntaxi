@@ -12,6 +12,10 @@
                @csrf
                <div class="col-12">
                      <div class="row">
+                        <div class="col-md-4 form-group">
+                           <label>Order <small class="text-muted">(lower shows first)</small></label>
+                           <input type="number" min="0" class="form-control" name="sort_order" value="{{ old('sort_order', $data->sort_order) }}">
+                        </div>
                         <div class="col-md-12 form-group">
                            <label>Question</label>
                            <input type="text" class="form-control" value="{{$data->question}}" name="question" placeholder="Enter question" required>

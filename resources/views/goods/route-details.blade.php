@@ -42,26 +42,7 @@
                     {!! $route->description ?? '<p>Route description not available.</p>' !!}
                 </div>
 
-                @if(isset($faqs) && count($faqs) > 0)
-                <section class="faq-section">
-                    <div class="faq-title">
-                        <h2>Frequently Asked Questions</h2>
-                        <p>Everything you need to know about this route</p>
-                    </div>
-
-                    @foreach($faqs as $faq)
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            {{ $faq->question }}
-                            <div class="faq-icon">+</div>
-                        </div>
-                        <div class="faq-answer">
-                            <p>{!! $faq->answer !!}</p>
-                        </div>
-                    </div>
-                    @endforeach
-                </section>
-                @endif
+                @include('goods.include.faqs', ['faqs' => $faqs ?? [], 'subtitle' => 'Everything you need to know about this route'])
             </div>
         </section>
         @else
@@ -84,44 +65,12 @@
 
                         <!-- <div class="license">Fully Licensed by Brighton and Hove City Council</div> -->
 
-                        @if(isset($faqs) && count($faqs) > 0)
-                        <section class="faq-section">
-                            <div class="faq-title">
-                                <h2>Frequently Asked Questions</h2>
-                                <p>Everything you need to know about this route</p>
-                            </div>
-
-                            @foreach($faqs as $faq)
-                            <div class="faq-item">
-                                <div class="faq-question">
-                                    {{ $faq->question }}
-                                    <div class="faq-icon">+</div>
-                                </div>
-                                <div class="faq-answer">
-                                    <p>{!! $faq->answer !!}</p>
-                                </div>
-                            </div>
-                            @endforeach
-                        </section>
-                        @endif
+                        @include('goods.include.faqs', ['faqs' => $faqs ?? [], 'subtitle' => 'Everything you need to know about this route'])
                     </div>
                 </div>
             </section>
         @endif
 
         @include('goods.include.footer')
-        <script>
-            document.querySelectorAll(".faq-question").forEach((item) => {
-                item.addEventListener("click", () => {
-                    const parent = item.parentElement;
-                    document.querySelectorAll(".faq-item").forEach((el) => {
-                        if (el !== parent) {
-                            el.classList.remove("active");
-                        }
-                    });
-                    parent.classList.toggle("active");
-                });
-            });
-        </script>
-    </body>
+</body>
 </html>

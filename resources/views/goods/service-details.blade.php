@@ -44,6 +44,9 @@
                 </div>
             </div>
         </section>
+        <div class="container">
+            @include('goods.include.faqs', ['faqs' => $faqs ?? [], 'subtitle' => 'Everything you need to know about this service'])
+        </div>
         @include('goods.include.footer')
     </body>
 </html>

@@ -1,0 +1,266 @@
+[
+  {
+    "label": "Homepage",
+    "page": "home",
+    "faqs": [
+      ["How do I book a Brighton taxi service with BN Taxi Anytime?", "Enter your pickup address, destination, date and time in our online booking form, or call 01273 757373. Include passenger numbers and luggage details so we can check the right vehicle for your journey."],
+      ["Is BN Taxi Anytime available at night and on public holidays?", "Our Brighton taxi service operates 24 hours a day throughout the year, including holidays. Advance booking is recommended for overnight travel, busy dates and journeys where you need a particular vehicle."],
+      ["Does your taxi service cover destinations outside Brighton?", "Yes. Alongside Brighton and Hove journeys, we offer airport transfers and routes to surrounding Sussex towns. Tell us your exact destination when requesting a quote so we can confirm the arrangements for your trip."],
+      ["Are taxi fares charged per passenger or per vehicle?", "Our fares are charged per vehicle, rather than separately for each passenger. The quote should match the vehicle, route and journey details you book; additional stops or a larger vehicle may change the total."],
+      ["What happens after I submit an online taxi request?", "Our team checks your request, verifies the journey details and arranges payment. Keep the final booking confirmation and review your pickup time, address and contact number before you travel."]
+    ]
+  },
+  {
+    "label": "About BN Taxi Anytime",
+    "page": "about",
+    "faqs": [
+      ["What kind of Brighton taxi company is BN Taxi Anytime?", "BN Taxi Anytime provides local taxi journeys, airport transfers and business travel from Brighton and the surrounding area. Our service combines advance booking, professional drivers and a maintained fleet for different passenger requirements."],
+      ["What checks does BN Taxi Anytime carry out on its drivers?", "Our drivers are DBS checked and regularly checked by the local council. They hold valid licences and bring knowledge of local routes to their work, with a focus on courteous passenger service."],
+      ["How does your company look after its vehicles?", "Our vehicles are regularly maintained and cleaned, including attention to their interiors. If your journey requires a particular vehicle size or feature, discuss it with our team before confirming the booking."],
+      ["Can your team help someone booking a taxi for the first time?", "Yes. Call our customer care team to discuss how booking works, what information to provide and which vehicle suits your journey. You can ask questions before agreeing the arrangements and payment."],
+      ["Where can I send feedback about my experience with BN Taxi?", "Email info@bntaxianytime.com with your booking reference, travel date and a description of your experience. Include a contact number if you would like our team to follow up about a concern or service query."]
+    ]
+  },
+  {
+    "label": "Private Hire and Business Travel",
+    "page": "service:private-hire",
+    "faqs": [
+      ["What is Brighton private taxi hire suitable for?", "Our Brighton private taxi hire service suits planned journeys such as business meetings, appointments and personal travel. You can arrange collection from your chosen address and select a vehicle appropriate for your passenger and luggage requirements."],
+      ["Can I prebook a private hire car for a specific appointment time?", "Yes. Provide your required arrival time as well as the appointment address. Our team can discuss a suitable collection time; allow extra time for traffic and any checks you need to complete at the destination."],
+      ["How do I choose a vehicle for a private business journey?", "Tell us how many colleagues are travelling, whether you have bags or presentation equipment, and any vehicle preferences. We can discuss suitable options before you confirm, rather than assuming a standard car will fit every requirement."],
+      ["Does private taxi hire include a driver?", "Yes. This service provides a vehicle with a driver, rather than a self-drive rental. We provide licensed chauffeurs and maintained cars for journeys booked through our team."],
+      ["Can I discuss several business stops before reserving my car?", "Send the addresses in the order you expect to visit them, together with meeting times and likely waiting periods. Ask our booking team to confirm whether the proposed itinerary can be accommodated and how it will be priced."]
+    ]
+  },
+  {
+    "label": "Airport Transfers",
+    "page": "service:Airport-Transfers",
+    "faqs": [
+      ["Which airports can I book transfers to from Brighton?", "Our airport transfers from Brighton include Heathrow and Gatwick, with services also advertised for other major London airports. Specify the airport and terminal when requesting a quote, particularly where an airport has several arrival or departure areas."],
+      ["Can I reserve both the outward and return airport transfer?", "Yes. We offer transfers from Brighton to airports and airport collections back to Brighton. Provide both sets of flight details, checking the local arrival dates carefully if either flight crosses midnight."],
+      ["What information do you need for an airport transfer booking?", "Please provide your flight number, airport, terminal, travel date, pickup or arrival time, destination address and a working mobile number. Add passenger numbers and a description of your luggage so we can assess vehicle suitability."],
+      ["How should I plan an airport transfer when travelling with children?", "Tell us the children’s ages, the number of passengers and whether you need space for a pushchair. Ask about suitable child seats and vehicle availability before confirming; do not leave these requirements until the driver arrives."],
+      ["Can you accommodate an airport transfer with unusual luggage?", "Describe oversized bags, sports equipment or other bulky items when requesting your transfer. Their dimensions matter as well as the number of pieces. Our team should confirm that the allocated vehicle has suitable space before you book."]
+    ]
+  },
+  {
+    "label": "Corporate Events",
+    "page": "service:Corporate-Events",
+    "faqs": [
+      ["What does your corporate event transport in Brighton include?", "We provide chauffeured vehicle hire for corporate events and executive travel. Share your venue, schedule and passenger requirements so we can discuss transport appropriate for delegates, visiting clients or company representatives."],
+      ["Can a business open a corporate account with BN Taxi Anytime?", "Yes. We offer a corporate account service for regular business travel, with invoicing and payment arrangements. Contact our team to discuss account setup, authorised bookers and the billing details required for your organisation."],
+      ["Do you offer executive vehicles for VIP guests?", "Our corporate service includes luxury vehicle hire with a chauffeur. Explain your guest requirements, preferred vehicle type and luggage needs early so we can confirm an appropriate option for the event date."],
+      ["How should an organiser plan transport for delegates arriving separately?", "Prepare a list of arrival locations, passenger names, contact numbers and required venue arrival times. Send it to our team to discuss vehicle availability and coordination; separately scheduled journeys should be confirmed individually."],
+      ["Can corporate event transport include an evening collection?", "Our service operates around the clock, so you can request transport after an evening function. Agree the collection time, venue exit and contact person in advance, and discuss what happens if the event finishes later than planned."]
+    ]
+  },
+  {
+    "label": "Brighton to Heathrow",
+    "route": "Brighton-To-Heathrow-Taxi",
+    "faqs": [
+      ["How should I choose a pickup time for my Brighton to Heathrow taxi?", "Start with your airline’s recommended airport arrival time, then allow for the drive, traffic and your departure terminal. Share your flight details with our team so you can agree a collection time with a sensible buffer."],
+      ["Can you take me to my specific Heathrow departure terminal?", "Yes. Include the correct terminal in your Brighton to Heathrow taxi booking and check it again with your airline before departure. Tell us promptly if it changes so the journey details can be updated."],
+      ["Is the Brighton to Heathrow transfer price agreed before travel?", "We agree a fixed price for this route before booking. Request a current quote for your exact address, vehicle and terminal, and confirm whether airport charges or additional stops are included in that total."],
+      ["Can I leave Brighton before dawn for a Heathrow flight?", "Yes. We offer 24-hour service on this route, including early departures. Reserve the journey ahead of time and check the confirmation, rather than relying on finding a vehicle shortly before you need to leave."],
+      ["What should I do if my Heathrow departure time changes?", "Contact our booking team with the revised flight details and your existing reference. Ask us to review the pickup time and confirm any amendment. Do not assume an airline schedule change automatically updates your outward taxi booking."]
+    ]
+  },
+  {
+    "label": "Brighton to Gatwick",
+    "route": "brighton-to-gatwick-airport-taxi",
+    "faqs": [
+      ["Does a Brighton to Gatwick taxi serve both North and South terminals?", "Specify North or South Terminal when booking your Brighton to Gatwick taxi. Check the terminal with your airline and include it in the confirmation so your driver has the right departure destination."],
+      ["Can I be collected from a Brighton hotel for Gatwick Airport?", "Yes. Our Gatwick service offers door-to-door transfers. Provide the full hotel name, postcode and any collection instructions, particularly where the vehicle entrance is different from the pedestrian entrance."],
+      ["How much luggage can I take on the Brighton to Gatwick route?", "Our standard luggage allowance is two large and two small suitcases. Tell us your actual luggage and passenger numbers before booking, particularly if you also have a pushchair, so we can confirm the right vehicle."],
+      ["Why choose a direct taxi to Gatwick when carrying several bags?", "A direct transfer takes you from your collection address to the airport without changing between services with your luggage. Compare the full vehicle quote against the total public transport cost for everyone travelling."],
+      ["Can I add a Gatwick return journey when arranging my departure?", "Yes. Give us the inbound flight number and arrival date as well as the outward booking details. Check the arrival terminal and confirm where and how you will meet your driver on the return leg."]
+    ]
+  },
+  {
+    "label": "Hove Taxis",
+    "route": "Hove-Taxis",
+    "faqs": [
+      ["Can I book Hove taxis for journeys into Brighton?", "Yes. We provide taxi journeys between Hove and Brighton as well as other destinations. Give the exact destination address so the booking reflects where you need to arrive, rather than only the town or neighbourhood."],
+      ["Do you collect passengers from homes and hotels in Hove?", "Our Hove taxis offer collection from an agreed address. Include the building number, postcode and a useful entrance description if needed. For larger hotels, confirm which entrance you will wait beside."],
+      ["Can I travel from Hove to an airport or another UK town?", "Our Hove service includes airport transfers and longer-distance journeys. Request a quote with your destination, date, passenger numbers and luggage details, and check vehicle availability before finalising your travel plans."],
+      ["How do I arrange a Hove pickup after a match or event?", "Book with the expected finishing time and venue details. Agree a clear collection location with our team, and tell us if the event timing changes. Allow for busy roads and other passengers leaving at the same time."],
+      ["What if I need a different collection address within Hove?", "Contact us with your booking reference and the new address before collection. Ask for confirmation that the change has been accepted and whether it affects the fare or pickup time."]
+    ]
+  },
+  {
+    "label": "Heathrow to Brighton",
+    "route": "Heathrow-to-Brighton-Taxi",
+    "faqs": [
+      ["Where will I meet my Heathrow to Brighton taxi driver?", "Follow the instructions provided for your booking. Your driver sends a greeting text after you land. Call the number that contacted you if the meeting location is unclear or you cannot find the driver."],
+      ["How are Terminal 4 collections different from other Heathrow pickups?", "Terminal 4’s multi-storey car park has closed. Heathrow currently provides a paid Priority Pick-Up area and Park & Ride Zone A. Confirm the arrangement for your Heathrow to Brighton taxi before leaving arrivals."],
+      ["How long does BN Taxi wait after my Heathrow flight lands?", "Additional waiting charges start one hour after your flight lands. Confirm the rate beyond that period and any separate parking charges. Contact your driver if baggage reclaim or arrival checks delay you."],
+      ["What happens if my Heathrow arrival flight is delayed?", "We monitor flight times through the airport website, and ask you to notify us of a delay as well. Share any replacement flight number or arrival-date change so our team can review your collection arrangements."],
+      ["Can my airport driver take me directly to my Brighton accommodation?", "Yes. Provide the complete hotel or residential address when arranging your transfer. For a property with several entrances, include any access instructions so your destination is clear before the journey begins."]
+    ]
+  },
+  {
+    "label": "Brighton to Hassocks",
+    "route": "Brighton-to-Hassocks-Taxi-Service",
+    "faqs": [
+      ["Can I book a Brighton to Hassocks taxi for either direction?", "Yes. We advertise journeys from Brighton to Hassocks and from Hassocks to Brighton. State your direction of travel, full addresses and required time so there is no confusion when the booking is arranged."],
+      ["How do I plan a taxi to connect with a train at Hassocks?", "Provide the station destination and the train departure time, then allow time for traffic and reaching your platform. Ask our team to discuss an appropriate pickup time rather than treating the train departure as your arrival target."],
+      ["Does your Hassocks service offer day hire?", "Yes. We offer day hire as well as individual Hassocks journeys. Send your proposed destinations and expected duration, and ask for a quote that clarifies waiting time, stops and the hours included."],
+      ["Can I arrange a Hassocks business meeting transfer?", "Our Hassocks service includes corporate travel. Share the meeting venue, appointment time and passenger requirements so we can discuss the collection plan and a suitable vehicle for your visit."],
+      ["What details help with collection from an unfamiliar Hassocks address?", "Provide the full postcode and property name or number, together with entrance instructions where needed. A working mobile number helps the driver clarify the agreed pickup location without relying on a general village landmark."]
+    ]
+  },
+  {
+    "label": "Brighton to Eastbourne",
+    "route": "Brighton-to-Eastbourne-Taxi-Service",
+    "faqs": [
+      ["Can a Brighton to Eastbourne taxi take me to my hotel entrance?", "We offer journeys between Brighton and Eastbourne to your agreed destination. Include the hotel address and relevant vehicle entrance instructions when booking so the driver knows the intended drop-off point."],
+      ["Is there a return taxi service from Eastbourne to Brighton?", "Yes. Our route page covers both directions. You can request the outward and return arrangements together, supplying separate collection times and locations if you will be leaving from a different address."],
+      ["Can I request a stop during the Eastbourne to Brighton journey?", "Stops can be accommodated by arrangement on this route. Discuss your proposed stop when booking and confirm its effect on timing and price, especially if another passenger has a fixed arrival deadline."],
+      ["Which vehicle should I request for an Eastbourne group outing?", "Share the number of passengers and the bags or equipment they will bring. Our route service offers different vehicle options; confirm the available capacity for your group before completing the booking."],
+      ["How should I book transport after an evening event in Eastbourne?", "Provide the venue, scheduled finish and preferred collection time when requesting the journey. Our Eastbourne service operates 24 hours; prebook the return and keep a contact number available if the event schedule changes."]
+    ]
+  },
+  {
+    "label": "Brighton to Seven Sisters",
+    "route": "Brighton-to-Seven-Sisters-Taxi",
+    "faqs": [
+      ["Where should I ask my Brighton to Seven Sisters taxi to drop me?", "Give us the specific road-accessible entrance or meeting location you intend to use, rather than only Seven Sisters. Confirm that location with our team so the transfer matches the start of your planned visit."],
+      ["Can I arrange collection from a different point after my walk?", "Discuss the finishing location as well as the outward destination before booking. A different return point may be possible by arrangement; provide a clear address or agreed landmark and confirm vehicle access."],
+      ["Should I reserve my return from Seven Sisters in advance?", "Yes, arranging the return ahead helps you agree a collection time and location before your visit. Our service covers the return direction to Brighton; retain the contact details in case your walking schedule changes."],
+      ["How do I arrange a Seven Sisters trip for several walkers?", "Tell us the group size and describe backpacks or other equipment. Request a vehicle with enough passenger and luggage space, and confirm the complete outward and return plan before travelling."],
+      ["What should I do if weather changes my Seven Sisters plans?", "Contact the booking team as early as possible to discuss an amended time, location or cancellation. Ask for the terms applying to your reservation and wait for confirmation before relying on a changed pickup."]
+    ]
+  },
+  {
+    "label": "Brighton to Lewes",
+    "route": "Brighton-to-Lewes-Taxi-Service",
+    "faqs": [
+      ["Can I book a Brighton to Lewes taxi for a venue booking?", "Yes. Give the venue’s full address, your arrival deadline and any instructions about the vehicle entrance. If you are attending a timed event, build in a buffer rather than planning to arrive at the last minute."],
+      ["Do you also provide Lewes to Brighton journeys?", "Yes. Our service covers travel in both directions. When requesting the return, provide its own pickup address and time, particularly if you will finish at a different venue from the original destination."],
+      ["Can you help me choose a vehicle for a small Lewes group?", "We offer vehicle options for individuals and groups travelling to Lewes. Provide passenger numbers and any luggage so we can discuss an appropriate car or larger vehicle and confirm availability for your date."],
+      ["Can I book transport home after a late function in Lewes?", "Request the journey ahead with the function venue and expected finish. Confirm the collection arrangement with our team and keep your phone available; do not assume the driver can wait indefinitely if the event overruns."],
+      ["Will the Lewes transfer quote cover my exact journey?", "Give the full collection and destination addresses, any intermediate stops and the vehicle requirements when requesting a price. Review the agreed quote so it reflects your itinerary rather than a general town-to-town journey."]
+    ]
+  },
+  {
+    "label": "Lewes to Heathrow and Return",
+    "route": "Lewes-to-Heathrow-Taxi-Service-and-Vice-Versa",
+    "faqs": [
+      ["Can I arrange a Lewes to Heathrow taxi and a Heathrow return together?", "Yes. This service covers both directions. Give the departure flight details and the separate inbound flight number, arrival date and destination in Lewes so each leg can be planned individually."],
+      ["How do I plan collection from Lewes for a long-haul flight?", "Work back from your airline’s recommended airport arrival time and allow for road traffic and your terminal. Share the flight information when booking your Lewes to Heathrow taxi and agree a collection time with room for delays."],
+      ["Is meet and greet available for a Heathrow return to Lewes?", "We offer meet-and-greet options and luggage assistance on the Lewes and Heathrow service. Ask our team to confirm the arrangement included in your booking, the terminal meeting instructions and any airport parking charges."],
+      ["What if the two legs of my Lewes airport trip need different cars?", "Give separate passenger and luggage details for each journey. For example, a returning guest may add extra bags. Ask the team to confirm vehicle suitability and pricing for both legs rather than assuming they must use the same car."],
+      ["Who should contact BN Taxi if someone else books my Lewes transfer?", "The passenger should have the confirmation and a working contact number for the booking team. Provide the traveller’s mobile number when arranging the trip so collection instructions can reach the person arriving at the airport."]
+    ]
+  },
+  {
+    "label": "Brighton to Haywards Heath",
+    "route": "Brighton-to-Haywards-Heath-Taxi-Service",
+    "faqs": [
+      ["Is a Brighton to Haywards Heath taxi suitable for a timed appointment?", "Yes. Tell us the appointment start time and the exact building address so we can discuss a suitable collection. Allow extra time for checking in or finding the correct entrance after you arrive."],
+      ["Can I arrange pickup at Haywards Heath after arriving by train?", "Request collection with the station details, train arrival time and your contact number. Agree a meeting point with our team and update us if the rail journey changes; the airport flight-tracking policy does not automatically apply to trains."],
+      ["Can you take colleagues from Brighton to a Haywards Heath office?", "Our Haywards Heath route includes business journeys. Provide the office postcode, passenger count and any equipment being carried so the booking can be matched to the right destination and vehicle."],
+      ["What if I do not know when my Haywards Heath appointment will finish?", "Explain the uncertainty before booking. Ask whether a later confirmed collection or waiting arrangement is available and how it would be charged; an open-ended return should not be assumed to be included."],
+      ["Can I use the Haywards Heath route outside normal office hours?", "Yes. We offer 24-hour availability on this route. Arrange the collection in advance for an early start or late return, and confirm the date carefully for journeys around midnight."]
+    ]
+  },
+  {
+    "label": "Brighton to Worthing",
+    "route": "Brighton-to-Worthing-Taxi-Service",
+    "faqs": [
+      ["Can I use a Brighton to Worthing taxi for a seafront visit?", "Yes. Provide the exact destination or agreed drop-off address for your visit. If you will return from a different restaurant, hotel or meeting place, include that separate location when arranging the journey back."],
+      ["What should I provide for a Worthing hospital appointment transfer?", "Give the full hospital or clinic address, the relevant entrance and your appointment time. Discuss any mobility or extra boarding-time requirements before booking; this is a passenger taxi journey, not a medical transport service."],
+      ["Are comfortable vehicles available for the Worthing journey?", "We provide maintained vehicles with climate control for the Worthing journey. Tell us your group size and any particular requirements so we can confirm an appropriate vehicle for your trip."],
+      ["How can I plan a Worthing return when travelling with shopping or bags?", "Include the expected bags in your booking details and update us if your luggage changes substantially. Check that the return vehicle can accommodate everything alongside the passengers before confirming the final arrangements."],
+      ["Can I arrange a Worthing to Brighton trip after dinner?", "Yes. Our Worthing route runs around the clock. Prebook from the restaurant’s exact address, agree an expected departure time and contact us if your evening plans change."]
+    ]
+  },
+  {
+    "label": "Brighton to Burgess Hill",
+    "route": "Brighton-to-Burgess-hill-Taxi-Service",
+    "faqs": [
+      ["Can I book a Brighton to Burgess Hill taxi for a business park visit?", "Yes. Supply the business name, building number, postcode and any reception or access instructions. Large sites can have several entrances, so a precise address helps avoid confusion at the end of the journey."],
+      ["Is a taxi an option when my usual Burgess Hill train is cancelled?", "You can request a journey between Brighton and Burgess Hill, subject to availability. Give us your current location and required arrival time, then wait for booking confirmation before relying on a replacement trip."],
+      ["Can a Burgess Hill pickup be arranged early in the morning?", "We operate this route throughout the day and night, including holidays. Book ahead for a time-sensitive start and confirm the collection date, address and passenger contact details."],
+      ["What is the benefit of door-to-door travel to Burgess Hill?", "You can travel between your chosen addresses without arranging separate transport from a station or looking for parking at the destination. Request a quote based on your actual itinerary to compare the full cost."],
+      ["How should I arrange repeated work journeys to Burgess Hill?", "Send the proposed dates, collection times and office address to our team. Ask about availability and booking arrangements for the schedule; repeated trips should be confirmed rather than assumed from a single reservation."]
+    ]
+  },
+  {
+    "label": "Lancing to Brighton",
+    "route": "Lancing-to-Brighton-Taxi-Service",
+    "faqs": [
+      ["Can I book a Lancing to Brighton taxi for a city appointment?", "Yes. Give your Lancing pickup address and the exact appointment destination in Brighton. Tell us the required arrival time so you can plan a collection with a suitable allowance for traffic and reaching the building."],
+      ["Can my Lancing journey end at Brighton railway station?", "Request the station as your destination and provide the train departure time when booking. Allow time between taxi arrival and boarding; a road transfer cannot guarantee a rail connection if traffic causes delays."],
+      ["How do I request an accessible vehicle from Lancing?", "Describe your mobility requirements, whether you remain seated in a wheelchair, and any equipment dimensions. We welcome accessibility requests; confirm the specific vehicle and assistance available before accepting the booking."],
+      ["Should I request a child seat when booking from Lancing?", "Yes. Provide the child’s age and any seat requirements when you contact us, together with pushchair and luggage details. Ask for confirmation of a suitable seat and vehicle rather than assuming one will be available on arrival."],
+      ["Can I arrange a late return to Lancing after visiting Brighton?", "Our service covers travel between Lancing and Brighton and operates 24 hours. Request both journeys ahead of time, with a clear Brighton return address and collection time, especially for busy evenings."]
+    ]
+  },
+  {
+    "label": "Brighton and Newhaven Port",
+    "route": "Brighton-and-Newhaven-Port-Taxi-Service",
+    "faqs": [
+      ["What information is needed for a Brighton to Newhaven Port taxi?", "Provide your ferry operator, sailing date, passenger check-in deadline and the departure terminal or entrance shown on your travel documents. Add luggage and passenger numbers so the transfer can be planned around the correct booking."],
+      ["Should my taxi arrive at Newhaven Port at the sailing time?", "No. Plan around the ferry operator’s passenger check-in deadline, allowing for the drive and a buffer at the port. Check the instructions on your ferry reservation; departure time and the latest permitted check-in time are different."],
+      ["Can I request collection at Newhaven Port after a ferry arrives?", "Contact our team with the sailing details, expected arrival time and an agreed passenger meeting point. Ask us to confirm availability and waiting arrangements for that collection before you travel."],
+      ["Does the airport flight-delay policy also cover ferry delays?", "Do not assume it does. Ferry collections need their own agreed waiting and amendment terms. If your sailing is delayed, contact our team with the revised arrival information and ask how your booking will be handled."],
+      ["How do I book port transport for foot passengers with several bags?", "Tell us the number of travellers and all luggage before choosing a vehicle. Confirm a road-accessible collection point and any extra assistance required; the taxi booking covers the road journey, not your ferry reservation."]
+    ]
+  },
+  {
+    "label": "Brighton to Horsham",
+    "route": "Brighton-to-Horsham-Taxi-Service",
+    "faqs": [
+      ["Does your Brighton to Horsham taxi service cover work and personal trips?", "Yes. Our Horsham service includes commuting, appointments and business travel. Give us the full journey details and preferred time so we can discuss a booking suited to your visit."],
+      ["Can I book a Horsham transfer for a client visiting my office?", "We offer corporate travel on this route. Provide the client’s name, contact number, pickup address and office entrance instructions. Check who will receive the confirmation and how payment will be arranged before the journey."],
+      ["How do I arrange several Horsham errands during one trip?", "List the stops in the order you need them and estimate the time at each one. Ask for an itinerary quote and confirm whether waiting or a longer hire is available instead of assuming stops are included."],
+      ["Can I request an evening taxi from Horsham back to Brighton?", "Yes. Our Horsham service operates 24 hours. Give the return collection address and date as well as the time, particularly if you expect to leave after midnight or from a different venue."],
+      ["What should I do if my Horsham meeting runs over?", "Contact the team before the agreed return collection if possible. Explain the revised finish time and ask whether the driver schedule can be amended. Confirm any waiting charge or fare change before relying on the update."]
+    ]
+  },
+  {
+    "label": "Brighton to Newhaven",
+    "route": "Brighton-to-Newhaven-Taxi-Service",
+    "faqs": [
+      ["Can a Brighton to Newhaven taxi take me to a residential address?", "Yes. Book with the house number or property name, street and postcode. This route can be arranged for your specific Newhaven address; you do not need to be travelling to the ferry port."],
+      ["Is the Newhaven town service different from a port transfer?", "The destination details are different. For a town visit, give the residential or business address. For a ferry journey, state the passenger terminal and sailing details so the transfer is planned around the appropriate check-in arrangements."],
+      ["Can I book from Brighton to a Newhaven railway station?", "Tell us the exact station and your train departure time when requesting the journey. Agree a collection with enough time for the drive and boarding, and update the team if your travel plans change."],
+      ["How do I choose a car for a family visit to Newhaven?", "Provide the adults and children travelling, luggage quantities and any child-seat requests. Confirm that the selected vehicle suits the complete party before accepting the booking, especially if you are bringing bulky items."],
+      ["Can I change a Newhaven booking if my host changes the address?", "Contact our team with your reference and the replacement destination. We can review the amended journey details; ask for confirmation of availability, timing and any revised quote before treating the change as accepted."]
+    ]
+  },
+  {
+    "label": "Heathrow to Falmer",
+    "route": "Heathrow-to-Falmer-Taxi-Service",
+    "faqs": [
+      ["How do I specify the destination for a Heathrow to Falmer taxi?", "Give the full building name, street or campus address and postcode in Falmer. If your accommodation has a separate check-in or vehicle entrance, include it so the driver has a precise destination after your flight."],
+      ["Can I bring student luggage on a Heathrow to Falmer transfer?", "Describe all suitcases, boxes and bulky items when requesting the booking. Confirm the vehicle capacity before travel; a transfer for one passenger does not automatically mean a standard car will fit a large move-in load."],
+      ["Should I allow time to collect accommodation keys before going to Falmer?", "Check your accommodation instructions first. If keys must be collected from another address, tell our team before booking and include the stop in the quote, rather than adding an unplanned detour after collection."],
+      ["Can I request an airport transfer to Falmer after a late flight?", "We operate around the clock. Give the flight number and local arrival date when requesting the transfer, and confirm how to meet the driver if your arrival falls after midnight."],
+      ["What should I do if my Falmer destination changes while I am travelling?", "Send the revised building address to the booking team as soon as possible and ask for an updated confirmation. Check whether the new destination, access arrangements or extra distance changes the transfer price."]
+    ]
+  },
+  {
+    "label": "Saltdean to Heathrow",
+    "route": "Saltdean-to-Heathrow-Taxi-Service",
+    "faqs": [
+      ["Can a Saltdean to Heathrow taxi collect me from my home?", "Yes. Our Saltdean to Heathrow service offers collection from your specified pickup location. Provide the full address, postcode and any access instructions so the booking team can plan the start of your airport journey."],
+      ["How do I plan a Saltdean departure for a Heathrow business flight?", "Give the flight time, departure terminal and the time you need to be at the airport. Discuss the pickup with our team and allow for road delays, check-in and security rather than using driving time alone."],
+      ["What vehicle options can I request for a Saltdean airport group?", "Our Saltdean to Heathrow service offers saloons, minivans and luxury cars. Share your group size and luggage requirements so we can confirm the suitable options available for your travel date."],
+      ["Can the Heathrow transfer quote include another Saltdean pickup?", "List both collection addresses in the order you want to visit them when requesting the quote. Ask the team to confirm the extra stop and pickup timing, since an additional address can affect the journey price and duration."],
+      ["What should I check before accepting my Saltdean to Heathrow estimate?", "Review the pickup date, address, terminal and vehicle requirements. Ask whether the total includes airport charges and planned stops, then retain the confirmation so you have a clear record of the agreed transfer."]
+    ]
+  },
+  {
+    "label": "Saltdean to Gatwick",
+    "route": "Saltdean-to-Gatwick-taxi",
+    "faqs": [
+      ["Can I book a Saltdean to Gatwick taxi for a very early flight?", "Yes. Our Saltdean to Gatwick service operates 24 hours. Reserve ahead with your flight time and airline terminal, then agree a collection time that allows for travel, check-in and security."],
+      ["Which Gatwick terminal should I enter for a Saltdean transfer?", "Use the North or South Terminal shown by your airline for the specific flight. Include it when booking and notify us if it changes, rather than assuming the same terminal applies to every journey."],
+      ["Is a family vehicle available for travel from Saltdean to Gatwick?", "We offer a range of vehicles on this route, including minivans. Tell us the passenger numbers, children’s ages and bags, then confirm the right vehicle and any requested child seats before completing the reservation."],
+      ["Can I request a Gatwick collection back to Saltdean on another date?", "We offer airport journeys in both directions. Give the inbound flight number, arrival date and Saltdean destination when arranging the return, and ask for the driver meeting instructions and current waiting terms."],
+      ["How do I update a Saltdean to Gatwick booking after an airline change?", "Contact our team with the booking reference, revised flight time and any terminal change. Ask us to review the departure pickup and send confirmation of the amendment; a flight update alone is not a revised taxi reservation."]
+    ]
+  }
+]

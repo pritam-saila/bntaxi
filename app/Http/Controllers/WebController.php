@@ -48,6 +48,7 @@ class WebController extends Controller
         $data['banner'] = Banner::all();
         $data['testimonials'] = Testimonial::all();
         $data['about'] = Content::find(1);
+        $data['faqs'] = Faq::forPage('home')->get();
         $data['date'] = date('Y-m-d');
         $data['time'] = date('H:i');
         // dd($data);
@@ -56,6 +57,7 @@ class WebController extends Controller
 
     public function about(){
         $data['about'] = Content::find(1);
+        $data['faqs'] = Faq::forPage('about')->get();
         return view('goods.about')->with($data);
     }
     public function booking(){
@@ -493,12 +495,13 @@ class WebController extends Controller
 
     public function serviceDetails($slug){
          $data['service'] = Service::where('slug', $slug)->firstOrFail();
+         $data['faqs'] = Faq::forPage('service:' . $data['service']->slug)->get();
          return view('goods.service-details')->with($data);
     }
 
     public function routeDetails($slug){
          $data['route'] = Routehandle::where('slug', $slug)->firstOrFail();
-         $data['faqs'] = Faq::where('routehandle_id', $data['route']->id)->get();
+         $data['faqs'] = Faq::forRoute($data['route']->id)->get();
          return view('goods.route-details')->with($data);
     }
 

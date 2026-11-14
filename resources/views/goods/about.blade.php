@@ -73,6 +73,9 @@
                 </div>
             </div>
         </section>
+        <div class="container">
+            @include('goods.include.faqs', ['faqs' => $faqs ?? [], 'subtitle' => 'About BN Taxi Anytime, our drivers and our vehicles'])
+        </div>
         @include('goods.include.footer')
     </body>
 </html>

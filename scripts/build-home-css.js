@@ -57,6 +57,7 @@ const sources = [
     { file: 'public/goods/css/partials/header.css', purge: false },
     { file: 'public/goods/css/partials/get-a-quote.css', purge: false },
     { file: 'public/goods/css/pages/home-testimonials.css', purge: false },
+    { file: 'public/goods/css/partials/faqs.css', purge: false },
     { file: 'public/goods/css/partials/footer.css', purge: false },
 ];
 
@@ -68,6 +69,7 @@ const content = [
     'resources/views/goods/include/header.blade.php',
     'resources/views/goods/include/footer.blade.php',
     'resources/views/goods/include/get-a-quote.blade.php',
+    'resources/views/goods/include/faqs.blade.php',
 ];
 
 // Classes that only appear at runtime and aren't spelled out in the templates.

@@ -1,0 +1,62 @@
+/* FAQ accordion (resources/views/goods/include/faqs.blade.php).
+   The base look (.faq-section, .faq-item, .faq-question, .faq-icon...) comes from style.css;
+   these rules adapt it to the native <details>/<summary> element. */
+
+.bn-faqs .faq-title p {
+    color: #5f6b7a; /* #777 in style.css is just below the WCAG contrast minimum */
+}
+
+.bn-faqs summary.faq-question {
+    list-style: none;
+    gap: 16px;
+    color: #253d4e;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+.bn-faqs summary.faq-question::-webkit-details-marker {
+    display: none;
+}
+
+.bn-faqs summary.faq-question:focus-visible {
+    outline: 3px solid #1557d6;
+    outline-offset: -3px;
+    border-radius: 12px;
+}
+
+.bn-faqs .faq-icon {
+    flex: 0 0 28px;
+    color: #1557d6;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.bn-faqs details[open] .faq-icon {
+    background: #1557d6;
+    color: #fff;
+    transform: rotate(45deg);
+}
+
+/* The answer is hidden by <details> itself, so no height limit is needed (long answers fit). */
+.bn-faqs .faq-answer {
+    max-height: none;
+    padding: 0 20px 4px;
+}
+
+.bn-faqs .faq-answer p {
+    color: #4d5b70;
+    line-height: 1.65;
+    margin: 0;
+    padding-bottom: 16px;
+}
+
+.bn-faqs details[open] {
+    box-shadow: 0 6px 20px rgba(21, 87, 214, 0.10);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bn-faqs .faq-icon {
+        transition: none;
+    }
+}
