@@ -6,7 +6,10 @@
  * in the homepage templates, and minifies the result. One local file instead of five
  * render-blocking requests (~330 KB) is the biggest single win for PageSpeed.
  *
- * Re-run after editing style.css / main.css or the homepage templates:
+ * It also appends the homepage's own CSS (pages/home*.css) and the shared partials
+ * (partials/header.css, get-a-quote.css, footer.css), so the homepage needs no CSS requests.
+ *
+ * Re-run after editing style.css / main.css, any of those CSS files, or the homepage templates:
  *     npm run build:home-css
  */
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -48,6 +51,13 @@ const sources = [
             .replace(/src:url\(\.\.\/webfonts\/([\w-]+)\.eot\?#iefix\)[^}]*/g,
                 (_, name) => `src:url(${FONTS}${name}.woff2) format("woff2")`),
     },
+    // The homepage's own CSS and the shared partials, in the order the page loads them.
+    // These are site-specific and already lean, so they are minified but not trimmed.
+    { file: 'public/goods/css/pages/home.css', purge: false },
+    { file: 'public/goods/css/partials/header.css', purge: false },
+    { file: 'public/goods/css/partials/get-a-quote.css', purge: false },
+    { file: 'public/goods/css/pages/home-testimonials.css', purge: false },
+    { file: 'public/goods/css/partials/footer.css', purge: false },
 ];
 
 // Everything that can put a class/id/tag on the homepage, including inline scripts
@@ -70,6 +80,10 @@ let out = `/* text fonts */\n${textFonts}\n`;
 for (const src of sources) {
     let css = readFileSync(src.file, 'utf8');
     if (src.transform) css = src.transform(css);
+    if (src.purge === false) {
+        out += `/* ${src.file} */\n${css}\n`;
+        continue;
+    }
     const [result] = await new PurgeCSS().purge({
         content,
         css: [{ raw: css }],

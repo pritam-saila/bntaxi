@@ -3,18 +3,11 @@
     // (public/goods/css/home.min.css, built by `npm run build:home-css`) and no jQuery/Bootstrap JS,
     // because nothing on it uses them. Every other page keeps the full set of assets.
     $lean = $lean ?? false;
-    $homeCss = false;
-    if ($lean) {
-        // On some hosts the web root (e.g. public_html) is not Laravel's public/ folder,
-        // so look in the server's document root as well as public_path().
-        $candidates = [public_path('goods/css/home.min.css')];
-        if (!empty($_SERVER['DOCUMENT_ROOT'])) {
-            $candidates[] = rtrim($_SERVER['DOCUMENT_ROOT'], '/\\') . '/goods/css/home.min.css';
-        }
-        foreach ($candidates as $file) {
-            if (is_file($file) && ($css = @file_get_contents($file))) { $homeCss = $css; break; }
-        }
-    }
+    $homeCssFile = $lean ? \App\Support\SiteAssets::path('goods/css/home.min.css') : null;
+    $homeCss = $homeCssFile ? @file_get_contents($homeCssFile) : false;
+    // When the homepage CSS is inlined, @stylesheet(...) in the templates prints nothing
+    // (header.css, footer.css etc. are already part of home.min.css).
+    \App\Support\SiteAssets::$bundled = (bool) $homeCss;
 
     // SEO: one canonical address per page. The site answers on www/non-www and http/https,
     // so always point search engines at https://bntaxianytime.com/<path> (from APP_URL).
@@ -54,8 +47,8 @@
 <link rel="preload" as="font" type="font/woff2" href="{{ url('goods/fonts/fa-solid-900.woff2') }}" crossorigin>
 <style>{!! str_replace('__FONTS__', url('goods/fonts'), $homeCss) !!}</style>
 @else
-<link rel="stylesheet" href="{{ url('goods') }}/css/style.css?v=6">
-<link rel="stylesheet" href="{{url('goods')}}/css/main.css?v=6">
+@stylesheet('goods/css/style.css')
+@stylesheet('goods/css/main.css')
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 @endif
 

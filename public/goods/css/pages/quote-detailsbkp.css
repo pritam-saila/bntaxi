@@ -1,0 +1,231 @@
+/* Moved from resources/views/goods/quote-detailsbkp.blade.php */
+
+            .pickups {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .pickups i {
+                font-size: 15px;
+                font-weight: bold;
+                width: 17%;
+                color: #267fca;
+            }
+            .pickups h4 {
+                font-size: 14px;
+                font-weight: 400;
+                display: grid;
+                line-height: 20px;
+                color: #fff;
+            }
+            .pickups span {
+                font-weight: bold;
+            }
+            #pickups {
+                background: #101d3b;
+                margin: 25px 0;
+                padding: 15px 0;
+                border-radius: 5px;
+            }
+            .quots {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .quots i {
+                color: #267fca;
+            }
+            .quots h6 {
+                color: #fff;
+                margin: 0;
+                line-height: 42px;
+            }
+
+            /*datepicker////////*/
+            .dates {
+                width: 100%;
+            }
+            .collection h2 {
+                font-size: 15px;
+                font-weight: bold;
+            }
+
+            .vans {
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            .vans h2 {
+                font-weight: bold;
+                font-size: 20px;
+                text-align: center;
+            }
+            .vans h5 {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 25px;
+            }
+
+            .vans h3 {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 15px;
+                font-weight: 600;
+                line-height: 25px;
+            }
+            .vans img {
+                width: 100%;
+            }
+            .vans h6 {
+                font-weight: bold;
+                color: #fff;
+            }
+            .vans h6 a {
+                background: #101d3b;
+                width: 100%;
+                display: block;
+                /* margin: 10px; */
+                text-align: center;
+                padding: 8px;
+                color: #fff;
+                border-radius: 10px;
+                width: 80%;
+                margin: 20px auto 0 auto;
+            }
+
+            .dates input[type="time"] {
+                padding-left: 1.5em;
+                background-repeat: no-repeat;
+                background-position: 0.25em center;
+                background-size: 1em;
+                background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40'><circle cx='20' cy='20' r='18.5' fill='none' stroke='%23222' stroke-width='3' /><path d='M20,4 20,8 M4,20 8,20 M36,20 32,20 M20,36 20,32' stroke='%23bbb' stroke-width='1' /><g fill='%23222' stroke='%23222' stroke-width='2'><circle cx='20' cy='20' r='2' /><path d='M20,24 20,5' style='transform:rotate(120deg); transform-origin: 50% 50%;' /><path d='M20,24 20,8' style='transform:rotate(20deg); transform-origin: 50% 50%;' /></g></svg>");
+                /* this style to complete the styling*/
+                border: 0.125em solid #369;
+                border-radius: 0.25em;
+                font-size: 1rem;
+            }
+
+            #coocolor {
+                background: #f1f1f1;
+                padding: 10px 0;
+            }
+            .collection {
+                margin: 30px 0;
+            }
+        
+            .progress-container {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 30px;
+                max-width: 100%;
+                width: 350px;
+                position: relative;
+            }
+
+            .progress-container::before {
+                content: "";
+                background-color: #e0e0e0;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                height: 4px;
+                width: 100%;
+                transform: translateY(-50%);
+                z-index: -1;
+            }
+
+            .progress {
+                background-color: #3498db;
+                position: absolute;
+                top: 50%;
+                left: 0;
+                height: 4px;
+                width: 50%;
+                transform: translateY(-50%);
+                z-index: -1;
+                transition: 0.4s ease;
+            }
+
+            .circle {
+                background-color: white;
+                color: #999;
+                border-radius: 50%;
+                height: 30px;
+                width: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 3px solid #e0e0e0;
+                transition: 0.4s ease;
+            }
+
+            .circle.active {
+                border-color: #3498db;
+            }
+
+            .btn {
+                background-color: #3498db;
+                color: #fff;
+                border: 0;
+                border-radius: 6px;
+                cursor: pointer;
+                font-family: inherit;
+                padding: 8px 30px;
+                margin: 5px;
+                font-size: 14px;
+            }
+
+            .btn:active {
+                transform: scale(0.98);
+            }
+
+            .btn:focus {
+                outline: 0;
+            }
+
+            .btn:disabled {
+                background-color: #e0e0e0;
+                cursor: not-allowed;
+            }
+
+            .progreess {
+            }
+            .progress-container {
+                text-align: center;
+                margin: 0 auto;
+            }
+            .progreess {
+                width: 45%;
+                margin: 0 auto;
+                text-align: center;
+                /*    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;*/
+                padding: 30px 0 0 0;
+                position: absolute;
+                bottom: 210px;
+                left: 27%;
+                background-color: #fff;
+                z-index: 11111;
+                border-radius: 15px;
+            }
+
+            .circle p {
+                margin-top: 60px;
+                font-weight: bold;
+            }
+            .progreess button {
+                margin: 40px 0;
+            }
+            #banners {
+                position: relative;
+                margin-bottom: 150px;
+            }
+            #collecttime_end,
+            #deliverytime_end {
+                margin-left: 10px;
+            }
+
+        

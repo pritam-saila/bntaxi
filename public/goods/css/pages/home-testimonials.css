@@ -1,0 +1,86 @@
+/* Moved from resources/views/goods/index.blade.php (homepage testimonials section) */
+
+                                /* ---- two-tone split: navy "About Us" (left) + blue testimonial panel (right) ---- */
+                                .testimonial_section{overflow:hidden}
+                                .testimonial_section > .container{max-width:1180px}
+                                /* let the two coloured panels butt together (kill the grid gutter here) */
+                                .testimonial_section > .container > .row{margin-left:0;margin-right:0}
+                                .testimonial_section > .container > .row > .col-lg-7{padding-left:0;padding-right:0}
+                                .testimonial_section > .container > .row > .col-lg-5{padding-left:0;padding-right:0}
+
+                                /* wide right gutter so the About text clears the overlapping card */
+                                .testimonial_section .about_content{padding:82px 210px 82px 0 !important}
+
+                                .testimonial_section .col-lg-5{
+                                    position:relative;
+                                    display:flex;
+                                    align-items:center;
+                                    margin-left:-24px;
+                                    padding:90px 46px 90px 0;
+                                    background:linear-gradient(150deg,#0d5bd8 0%,#0846ac 55%,#063a8f 100%);
+                                }
+                                /* bleed the blue to the right edge of the viewport */
+                                .testimonial_section .col-lg-5::after{
+                                    content:"";position:absolute;top:0;bottom:0;left:100%;width:60vw;
+                                    background:#063a8f;pointer-events:none;
+                                }
+                                /* faint quote-mark watermark on the blue */
+                                .testimonial_section .col-lg-5::before{
+                                    content:"\201C";position:absolute;right:34px;top:14px;
+                                    font:900 180px/1 Georgia,"Times New Roman",serif;color:rgba(255,255,255,.09);
+                                    pointer-events:none;
+                                }
+
+                                /* the card is pulled left so it straddles the navy / blue seam */
+                                .bn-tm-wrap{position:relative;z-index:2;width:100%;margin-left:-150px;background:#fff;border-radius:18px;
+                                    padding:46px 32px 32px;box-shadow:0 46px 90px -30px rgba(3,18,54,.6),0 12px 30px rgba(3,18,54,.32)}
+                                .bn-tm-wrap,.bn-tm-wrap *{box-sizing:border-box;min-width:0}
+
+                                /* logo chip overlapping the top-left of the card */
+                                .bn-tm-badge{position:absolute;top:-26px;left:32px;display:flex;align-items:center;
+                                    background:#fff;border:1px solid #e8edf3;border-radius:13px;padding:9px 16px;
+                                    box-shadow:0 16px 34px -12px rgba(3,18,54,.45);z-index:3}
+                                .bn-tm-badge img{height:28px;width:auto;display:block}
+
+                                .bn-tm-head{margin-bottom:16px;padding-right:78px}
+                                .bn-tm-kicker{display:inline-block;font-size:10.5px;letter-spacing:2.3px;font-weight:800;color:#0757d9;background:#eaf2ff;padding:5px 11px;border-radius:999px}
+                                .bn-tm-head h3{margin:11px 0 0;font-size:19.5px;font-weight:800;color:#12233d;letter-spacing:-.2px}
+                                .testimonialSwiper{overflow:hidden;padding-bottom:38px;width:100%}
+                                .testimonialSwiper{overflow:hidden;position:relative}.testimonialSwiper .swiper-wrapper{display:flex}.testimonialSwiper .swiper-slide{flex:0 0 100%;min-width:100%;height:auto}
+                                .bn-tm-card{position:relative;padding:4px 2px 2px}
+                                .bn-tm-quotemark{position:absolute;top:-14px;right:2px;font-size:84px;line-height:1;font-family:Georgia,"Times New Roman",serif;color:#0757d9;opacity:.12;pointer-events:none}
+                                .bn-tm-stars{color:#f5a623;font-size:14px;letter-spacing:2px;margin-bottom:12px}
+                                .bn-tm-text{font-size:15px;line-height:1.75;color:#3a4a60;min-height:120px;margin:0 0 18px;overflow-wrap:anywhere}
+                                .bn-tm-person{display:flex;align-items:center;gap:14px;border-top:1px solid #eef2f7;padding-top:18px}
+                                .bn-tm-avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;border:3px solid #eaf2ff;flex:0 0 52px}
+                                .bn-tm-meta strong{display:block;font-size:15px;color:#12233d;font-weight:800}
+                                .bn-tm-meta span{display:block;font-size:12.5px;color:#5c6b7e;text-transform:capitalize;margin-top:2px}
+                                .bn-tm-pagination{position:absolute;bottom:12px;left:0;width:100%;text-align:center;line-height:0}
+                                .bn-tm-pagination .swiper-pagination-bullet{width:8px;height:8px;background:#c6d2e2;opacity:1;transition:width .25s,background .25s}
+                                .bn-tm-pagination .swiper-pagination-bullet-active{width:24px;border-radius:6px;background:#0757d9}
+                                .bn-tm-nav{position:absolute;top:28px;right:24px;display:flex;gap:8px;z-index:3}
+                                .bn-tm-nav button{width:34px;height:34px;border-radius:50%;border:1px solid #dbe4ef;background:#fff;color:#0757d9;font-size:12px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center}
+                                .bn-tm-nav button:hover{background:#0757d9;color:#fff;border-color:#0757d9}
+
+                                /* legacy decorative panel no longer used */
+                                .testimonial_section .testimonial_box .testimonial_container{background:transparent !important;margin-left:0 !important}
+                                .testimonial_section .testimonial_box .testimonial_container .background_layer{display:none !important}
+
+                                /* stack cleanly below lg — drop the overlap */
+                                @media (max-width:991px){
+                                    .testimonial_section .about_content{padding:44px 22px !important}
+                                    .testimonial_section .about_content .background_layer{width:100% !important;margin:0 !important}
+                                    .testimonial_section .col-lg-5{padding:52px 22px 44px}
+                                    .testimonial_section .col-lg-5::after{display:none}
+                                    .testimonial_section .col-lg-5::before{font-size:130px;right:14px}
+                                    .bn-tm-wrap{margin-left:0;padding:46px 26px 28px}
+                                }
+                                @media (max-width:575px){
+                                    .testimonial_section .col-lg-5{padding:44px 16px 34px}
+                                    .bn-tm-wrap{padding:44px 20px 26px}
+                                    .bn-tm-text{min-height:0}
+                                    .bn-tm-nav{display:none}
+                                    .bn-tm-head{padding-right:0}
+                                    .bn-tm-badge{left:20px}
+                                }
+                            

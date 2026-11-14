@@ -7,12 +7,7 @@
 
         @include('goods.include.assets')
         
-        <style>
-            #bags-note {
-    font-size: 11px;
-    white-space: nowrap;
-}
-        </style>
+        @stylesheet('goods/css/pages/order-review.css')
     </head>
     <body>
         @include('goods.include.header')

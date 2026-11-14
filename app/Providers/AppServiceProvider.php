@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // @stylesheet('goods/css/partials/header.css') -> versioned <link>, see App\Support\SiteAssets.
+        Blade::directive('stylesheet', function (string $expression) {
+            return "<?php echo \\App\\Support\\SiteAssets::stylesheet({$expression}); ?>";
+        });
     }
 }

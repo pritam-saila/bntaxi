@@ -7,11 +7,7 @@
 
         @include('goods.include.assets')
 
-        <style>
-            .contain_para th, td{
-                text-align: center;
-            }
-        </style>
+        @stylesheet('goods/css/pages/fuel-surcharge.css')
     </head>
     <body>
         @include('goods.include.header')

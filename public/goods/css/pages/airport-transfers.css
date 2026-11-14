@@ -1,0 +1,167 @@
+/* Moved from resources/views/goods/airport-transfers.blade.php */
+
+           
+           
+           /* SECTION */
+.service-section {
+    background: #f5f7fb;
+    padding: 80px 0;
+}
+
+/* TITLE */
+.title {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #1a1a1a;
+}
+
+/* TEXT */
+.service-section p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* IMAGE BOX */
+.image-box img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* SIDEBAR */
+.sidebar {
+    margin-top: 20px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.sidebar h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #007bff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+    padding-left: 6px;
+    color: #0056b3;
+}
+
+/* 🔥 HEAVY CTA BUTTON */
+.btn-book {
+    display: inline-block;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: #fff;
+    padding: 14px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 8px 20px rgba(0,123,255,0.3);
+}
+
+.btn-book:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(0,123,255,0.4);
+    color: #fff;
+}
+
+/* FULL WIDTH BUTTON */
+.w-100 {
+    display: block;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .title {
+        font-size: 28px;
+    }
+
+    .service-section {
+        padding: 50px 0;
+    }
+}
+
+/* TITLE */
+.page-title {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+
+/* TEXT */
+.col-lg-8 p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #555;
+}
+
+/* HIGHLIGHT TEXT */
+.highlight {
+    font-weight: 600;
+    background: #f1f6ff;
+    padding: 8px 12px;
+    border-left: 4px solid #007bff;
+    border-radius: 4px;
+}
+
+/* LIST */
+.airport-list {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.airport-list li {
+    margin-bottom: 6px;
+    color: #007bff;
+    font-weight: 500;
+}
+
+/* SUB TITLE */
+.sub-title {
+    margin-top: 30px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* FEATURES */
+.feature-list {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.feature-list li {
+    margin-bottom: 12px;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 26px;
+    }
+}
+           
+        
