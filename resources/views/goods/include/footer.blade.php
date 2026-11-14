@@ -1886,7 +1886,7 @@
                 <!-- CONTACT -->
                 <div class="bn-contact">
 
-                    <a href="tel:01273757373">
+                    <a href="tel:+441273757373">
 
                         <span class="bn-contact-icon">
                             <i class="fa fa-phone"></i>
@@ -1919,21 +1919,20 @@
                 <!-- SOCIAL -->
                 <div class="bn-footer-social">
 
-                    <a href="#" aria-label="Facebook">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-
-                    <a href="#" aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-
-                    <a href="#" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-
-                    <a href="#" aria-label="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
+                    {{-- Only profiles with a real URL are shown (set them in .env, see config/services.php). --}}
+                    @php $biz = config('services.business'); @endphp
+                    @foreach ([
+                        ['facebook_url', 'Facebook', 'fab fa-facebook'],
+                        ['instagram_url', 'Instagram', 'fab fa-instagram'],
+                        ['twitter_url', 'X (Twitter)', 'fab fa-twitter'],
+                        ['whatsapp_url', 'WhatsApp', 'fab fa-whatsapp'],
+                    ] as [$key, $label, $icon])
+                        @if (!empty($biz[$key]))
+                            <a href="{{ $biz[$key] }}" target="_blank" rel="noopener" aria-label="BN Taxi Anytime on {{ $label }}">
+                                <i class="{{ $icon }}" aria-hidden="true"></i>
+                            </a>
+                        @endif
+                    @endforeach
 
                 </div>
 
@@ -2073,8 +2072,12 @@
                         <small>Our Location</small>
 
                         <p>
-                            Saunders Park,<br>
-                            BN24AY, Brighton,<br>
+                            @if (config('services.business.street_address'))
+                                {{ config('services.business.street_address') }},<br>
+                            @else
+                                Saunders Park,<br>
+                            @endif
+                            Brighton {{ config('services.business.postcode') }},<br>
                             United Kingdom
                         </p>
 
@@ -2811,7 +2814,9 @@ body.bn-sidebar-active {
 
             <div class="profile-text">
                 <h3>BN Taxi</h3>
-                <p>Welcome Back 👋</p>
+                @auth
+                <p>Welcome back 👋</p>
+                @endauth
             </div>
         </div>
 

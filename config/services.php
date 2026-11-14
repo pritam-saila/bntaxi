@@ -31,4 +31,18 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // Public business details used by the footer and the homepage's structured data (SEO).
+    // Leave a value empty and it is simply not shown / not added to the schema.
+    'business' => [
+        'street_address' => env('BUSINESS_STREET_ADDRESS'),
+        'postcode' => env('BUSINESS_POSTCODE', 'BN2 4AY'),
+        'licence' => env('BUSINESS_LICENCE_NUMBER'),
+        'google_business_url' => env('GOOGLE_BUSINESS_URL'),
+        'google_review_url' => env('GOOGLE_REVIEW_URL'),
+        'whatsapp_url' => env('WHATSAPP_URL', 'https://wa.me/447491757373'),
+        'facebook_url' => env('SOCIAL_FACEBOOK_URL'),
+        'instagram_url' => env('SOCIAL_INSTAGRAM_URL'),
+        'twitter_url' => env('SOCIAL_TWITTER_URL'),
+    ],
+
 ];

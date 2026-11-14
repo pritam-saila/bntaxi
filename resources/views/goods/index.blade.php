@@ -1,11 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
     <head>
          <meta charset="UTF-8">
          <title>BN Taxi Anytime | Brighton Taxi & Airport Transfers </title>
-  <meta name="description" content="Reliable Brighton taxi service, available 24/7. Airport transfers, wedding cars &
-corporate travel with fixed prices. Book your ride online now. ">
-  <meta name="keywords" content="Brighton taxi">
+  <meta name="description" content="Reliable Brighton taxi service, available 24/7. Airport transfers, wedding cars & corporate travel with fixed prices. Book your ride online now.">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,7 +11,12 @@ corporate travel with fixed prices. Book your ride online now. ">
         <link rel="preload" as="image" href="{{ url('goods/images/bntaxi1.webp') }}"
               imagesrcset="{{ url('goods/images/bntaxi1-800.webp') }} 800w, {{ url('goods/images/bntaxi1.webp') }} 1600w"
               imagesizes="100vw" fetchpriority="high">
-        @include('goods.include.assets', ['lean' => true])
+        @include('goods.include.assets', [
+            'lean' => true,
+            'ogTitle' => 'BN Taxi Anytime | Brighton Taxi & Airport Transfers',
+            'ogDescription' => '24/7 Brighton taxi service. Fixed-price airport transfers to Gatwick, Heathrow and more. Book online.',
+        ])
+        @include('goods.include.schema-taxi-service')
 
 
         <style>
@@ -1246,6 +1249,8 @@ corporate travel with fixed prices. Book your ride online now. ">
 .bn-footer>.container{contain-intrinsic-size:auto 680px}
 }
 .banner_bottom span{background-color:#1a73e8}
+.banner_bottom h1{margin:0;text-align:center;color:#fff;font-size:18px;line-height:35px;font-family:Quicksand,sans-serif;font-weight:700}
+@media (max-width:768px){.banner_bottom h1{font-size:15px}}
         </style>
     </head>
     <body>
@@ -1279,9 +1284,9 @@ corporate travel with fixed prices. Book your ride online now. ">
 
             <div class="banner_bottom">
                 <div class="container">
-                    <h2>
-                        Get a FREE Instant Quote Here <span><a href="{{url('book-now')}}">Book Now</a></span>
-                    </h2>
+                    <h1>
+                        Brighton Taxi &amp; Airport Transfers, 24/7 &middot; Get a FREE Instant Quote <span><a href="{{url('book-now')}}">Book Now</a></span>
+                    </h1>
                 </div>
             </div>
 
@@ -1335,7 +1340,7 @@ corporate travel with fixed prices. Book your ride online now. ">
                     </li>
 
                     <li>
-                        <strong>London St Pancras</strong>
+                        <strong>London St Pancras (rail station)</strong>
                         <span>From £245</span>
                     </li>
 
@@ -1349,7 +1354,7 @@ corporate travel with fixed prices. Book your ride online now. ">
 
 
                 <a
-                    href="tel:+44 1273 757 373"
+                    href="tel:+441273757373"
                     class="btn-call"
                 >
                     Call Now
@@ -1475,7 +1480,7 @@ corporate travel with fixed prices. Book your ride online now. ">
                 </h3>
 
                 <p>
-                    Bn taxi anytime follows a guiding ethical principle. Our taxi service by Brighton taxis
+                    BN Taxi Anytime follows a guiding ethical principle. Our taxi service by Brighton taxis
                     incurs no hidden charges. Likewise, we provide an accurate estimate for the provided
                     service.
                 </p>
@@ -1698,7 +1703,7 @@ corporate travel with fixed prices. Book your ride online now. ">
   	</div> -->
 
             <div class="bn-map" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2519.4320217800564!2d-0.12533568826761446!3d50.84168367155134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487585893d3c75f3%3A0xdf0cf8b8d9f5aee8!2sSaunders%20Park%20View%2C%20Brighton%20and%20Hove%2C%20Brighton%2C%20UK!5e0!3m2!1sen!2sin!4v1775154471291!5m2!1sen!2sin">
-                <button type="button" class="bn-map-btn"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Show map: Saunders Park View, Brighton</button>
+                <button type="button" class="bn-map-btn"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Show our location on Google Maps</button>
             </div>
         </div>
 

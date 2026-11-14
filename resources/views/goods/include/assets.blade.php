@@ -15,9 +15,33 @@
             if (is_file($file) && ($css = @file_get_contents($file))) { $homeCss = $css; break; }
         }
     }
+
+    // SEO: one canonical address per page. The site answers on www/non-www and http/https,
+    // so always point search engines at https://bntaxianytime.com/<path> (from APP_URL).
+    $siteUrl = rtrim(config('app.url'), '/');
+    $path = trim(request()->path(), '/');
+    $canonical = $siteUrl . ($path === '' ? '/' : '/' . $path);
+    if (request()->filled('page')) {
+        $canonical .= '?page=' . (int) request()->query('page');
+    }
 @endphp
 {{-- Debug marker: shows which stylesheet mode the page is using (view-source and search "css-mode"). --}}
-<!-- css-mode: {{ $homeCss ? 'inline' : 'files' }} -->@unless ($homeCss)
+<!-- css-mode: {{ $homeCss ? 'inline' : 'files' }} -->
+<link rel="canonical" href="{{ $canonical }}">
+<meta property="og:site_name" content="BN Taxi Anytime">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="{{ $canonical }}">
+@isset($ogTitle)<meta property="og:title" content="{{ $ogTitle }}">
+@endisset
+@isset($ogDescription)<meta property="og:description" content="{{ $ogDescription }}">
+@endisset
+<meta property="og:image" content="{{ $siteUrl }}/goods/images/og-share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="BN Taxi Anytime - Brighton taxi and airport transfers">
+<meta name="twitter:card" content="summary_large_image">
+@unless ($homeCss)
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
